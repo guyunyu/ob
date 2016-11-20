@@ -181,12 +181,15 @@ $$(document).on('deviceready', function() {
 			PayPalEnvironmentProduction: 'AFcWxV21C7fd0v3bYYYRCpSSRl31AivA1B1OeEH7Rj.VX-TcA2.boSY0',
 			PayPalEnvironmentSandbox: ''
 		}, function() {
+			console.log = function(m) {
+				logs.append('<li> ' + m + ' </li>');
+			};
 			logs.append('<li> prepareToRender ... </li>');
 			PayPalMobile.prepareToRender('PayPalEnvironmentProduction', function() {
 				return new PayPalConfiguration({
-					merchantName: 'Office Buddy',
+					merchantName: 'Kumpulan Development (S) Pte Ltd'/*,
 					merchantPrivacyPolicyURL: 'http://www.officebuddy.com.sg/ob/privacy.html',
-					merchantUserAgreementURL: 'http://www.officebuddy.com.sg/ob/tc.html'
+					merchantUserAgreementURL: 'http://www.officebuddy.com.sg/ob/tc.html'*/
 				});
 			}, function() {
 				logs.append('<li> callback ... ready, init onclick</li>');
