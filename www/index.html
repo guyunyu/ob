@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <title>Office Buddy</title>
+
+    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div class="statusbar-overlay"></div>
+    <div class="panel-overlay"></div>
+    <div class="panel panel-left panel-reveal">
+      <div class="content-block">
+        <p>TODO: menus</p>
+      </div>
+    </div>
+    <div class="views">
+      <div class="view view-main">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left">
+              <a href="#" class="link icon-only open-panel"><i class="icon icon-form-settings"></i></a>
+            </div>
+            <div class="center sliding">Office Buddy</div>
+            <div class="right">
+              <a href="#" class="link icon-only ob-icon-login"><i class="icon icon-form-password"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="pages navbar-through toolbar-through">
+          <div data-page="index" class="page">
+            <div class="page-content">
+              <div class="content-block">
+                <form class="searchbar searchbar-init" onsubmit="return ob.list(this);">
+                  <div class="searchbar-input">
+                    <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
+                  </div>
+                  <a href="#" class="searchbar-cancel">Cancel</a>
+                </form>
+                <hr></hr>
+                <div id="div-x"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="toolbar">
+          <div class="toolbar-inner">
+            <a href="#" class="link">My Cart</a>
+            <a href="#" class="link">My Order</a>
+            <a href="#" class="link">Favorites</a>
+            <a href="#" class="link">Me</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="login-screen">
+      <div class="view">
+        <div class="page">
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title">Office Buddy</div>
+            <form>
+              <div class="list-block">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">User ID</div>
+                      <div class="item-input">
+                        <input type="text" name="loginId" placeholder="Your User ID">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Password</div>
+                      <div class="item-input">
+                        <input type="password" name="password" placeholder="Your password">
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="list-block">
+                <ul>
+                  <li><a href="#" class="item-link list-button ob-btn-login">Sign In</a></li>
+                </ul>
+                <div class="list-block-label">
+                  <p><a href="#" class="close-login-screen">Cancel</a></p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/list.js"></script>
+    <script type="text/javascript" src="js/item.js"></script>
+  </body>
+</html>
