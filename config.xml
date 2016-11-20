@@ -2,7 +2,8 @@
 
 <widget id="com.evolt.apps.ob" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" 
 	xmlns:gap="http://phonegap.com/ns/1.0"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools">
 
 	<name>Office Buddy</name>
 	<description>
@@ -31,5 +32,10 @@
 	<preference name="android-minSdkVersion" value="16"/>
 	<plugin name="cordova-plugin-whitelist" spec="~1.2.0"/>	
 	<plugin name="phonegap-plugin-barcodescanner" spec="~6.0.3"/>
+	<plugin name="com.paypal.cordova.mobilesdk" source="npm"/>
+
+	<gap:config-file platform="android" parent="/manifest">
+		<uses-sdk android:minSdkVersion="16" tools:overrideLibrary="com.paypal.android.sdk.payments"/>
+	</gap:config-file>
 
 </widget>
