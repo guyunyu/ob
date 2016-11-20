@@ -179,10 +179,10 @@ $$(document).on('deviceready', function() {
 	try {
 		PayPalMobile.init({
 			PayPalEnvironmentProduction: 'AFcWxV21C7fd0v3bYYYRCpSSRl31AivA1B1OeEH7Rj.VX-TcA2.boSY0',
-			PayPalEnvironmentSandbox: ''
+			PayPalEnvironmentSandbox: '-'
 		}, function() {
 			console.log = function(m) {
-				logs.append('<li> ' + m + ' </li>');
+				logs.append('<li> console.log: ' + m + ' </li>');
 			};
 			logs.append('<li> prepareToRender ... </li>');
 			PayPalMobile.prepareToRender('PayPalEnvironmentProduction', function() {
