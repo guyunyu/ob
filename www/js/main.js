@@ -178,10 +178,11 @@ $$(document).on('deviceready', function() {
 	logs.append('<li> init paypal mobile ... </li>');
 	try {
 		PayPalMobile.init({
-			PayPalEnvironmentProduction: 'sales_api1.kumpulan.com.sg'
+			PayPalEnvironmentProduction: 'AFcWxV21C7fd0v3bYYYRCpSSRl31AivA1B1OeEH7Rj.VX-TcA2.boSY0',
+			PayPalEnvironmentSandbox: ''
 		}, function() {
 			logs.append('<li> prepareToRender ... </li>');
-			PayPalMobile.prepareToRender('PayPalEnvironmentNoNetwork', function() {
+			PayPalMobile.prepareToRender('PayPalEnvironmentProduction', function() {
 				return new PayPalConfiguration({
 					merchantName: 'Office Buddy',
 					merchantPrivacyPolicyURL: 'http://www.officebuddy.com.sg/ob/privacy.html',
