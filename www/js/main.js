@@ -172,31 +172,40 @@ $$(document).on('deviceready', function() {
 			fw.alert(e);
 		}
 	});
-	
-	PayPalMobile.init({
-		PayPalEnvironmentProduction: 'sales_api1.kumpulan.com.sg'
-	}, function() {
-		PayPalMobile.prepareToRender('PayPalEnvironmentNoNetwork', function() {
-			return new PayPalConfiguration({
-				merchantName: 'Office Buddy',
-				merchantPrivacyPolicyURL: 'http://www.officebuddy.com.sg/ob/privacy.html',
-				merchantUserAgreementURL: 'http://www.officebuddy.com.sg/ob/tc.html'
-			});
+
+	var logs = $$('<ol></ol>');
+	$$('#div-x').append(logs);
+	logs.append('<li> init paypal mobile ... </li>');
+	try {
+		PayPalMobile.init({
+			PayPalEnvironmentProduction: 'sales_api1.kumpulan.com.sg'
 		}, function() {
-			$$('#btn-pay').on('click', function() {
-				PayPalMobile.renderSinglePaymentUI(function() {
-					return new PayPalPayment('1.23', 'SGD', 'Copier Paper A4', 'Sale', new PayPalPaymentDetails('1.23', '0.00', '0.00'));
-				}, function( rt ) {
-					var dom = $$('<span style="color: blue;"></span>');
-					$$('#div-x').append(dom);
-					dom.text(JSON.stringify(rt, null, 4));
-				}, function( rt ) {
-					var dom = $$('<span style="color: red;"></span>');
-					$$('#div-x').append(dom);
-					dom.text(JSON.stringify(rt, null, 4));
+			logs.append('<li> prepareToRender ... </li>');
+			PayPalMobile.prepareToRender('PayPalEnvironmentNoNetwork', function() {
+				return new PayPalConfiguration({
+					merchantName: 'Office Buddy',
+					merchantPrivacyPolicyURL: 'http://www.officebuddy.com.sg/ob/privacy.html',
+					merchantUserAgreementURL: 'http://www.officebuddy.com.sg/ob/tc.html'
+				});
+			}, function() {
+				logs.append('<li> callback ... ready, init onclick</li>');
+				$$('#btn-pay').on('click', function() {
+					PayPalMobile.renderSinglePaymentUI(function() {
+						return new PayPalPayment('1.23', 'SGD', 'Copier Paper A4', 'Sale', new PayPalPaymentDetails('1.23', '0.00', '0.00'));
+					}, function( rt ) {
+						var dom = $$('<span style="color: blue;"></span>');
+						$$('#div-x').append(dom);
+						dom.text(JSON.stringify(rt, null, 4));
+					}, function( rt ) {
+						var dom = $$('<span style="color: red;"></span>');
+						$$('#div-x').append(dom);
+						dom.text(JSON.stringify(rt, null, 4));
+					});
 				});
 			});
 		});
-	});
+	} catch(e) {
+		logs.append('<li> ' + e + ' </li>');
+	}
 
 });
