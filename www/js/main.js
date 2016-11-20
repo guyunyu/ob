@@ -118,7 +118,7 @@ $$(document).on('deviceready', function() {
 
 	ob.init();
 
-	$$('#div-x').append($$('<div>device is ready to use</div><hr></hr><ol><li><div><input type="text" class="mod-url"></input></div><div><button id="btn-ajax">Test Ajax</button></div></li><li><button id="btn-img">Test Image</button></li><li><button id="btn-scan">Test Scan</button></li></ol>'));
+	$$('#div-x').append($$('<div>device is ready to use</div><hr></hr><ol><li><div><input type="text" class="mod-url"></input></div><div><button id="btn-ajax">Test Ajax</button></div></li><li><button id="btn-img">Test Image</button></li><li><button id="btn-scan">Test Scan</button></li><li><button id="btn-pay">Pay</button></li></ol>'));
 	$$('.mod-url').val(ob.url(''));
 	$$('#btn-ajax').on('click', function() {
 		ob.url = function( uri ) {
@@ -173,5 +173,30 @@ $$(document).on('deviceready', function() {
 		}
 	});
 	
-	$$('#div-x').append('<div>PayPalMobile : ' + typeof PayPalMobile + '</div>');
+	PayPalMobile.init({
+		PayPalEnvironmentProduction: 'sales_api1.kumpulan.com.sg'
+	}, function() {
+		PayPalMobile.prepareToRender('PayPalEnvironmentNoNetwork', function() {
+			return new PayPalConfiguration({
+				merchantName: 'Office Buddy',
+				merchantPrivacyPolicyURL: 'http://www.officebuddy.com.sg/ob/privacy.html',
+				merchantUserAgreementURL: 'http://www.officebuddy.com.sg/ob/tc.html'
+			});
+		}, function() {
+			$$('#btn-pay').on('click', function() {
+				PayPalMobile.renderSinglePaymentUI(function() {
+					return new PayPalPayment('1.23', 'SGD', 'Copier Paper A4', 'Sale', new PayPalPaymentDetails('1.23', '0.00', '0.00'));
+				}, function( rt ) {
+					var dom = $$('<span style="color: blue;"></span>');
+					$$('#div-x').append(dom);
+					dom.text(JSON.stringify(rt, null, 4));
+				}, function( rt ) {
+					var dom = $$('<span style="color: red;"></span>');
+					$$('#div-x').append(dom);
+					dom.text(JSON.stringify(rt, null, 4));
+				});
+			});
+		});
+	});
+
 });
