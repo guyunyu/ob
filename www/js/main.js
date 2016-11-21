@@ -216,7 +216,7 @@ $$(document).on('deviceready', function() {
 	logs.append('<li> init paypal mobile ... </li>');
 	try {
 		PayPalMobile.init({
-			//PayPalEnvironmentProduction: '',
+			PayPalEnvironmentProduction: '',
 			PayPalEnvironmentSandbox: 'AboCysAL656E1KlAKs4k94VxrmkBpMGOSAKIQ_Oa42RG-BZIYmuAwkbrfcfY3qXUbEsghNVLVsWYFuRX'
 		}, function() {
 			console.log = function(m) {
