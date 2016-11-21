@@ -11,7 +11,12 @@ ob.debug = true;
 ob.pages = {};
 
 ob.url = function( uri ) {
-	return 'http://192.168.2.100:8180/ob' + uri;
+	var url = window.localStorage.getItem('url');
+	if(typeof url === 'string') {
+		return url + uri;
+	} else {
+		return 'http://192.168.4.53:8180/ob' + uri;
+	}
 };
 
 ob.error = function(e) {
@@ -20,6 +25,41 @@ ob.error = function(e) {
 	} else {
 		fw.alert('Opps! Something goes wrong.');
 	}
+};
+
+ob.quantity = function( q ) {
+	var v;
+	if(q || typeof q === 'number') {
+		v = q.toString();
+		if(v.indexOf('.') > 0) {
+			v = v.substr(0, v.indexOf('.'));
+		}
+	} else {
+		v = '0';
+	}
+	return v;
+};
+
+ob.currency = function( q ) {
+	var v;
+	if(q || typeof q === 'number') {
+		v = q.toString();
+		var i = v.indexOf('.');
+		if(i > 0) {
+			if(i < v.length - 2) {
+				v = v.substr(0, v + 2);
+			} else if(i < v.length - 1) {
+				v = v.substr(0, v + 1) + '0';
+			} else {
+				v = v + '00';
+			}
+		} else {
+			v = v + '.00';
+		}
+	} else {
+		v = '0.00';
+	}
+	return v;
 };
 
 ob.init = function() {
@@ -121,9 +161,7 @@ $$(document).on('deviceready', function() {
 	$$('#div-x').append($$('<div>device is ready to use</div><hr></hr><ol><li><div><input type="text" class="mod-url"></input></div><div><button id="btn-ajax">Test Ajax</button></div></li><li><button id="btn-img">Test Image</button></li><li><button id="btn-scan">Test Scan</button></li><li><button id="btn-pay">Pay</button></li></ol>'));
 	$$('.mod-url').val(ob.url(''));
 	$$('#btn-ajax').on('click', function() {
-		ob.url = function( uri ) {
-			return $$('.mod-url').val() + uri;
-		};
+		window.localStorage.setItem('url', $$('.mod-url').val());
 		try {
 			$$.ajax({
 				url: ob.url('/a/catalog/Item.List'),
@@ -178,20 +216,18 @@ $$(document).on('deviceready', function() {
 	logs.append('<li> init paypal mobile ... </li>');
 	try {
 		PayPalMobile.init({
-			PayPalEnvironmentProduction: 'AFcWxV21C7fd0v3bYYYRCpSSRl31AivA1B1OeEH7Rj.VX-TcA2.boSY0',
+			//PayPalEnvironmentProduction: '',
 			PayPalEnvironmentSandbox: 'AboCysAL656E1KlAKs4k94VxrmkBpMGOSAKIQ_Oa42RG-BZIYmuAwkbrfcfY3qXUbEsghNVLVsWYFuRX'
 		}, function() {
 			console.log = function(m) {
 				logs.append('<li> console.log: ' + m + ' </li>');
 			};
 			logs.append('<li> prepareToRender ... </li>');
-			PayPalMobile.prepareToRender('PayPalEnvironmentSandbox', function() {
-				return new PayPalConfiguration({
+			PayPalMobile.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
 					merchantName: 'ob'/*,
 					merchantPrivacyPolicyURL: 'http://www.officebuddy.com.sg/ob/privacy.html',
 					merchantUserAgreementURL: 'http://www.officebuddy.com.sg/ob/tc.html'*/
-				});
-			}, function() {
+				}), function() {
 				logs.append('<li> callback ... ready, init onclick</li>');
 				$$('#btn-pay').on('click', function() {
 					PayPalMobile.renderSinglePaymentUI(function() {

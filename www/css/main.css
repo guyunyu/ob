@@ -13,4 +13,14 @@ button { padding: 5px 10px; margin: 10px; }
 .page div.ob-item { margin: 0px; padding: 0px; }
 .page div.ob-item .main-img { width: 100%; }
 .page div.ob-item .main-img > img { width: 100%; }
-.page div.ob-item .detail { padding: 5px; }
+.page div.ob-item .detail { display: none; padding: 5px; }
+.page div.ob-item .detail > .title {}
+.page div.ob-item .detail > .title > .name {}
+.page div.ob-item .detail > .title > .promo {}
+.page div.ob-item .detail > .price {}
+.page div.ob-item .detail > .price > .up {}
+.page div.ob-item .detail > .price > .up > .lbl {}
+.page div.ob-item .detail > .price > .up > .val { font-weight: bold; color: red; }
+.page div.ob-item .detail > .price > .promo {}
+.page div.ob-item .detail > .spec {}
+.page div.ob-item .detail > .spec > a {}
