@@ -227,12 +227,10 @@ $$(document).on('deviceready', function() {
 					merchantName: 'ob'/*,
 					merchantPrivacyPolicyURL: 'http://www.officebuddy.com.sg/ob/privacy.html',
 					merchantUserAgreementURL: 'http://www.officebuddy.com.sg/ob/tc.html'*/
-				}), function() {
+			}), function() {
 				logs.append('<li> callback ... ready, init onclick</li>');
 				$$('#btn-pay').on('click', function() {
-					PayPalMobile.renderSinglePaymentUI(function() {
-						return new PayPalPayment('1.23', 'SGD', 'Copier Paper A4', 'Sale', new PayPalPaymentDetails('1.23', '0.00', '0.00'));
-					}, function( rt ) {
+					PayPalMobile.renderSinglePaymentUI(new PayPalPayment('1.23', 'SGD', 'Copier Paper A4', 'Sale', new PayPalPaymentDetails('1.23', '0.00', '0.00')), function( rt ) {
 						var dom = $$('<span style="color: blue;"></span>');
 						$$('#div-x').append(dom);
 						dom.text(JSON.stringify(rt, null, 4));
