@@ -179,15 +179,15 @@ $$(document).on('deviceready', function() {
 	try {
 		PayPalMobile.init({
 			PayPalEnvironmentProduction: 'AFcWxV21C7fd0v3bYYYRCpSSRl31AivA1B1OeEH7Rj.VX-TcA2.boSY0',
-			PayPalEnvironmentSandbox: '-'
+			PayPalEnvironmentSandbox: 'AboCysAL656E1KlAKs4k94VxrmkBpMGOSAKIQ_Oa42RG-BZIYmuAwkbrfcfY3qXUbEsghNVLVsWYFuRX'
 		}, function() {
 			console.log = function(m) {
 				logs.append('<li> console.log: ' + m + ' </li>');
 			};
 			logs.append('<li> prepareToRender ... </li>');
-			PayPalMobile.prepareToRender('PayPalEnvironmentProduction', function() {
+			PayPalMobile.prepareToRender('PayPalEnvironmentSandbox', function() {
 				return new PayPalConfiguration({
-					merchantName: 'Kumpulan Development (S) Pte Ltd'/*,
+					merchantName: 'ob'/*,
 					merchantPrivacyPolicyURL: 'http://www.officebuddy.com.sg/ob/privacy.html',
 					merchantUserAgreementURL: 'http://www.officebuddy.com.sg/ob/tc.html'*/
 				});
