@@ -17,7 +17,7 @@ ob.url = function( uri ) {
 	if(typeof url === 'string') {
 		return url + uri;
 	} else {
-		return 'http://cluster1.localhost:8180/ob' + uri;
+		return 'http://192.168.2.103:8180/ob' + uri;
 	}
 };
 
