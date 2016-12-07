@@ -1,8 +1,34 @@
 ob.pages.item = {
-	init: function() {
+	init: function( page ) {
 		this.prices = {};
 		this.sku = null;
 		this.priceRange = '-';
+		ob.pages.item.container = $$(page.container);
+		if(page.query.img) {
+			ob.pages.item.container.find('.ob-item .main-img > img').attr('src', unescape(page.query.img));
+		}
+		var itemId = page.query.id;
+		ob.pages.item.container.find('.ob-item .loading').append('<p><span class="progressbar-infinite"></span></p>');
+		ob.pages.item.prices = {};
+		ob.ajax({
+			url: ob.url('/a/catalog/ItemForApps'),
+			method: 'GET',
+			data: {
+				't.itemId': itemId
+			},
+			success: function(dt) {
+				console.log(dt);
+				try {
+					var json = JSON.parse(dt);
+					ob.pages.item.show(json);
+				} catch(e) {
+					ob.error(e);
+				}
+			},
+			error: function(xhr, e) {
+				ob.error(e);
+			}
+		});
 	},
 	prices: {},
 	show: function( json ) {
@@ -39,7 +65,7 @@ ob.pages.item = {
 			var discount = 0;
 			var promoprice = 0;
 			var haspromo = false;
-			var promo = info['t.promo'];
+			var promo = prices['t.promo'];
 			if(typeof promo === 'string') {
 				try {
 					promo = JSON.parse(promo);
@@ -58,19 +84,27 @@ ob.pages.item = {
 						}
 						var focs = promo.focs;
 						if(focs.length > 0) {
-							var ul = $('<ul></ul>');
+							var ul = $$('<ul></ul>');
 							ob.pages.item.container.find('.ob-item .detail .price > .promo').append(ul);
 							ul.append('<li><div><span>FOC:</span></div></li>');
 							for(var index=0; index<focs.length; index++) {
-								var li = $$('<li></li>');
-								var img = $$('<img></img>');
+								var li = $$('<li><a href="#"><img></img></a><span></span></li>');
+								var img = li.find('img');
+								var a = li.find('a');
+								a.data('id', focs[index].itemId);
 								if(focs[index].pictureURL) {
 									img.attr('src', ob.url('/images/' + focs[index].pictureURL + '-36x36.PNG'));
+									a.data('img', focs[index].pictureURL);
 								} else {
 									img.attr('src', 'images/image-placeholder.png');
 								}
-								li.append(img);
-								li.append('<span>x' + focs[index].qty + '</span>');
+								a.on('click', function() {
+									ob.mainView.router.load({
+										url: 'pages/item-foc.html?id=' + $$(this).data('id') + '&img=' + escape($$(this).data('img'))
+									});
+									return false;
+								});
+								li.find('span').text('x' + focs[index].qty);
 								ul.append(li);
 							}
 							ul.append('<li><span>(while stocks last)</span></li>');
@@ -90,7 +124,7 @@ ob.pages.item = {
 							price = promoprice;
 						}
 					}
-					ob.pages.item[skuId] = price;
+					ob.pages.item.prices[skuId] = price;
 					if(!hasprice) {
 						minprice = maxprice = price;
 						hasprice = true;
@@ -132,8 +166,11 @@ ob.pages.item = {
 				}
 				specList.find('select').on('change', function() {
 					var skuId = $$(this).val();
-					ob.pages.item.sku = skuId;
-					ob.pages.item.container.find('.ob-item .detail .price > .up > .val').text(ob.pages.item.prices[skuId]);
+					var v = ob.pages.item.prices[skuId];
+					if(v) {
+						ob.pages.item.sku = skuId;
+						ob.pages.item.container.find('.ob-item .detail .price > .up > .val').text(ob.currency(v));
+					}
 				});
 				/*
 				var choose = $$('<a href="#"><span></span></a>');
@@ -157,7 +194,6 @@ ob.pages.item = {
 				});
 				*/
 			}
-
 			ob.pages.item.container.find('.ob-item .detail').show();
 		} else {
 			ob.pages.item.container.find('.ob-item .loading').html('').append('<div><span>fail to get item info</span></div>');
@@ -166,35 +202,16 @@ ob.pages.item = {
 };
 
 fw.onPageInit('item', function (page) {
-	ob.pages.item.container = $$(page.container);
-	if(page.query.img) {
-		ob.pages.item.container.find('.ob-item .main-img > img').attr('src', page.query.img);
-	}
-	var itemId = page.query.id;
-	ob.pages.item.container.find('.ob-item .loading').append('<p><span class="progressbar-infinite"></span></p>');
-	ob.pages.item.prices = {};
-	try {
-		$$.ajax({
-			url: ob.url('/a/catalog/ItemForApps'),
-			method: 'GET',
-			timeout: 20000,
-			data: {
-				't.itemId': itemId
-			},
-			success: function(dt) {
-				console.log(dt);
-				try {
-					var json = JSON.parse(dt);
-					ob.pages.item.show(json);
-				} catch(e) {
-					ob.error(e);
-				}
-			},
-			error: function(xhr, e) {
-				ob.error(e);
-			}
-		});
-	} catch(err) {
-		ob.error(err);
-	}
+	ob.pages.item.init(page);
+	ob.toolbar.init();
+});
+fw.onPageAfterAnimation('item', function (page) { 
+	
+});
+
+fw.onPageInit('item-foc', function (page) {
+	ob.pages.item.init(page);
+});
+fw.onPageAfterAnimation('item-foc', function (page) { 
+	
 });

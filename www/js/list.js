@@ -35,66 +35,68 @@ ob.pages.list = {
 			return;
 		}
 		ob.pages.list.loading = true;
-		try {
-			$$.ajax({
-				url: ob.url('/a/catalog/Item.List'),
-				method: 'GET',
-				timeout: 20000,
-				data: {
-					q: ob.pages.list.container.find('.searchbar').find('input[type="search"]').val(),
-					pageSize: ob.pages.list.pageSize,
-					pageOffset: ob.pages.list.pageOffset
-				},
-				success: function(dt) {
-					ob.pages.list.pageOffset += 20;
-					var itemlist = JSON.parse(dt);
-					if(typeof itemlist.data === 'object') {
-						if(i) {
-							ob.pages.list.container.find('.ob-list').html('');
-							if(itemlist.data.length > 0) {
-								ob.pages.list.container.find('.ob-list').append('<ul></ul>');
-							} else {
-								ob.pages.list.container.find('.ob-list').append('<div><span>There is no item matching the keyword!</span></div>');
-							}
+		ob.ajax({
+			url: ob.url('/a/catalog/Item.List'),
+			method: 'GET',
+			data: {
+				q: ob.pages.list.container.find('.searchbar').find('input[type="search"]').val(),
+				pageSize: ob.pages.list.pageSize,
+				pageOffset: ob.pages.list.pageOffset
+			},
+			success: function(dt) {
+				ob.pages.list.pageOffset += 20;
+				var itemlist = JSON.parse(dt);
+				if(typeof itemlist.data === 'object') {
+					if(i) {
+						ob.pages.list.container.find('.ob-list').html('');
+						if(itemlist.data.length > 0) {
+							ob.pages.list.container.find('.ob-list').append('<ul></ul>');
+						} else {
+							ob.pages.list.container.find('.ob-list').append('<div><span>There is no item matching the keyword!</span></div>');
 						}
-						for(var index = 0; index < itemlist.data.length; index++) {
-							var e = $$('<li><div class="ob-item"><a href="#" class="item-link item-content"><div class="item-media"><img src="images/image-placeholder.png" class="lazy lazy-fadein" width="80" height="80"></img></div><div class="item-inner"><div class="item-title-row"><div class="item-title"></div><div class="item-after price"></div></div><div class="item-subtitle"><div class="category"></div><div class="brand"></div></div></div></a></div></li>');
-							e.find('.item-title').text(itemlist.data[index].name);
-							e.find('.price').text(itemlist.data[index].price);
-							if(itemlist.data[index].thumbnail) {
-								var img = ob.url('/images/' + itemlist.data[index].thumbnail + '-80x80.PNG');
-								e.find('img').attr('data-src', img);
-								e.find('a').data('id', itemlist.data[index].id).data('img', img);
-							} else {
-								e.find('a').data('id', itemlist.data[index].id);
+					}
+					for(var index = 0; index < itemlist.data.length; index++) {
+						var e = $$('<li><div class="ob-item"><a href="#" class="item-link item-content"><div class="item-media"><img src="images/image-placeholder.png" class="lazy lazy-fadein" width="80" height="80"></img></div><div class="item-inner"><div class="item-title-row"><div class="item-title"></div><div class="item-after price"></div></div><div class="item-subtitle"><div class="promo"><span class="icon"></span><span class="desc"></span></div><div class="category"></div><div class="brand"></div></div></div></a></div></li>');
+						e.find('.item-title').text(itemlist.data[index].name);
+						e.find('.price').text(!itemlist.data[index].promo_price ? itemlist.data[index].price : itemlist.data[index].promo_price);
+						if(itemlist.data[index].promo_name) {
+							e.find('.promo > .desc').text(itemlist.data[index].promo_name);
+						} else {
+							e.find('.promo').remove();
+						}
+						if(itemlist.data[index].thumbnail) {
+							var img = ob.url('/images/' + itemlist.data[index].thumbnail + '-80x80.PNG');
+							e.find('img').attr('data-src', img);
+							e.find('a').data('id', itemlist.data[index].id).data('img', img);
+						} else {
+							e.find('a').data('id', itemlist.data[index].id);
+						}
+						e.find('a').on('click', function() {
+							var img = $$(this).data('img');
+							var url = 'pages/item.html?id=' + $$(this).data('id'); 
+							if(img) {
+								url += ( '&img=' + escape(img) );
 							}
-							e.find('a').on('click', function() {
-								ob.mainView.router.load({
-									url: 'pages/item.html',
-									query: {
-										id: $$(this).data('id'),
-										img: $$(this).data('img')
-									}
-								});
+							ob.mainView.router.load({
+								url: url
 							});
-							ob.pages.list.container.find('.ob-list ul').append(e);
-						}
-						if(itemlist.data.length < ob.pages.list.pageSize) {
-							fw.detachInfiniteScroll(ob.pages.list.container.find('.infinite-scroll'));
-						}
-					} else {
+							return false;
+						});
+						ob.pages.list.container.find('.ob-list ul').append(e);
+					}
+					if(itemlist.data.length < ob.pages.list.pageSize) {
 						fw.detachInfiniteScroll(ob.pages.list.container.find('.infinite-scroll'));
 					}
-					fw.initImagesLazyLoad(ob.pages.list.container);
-					ob.pages.list.loading = false;
-				},
-				error: function(xhr, e) {
-					ob.error(e);
+				} else {
+					fw.detachInfiniteScroll(ob.pages.list.container.find('.infinite-scroll'));
 				}
-			});
-		} catch(err) {
-			ob.error(err);
-		}
+				fw.initImagesLazyLoad(ob.pages.list.container);
+				ob.pages.list.loading = false;
+			},
+			error: function(xhr, e) {
+				ob.error(e);
+			}
+		});
 	}
 };
 
@@ -104,6 +106,10 @@ fw.onPageInit('list', function (page) {
 	if(!q) {
 		q = '';
 	}
-	ob.pages.list.container.find('.searchbar').find('input[type="search"]').val(q);
+	ob.pages.list.container.find('.searchbar').find('input[type="search"]').val(unescape(q));
 	ob.pages.list.reload();
+	ob.toolbar.init();
+});
+fw.onPageAfterAnimation('list', function (page) { 
+	
 });

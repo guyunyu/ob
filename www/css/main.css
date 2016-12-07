@@ -2,6 +2,7 @@ button { padding: 5px 10px; margin: 10px; }
 
 .content-block { margin-top: 5px; }
 
+.clearfix { clear: both; }
 .page > div.ob-white { background-color: #fff; }
 
 .page div.ob-search { padding: 5px 0px 10px 0px; }
@@ -9,18 +10,40 @@ button { padding: 5px 10px; margin: 10px; }
 .page div.ob-list .ob-item { width: 100%; font-size: 70%; }
 .page div.ob-list .ob-item > div { width: 100%; }
 .page div.ob-list .ob-item .price { font-weight: bold; color: red; font-size: 110%; }
+.page div.ob-list .ob-item .promo { display: table; }
+.page div.ob-list .ob-item .promo > .icon { display: table-cell; vertical-align: middle; width: 16px; height: 16px; background-color: red; }
+.page div.ob-list .ob-item .promo > .desc { display: table-cell; vertical-align: middle; font-size: 90%; color: red; padding-left: 5px; }
+.page div.ob-list .ob-item input.qty { width: 60px; padding: 0px 10px; border: 1px solid #eee; text-align: center; }
 
 .page div.ob-item { margin: 0px; padding: 0px; }
 .page div.ob-item .main-img { width: 100%; }
 .page div.ob-item .main-img > img { width: 100%; }
-.page div.ob-item .detail { display: none; padding: 5px; }
+.page div.ob-item .detail { display: none; padding: 10px; }
 .page div.ob-item .detail > .title {}
-.page div.ob-item .detail > .title > .name {}
-.page div.ob-item .detail > .title > .promo {}
+.page div.ob-item .detail > .title > .name { font-size: 110%; }
+.page div.ob-item .detail > .title > .promo { color: red; }
 .page div.ob-item .detail > .price {}
 .page div.ob-item .detail > .price > .up {}
 .page div.ob-item .detail > .price > .up > .lbl {}
-.page div.ob-item .detail > .price > .up > .val { font-weight: bold; color: red; }
+.page div.ob-item .detail > .price > .up > .val { font-weight: bold; color: red; font-size: 130%; }
 .page div.ob-item .detail > .price > .promo {}
-.page div.ob-item .detail > .spec {}
-.page div.ob-item .detail > .spec > a {}
+.page div.ob-item .detail > .price > .promo ul { list-style-type: none; margin-top: 5px; }
+.page div.ob-item .detail > .price > .promo ul > li { float: left; display: table; height: 36px; }
+.page div.ob-item .detail > .price > .promo ul > li:first-child > div { background-color: red; color: white; padding: 3px; margin: 3px; display: table-cell; vertical-align: middle; }
+.page div.ob-item .detail > .price > .promo ul > li > a > img { margin-left: 5px; width: 36px; height: 36px; }
+.page div.ob-item .detail > .price > .promo ul > li > span { margin-left: 3px; display: table-cell; vertical-align: middle; }
+.page div.ob-item .detail > .price > .promo ul > li:last-child { margin-left: 5px; }
+.page div.ob-item .detail > .spec { margin-top: 10px; margin-bottom: 10px; }
+
+.page label.label-checkbox > .item-media > .after-checkbox { margin-left: 5px; }
+
+.toolbar > div.toolbar-inner > a.add { width: 100%; background-color: red; }
+.toolbar > div.toolbar-inner > a.add > span { font-size: 18px; color: white; background-image: url(../images/ic_add_shopping_cart_white_36px.svg); background-repeat: no-repeat; padding-left: 40px; padding-top: 8px; padding-bottom: 8px; margin-top: 8px; }
+.toolbar .icon > span.badge { font-family: arial; }
+.toolbar > div.toolbar-inner > a.checkout { width: 100%; background-color: red; }
+.toolbar > div.toolbar-inner > a.checkout > span { font-size: 18px; color: white; background-image: url(../images/ic_done_white_36px.svg); background-repeat: no-repeat; padding-left: 40px; padding-top: 8px; padding-bottom: 8px; margin-top: 8px; }
+.toolbar > div.toolbar-inner > a.checkout > span > .item-count { font-size: 12px; margin-left: 5px; }
+.toolbar > div.toolbar-inner > .cart-selectall { width: 100px; }
+.toolbar > div.toolbar-inner > .cart-selected { width: 180px; }
+.toolbar > div.toolbar-inner > .cart-selected > .cart-total { color: red; margin-left: 3px; }
+

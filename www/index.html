@@ -14,9 +14,10 @@
 
     <link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
     <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7-icons.css">
     <link rel="stylesheet" href="css/main.css">
   </head>
-  <body>
+  <body onload="return ob.ready();">
     <div class="statusbar-overlay"></div>
     <div class="panel-overlay"></div>
     <div class="panel panel-left panel-reveal">
@@ -48,29 +49,31 @@
                   <a href="#" class="searchbar-cancel">Cancel</a>
                 </form>
                 <hr></hr>
-                <div id="div-x"></div>
+                <div id="div-x">
+                  <a href="pages/list.html">Go Item List</a>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="toolbar tabbar tabbar-labels">
-          <div class="toolbar-inner">
-            <a href="#" class="tab-link active">
-              <i class="icon icon-form-password"></i>
-              <span class="tabbar-label">My Cart</span>
-            </a>
-            <a href="#" class="tab-link active">
-              <i class="icon icon-form-password"></i>
-              <span class="tabbar-label">My Order</span>
-            </a>
-            <a href="#" class="tab-link active">
-              <i class="icon icon-form-password"></i>
-              <span class="tabbar-label">Favorites</span>
-            </a>
-            <a href="#" class="tab-link active">
-              <i class="icon icon-form-password"></i>
-              <span class="tabbar-label">Me</span>
-            </a>
+            <div class="toolbar tabbar tabbar-labels">
+              <div class="toolbar-inner">
+                <a href="#" class="tab-link home active">
+                  <i class="icon f7-icons">home</i>
+                  <span class="tabbar-label">Home</span>
+                </a>
+                <a href="#" class="tab-link catalog">
+                  <i class="icon icon-form-password"></i>
+                  <span class="tabbar-label">Catalog</span>
+                </a>
+                <a href="#" class="tab-link cart">
+                  <i class="icon f7-icons">box<span class="badge bg-red">0</span></i>
+                  <span class="tabbar-label">Cart</span>
+                </a>
+                <a href="#" class="tab-link me">
+                  <i class="icon icon-form-password"></i>
+                  <span class="tabbar-label">Me</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -118,6 +121,8 @@
     <script type="text/javascript" src="js/paypal-mobile-js-helper.js"></script>
     <script type="text/javascript" src="lib/framework7/js/framework7.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/toolbar.js"></script>
+    <script type="text/javascript" src="js/cart.js"></script>
     <script type="text/javascript" src="js/list.js"></script>
     <script type="text/javascript" src="js/item.js"></script>
   </body>
