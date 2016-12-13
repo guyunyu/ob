@@ -25,8 +25,12 @@ ob.pages.item = {
 					ob.error(e);
 				}
 			},
-			error: function(xhr, e) {
-				ob.error(e);
+			error: function(xhr, code) {
+				if(code === 403) {
+					fw.loginScreen();
+				} else {
+					ob.error(code);
+				}
 			}
 		});
 	},

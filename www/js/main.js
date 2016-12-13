@@ -17,7 +17,7 @@ ob.url = function( uri ) {
 	if(typeof url === 'string') {
 		return url + uri;
 	} else {
-		return 'http://192.168.2.103:8180/ob' + uri;
+		return 'http://192.168.4.53:8180/ob' + uri;
 	}
 };
 
@@ -82,6 +82,10 @@ ob.init = function() {
 			}
 			return false;
 		});
+	} else {
+		$$('.ob-icon-login').find('.icon-form-password').removeClass('icon-form-password').addClass('icon-form-name');
+	}
+	{
 		$$('.ob-btn-login').on('click', function() {
 			var f = $$(this).parents('form')[0];
 			var data = {
@@ -118,16 +122,16 @@ ob.init = function() {
 			});
 			return false;
 		});
-	} else {
-		$$('.ob-icon-login').find('.icon-form-password').removeClass('icon-form-password').addClass('icon-form-name');
 	}
 };
 
 ob.list = function( f ) {
-	var q = $$(f).find('input[type="search"]').val();
+	var i = $$(f).find('input[type="search"]');
+	var q = i.val();
 	ob.mainView.router.load({
 		url: 'pages/list.html?q=' + escape(q)
 	});
+	i.blur();
 	return false;
 };
 
@@ -144,11 +148,11 @@ ob.ajax = function( opt ) {
 			timeout: opt.timeout || 20000,
 			headers: headers,
 			success: opt.success,
-			error: function(xhr, e) {
+			error: function(xhr, code) {
 				if(typeof opt.error === 'function') {
-					opt.error(e, xhr);
+					opt.error(xhr, code);
 				} else {
-					ob.error(e);
+					ob.error(code);
 				}
 			}
 		});

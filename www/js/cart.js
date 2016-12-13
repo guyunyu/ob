@@ -85,7 +85,7 @@ ob.pages.cart = {
 				skus = skus + ',' + item.skuId;
 			}
 			ob.ajax({
-				url: ob.url('/a/shopping/CartForApps.List'),
+				url: ob.url('/a/open/CartForApps.List'),
 				method: 'GET',
 				data: {
 					skus: skus
@@ -99,8 +99,12 @@ ob.pages.cart = {
 						ob.error(e);
 					}
 				},
-				error: function(xhr, e) {
-					ob.error(e);
+				error: function(xhr, code) {
+					if(code === 403) {
+						fw.loginScreen();
+					} else {
+						ob.error(code);
+					}
 				}
 			});
 		} else {
@@ -110,6 +114,7 @@ ob.pages.cart = {
 			});
 		}
 		$$('.toolbar .checkout').on('click', function() {
+			ob.pages.cart.checkout(this);
 			return false;
 		});
 		$$('.toolbar .label-checkbox > input[type="checkbox"]').on('change', function() {
@@ -146,6 +151,9 @@ ob.pages.cart = {
 			} else {
 				ctxt = '1 item';
 			}
+			$$('.toolbar .checkout').removeClass('btn-disable');
+		} else {
+			$$('.toolbar .checkout').addClass('btn-disable');
 		}
 		$$('.toolbar .checkout .item-count').text(ctxt);
 	},
@@ -166,9 +174,40 @@ ob.pages.cart = {
 				if(!item['k.skuId']) {
 					continue;
 				}
-				var e = $$('<li><div class="ob-item"><label class="label-checkbox item-content"><input type="checkbox"></input><div class="item-media"><i class="icon icon-form-checkbox"></i><a href="#" class="after-checkbox item-link-real"><img src="images/image-placeholder.png" class="lazy lazy-fadein" width="80" height="80"></img></a></div><div class="item-inner"><div class="item-title-row"><div class="item-title"><a href="#" class="item-link-real"></a></div><div class="item-after price"></div></div><div class="item-subtitle"><div class="promo"><span class="icon"></span><span class="desc"></span></div><div class="category"></div><div class="brand"></div></div><div class="item-title-row"><div class="item-title"></div><div class="item-after"><input type="number" class="qty"></input></div></div></div></label></div></li>');
+				var e = $$(
+					'<li>' + 
+						'<div class="ob-item">' + 
+							'<div class="item-content">' + 
+								'<div class="item-media">' + 
+									'<label class="label-checkbox">' + 
+										'<input type="checkbox"></input><span class="item-media"><i class="icon icon-form-checkbox"></i></span>' + 
+									'</label>' + 
+									'<a href="#" class="after-checkbox item-link-real"><img src="images/image-placeholder.png" class="lazy lazy-fadein" width="80" height="80"></img></a>' + 
+								'</div>' + 
+								'<div class="item-inner">' + 
+									'<div class="item-title-row">' + 
+										'<div class="item-title"><a href="#" class="item-link-real"></a></div>' + 
+									'</div>' + 
+									'<div class="item-subtitle">' + 
+										'<div class="promo"><span class="icon"></span><span class="desc"></span></div>' + 
+										'<div class="category"></div>' + 
+										'<div class="brand"></div>' + 
+									'</div>' + 
+									'<div class="item-title-row">' + 
+										'<div class="item-title">' + 
+											'<div class="price"></div>' + 
+										'</div>' + 
+										'<div class="item-after">' + 
+											'<button class="minus">-</button><input type="number" class="qty"></input><button class="plus">+</button>' + 
+										'</div>' + 
+									'</div>' + 
+								'</div>' + 
+							'</div>' + 
+						'</div>' + 
+					'</li>'
+				);
 				e.find('.item-title').find('a').text(item['i.displayName'] ? item['i.displayName'] : item['t.itemName']);
-				e.find('.price').text(ob.currency(item['k.price']));
+				e.find('.price').text('SGD ' + ob.currency(item['k.price']));
 				if(item['ph.promotionId']) {
 					e.find('.promo > .desc').text(item['ph.promotionName']);
 				} else {
@@ -190,6 +229,22 @@ ob.pages.cart = {
 						ob.cart.update($$(this).data('skuid'), $$(this).val());
 						ob.pages.cart.calculate();
 					});
+				e.find('button.plus').on('click', function() {
+					var q = $$(this).parent().find('input.qty');
+					var v = parseInt(q.val(), 10) + 1;
+					if(v<10000) {
+						q.val(v).trigger('change');
+					}
+					return false;
+				});
+				e.find('button.minus').on('click', function() {
+					var q = $$(this).parent().find('input.qty');
+					var v = parseInt(q.val(), 10) - 1;
+					if(v>0) {
+						q.val(v).trigger('change');
+					}
+					return false;
+				});
 				e.find('a.item-link-real').on('click', function() {
 					var img = $$(this).data('img');
 					var url = 'pages/item.html?id=' + $$(this).data('id'); 
@@ -202,6 +257,13 @@ ob.pages.cart = {
 					return false;
 				});
 				e.find('input[type="checkbox"]').on('change', function() {
+					var checkall = true;
+					$$('.ob-list .ob-item input[type="checkbox"]').each(function() {
+						if(!$$(this).prop('checked')) {
+							checkall = false;
+						}
+					});
+					$$('.toolbar .label-checkbox > input[type="checkbox"]').prop('checked', checkall);
 					ob.pages.cart.calculate();
 				});
 				ob.pages.cart.container.find('.ob-list ul').append(e);
@@ -209,6 +271,59 @@ ob.pages.cart = {
 		} else {
 			ob.pages.cart.container.find('.ob-item .loading').html('').append('<div><span>fail to get item info</span></div>');
 		}
+	},
+	checkout: function( t ) {
+		var btn = $$(t);
+		if(btn.hasClass('btn-disable')) {
+			return false;
+		}
+		if(btn.data('working')) {
+			return false;
+		}
+		btn.data('working', true);
+		var release = function( btn ) {
+			btn.data('working', false);
+			return false;
+		};
+		var cart = [];
+		ob.pages.cart.container.find('.ob-list .ob-item').each(function() {
+			if($$(this).find('input[type="checkbox"]').prop('checked')) {
+				var i = $$(this).find('input.qty');
+				var q = parseInt(i.val(), 10);
+				var skuId = i.data('skuid');
+				if(skuId && q > 0) {
+					cart.push({
+						'skuId': skuId,
+						'qty': q
+					});
+				}
+			}
+		});
+		if(cart.length === 0) {
+			fw.alert('Please choose items to check out!');
+			return release(btn);
+		}
+		ob.ajax({
+			url: ob.url('/a/shopping/CheckoutForApps'),
+			method: 'GET',
+			data: {
+				skus: JSON.stringify(cart)
+			},
+			success: function(dt) {
+				console.log(dt);
+				fw.popup('.popup-address');
+				release(btn);
+			},
+			error: function(xhr, code) {
+				if(code === 403) {
+					fw.loginScreen();
+				} else {
+					ob.error(code);
+				}
+				release(btn);
+			}
+		});
+		return true;
 	}
 };
 

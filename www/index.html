@@ -117,6 +117,113 @@
         </div>
       </div>
     </div>
+    <div class="popup popup-address">
+      <div class="content-block">
+        <div class="title">Address</div>
+        <form class="list-block">
+          <ul>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Name</div>
+                  <div class="item-input">
+                    <input type="text" name="a.contactPerson" placeholder="Contact Person Name"></input>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Phone</div>
+                  <div class="item-input">
+                    <input type="text" name="a.phone" placeholder="Mobile / Office Phone"></input>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Address</div>
+                  <div class="item-input">
+                    <input type="text" name="a.address1" placeholder="Unit, Block Number"></input>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">&nbsp;</div>
+                  <div class="item-input">
+                    <input type="text" name="a.address2" placeholder="Street, Building"></input>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Postal Code</div>
+                  <div class="item-input">
+                    <input type="text" name="a.postalCode" placeholder="Postal Code"></input>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Address Type</div>
+                  <div class="item-input">
+                    <select name="a.addressType">
+                      <option value="Office">Office</option>
+                      <option value="Home">Home</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Preferred Delivery Time</div>
+                  <div class="item-input">
+                    <select name="a.preferredDeliveryTime">
+                      <option value="Morning">Morning</option>
+                      <option value="Afternoon">Afternoon</option>
+                      <option value="Evening">Evening</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Avoid Lunch Time</div>
+                  <div class="item-input">
+                    <label class="label-switch">
+                      <input type="checkbox" name="a.avoidLunchTime" value="Y">
+                      <div class="checkbox"></div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </form>
+        <div class="row cmd">
+          <div class="col-50">
+            <a href="#" class="button button-big button-red close-popup">Cancel</a>
+          </div>
+          <div class="col-50">
+            <a href="#" class="button button-big button-green">Submit</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/paypal-mobile-js-helper.js"></script>
     <script type="text/javascript" src="lib/framework7/js/framework7.js"></script>

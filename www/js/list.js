@@ -24,8 +24,8 @@ ob.pages.list = {
 	loading: false,
 	pageOffset: 0,
 	pageSize: 20,
-	find: function( i ) {
-		if(i) {
+	find: function( initial ) {
+		if(initial) {
 			ob.pages.list.loading = false;
 			ob.pages.list.pageOffset = 0;
 			ob.pages.list.pageSize = 20;
@@ -35,11 +35,12 @@ ob.pages.list = {
 			return;
 		}
 		ob.pages.list.loading = true;
+		var i = ob.pages.list.container.find('.searchbar').find('input[type="search"]');
 		ob.ajax({
 			url: ob.url('/a/catalog/Item.List'),
 			method: 'GET',
 			data: {
-				q: ob.pages.list.container.find('.searchbar').find('input[type="search"]').val(),
+				q: i.val(),
 				pageSize: ob.pages.list.pageSize,
 				pageOffset: ob.pages.list.pageOffset
 			},
@@ -47,7 +48,7 @@ ob.pages.list = {
 				ob.pages.list.pageOffset += 20;
 				var itemlist = JSON.parse(dt);
 				if(typeof itemlist.data === 'object') {
-					if(i) {
+					if(initial) {
 						ob.pages.list.container.find('.ob-list').html('');
 						if(itemlist.data.length > 0) {
 							ob.pages.list.container.find('.ob-list').append('<ul></ul>');
@@ -93,10 +94,15 @@ ob.pages.list = {
 				fw.initImagesLazyLoad(ob.pages.list.container);
 				ob.pages.list.loading = false;
 			},
-			error: function(xhr, e) {
-				ob.error(e);
+			error: function(xhr, code) {
+				if(code === 403) {
+					fw.loginScreen();
+				} else {
+					ob.error(code);
+				}
 			}
 		});
+		i.blur();
 	}
 };
 
