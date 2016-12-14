@@ -310,8 +310,32 @@ ob.pages.cart = {
 				skus: JSON.stringify(cart)
 			},
 			success: function(dt) {
-				console.log(dt);
-				fw.popup('.popup-address');
+				try {
+					var json = JSON.parse(dt);
+					var next = function( json ) {
+						
+					};
+					if(json.status === 'success') {
+						if(!json.data.addrs[0]['addrs.checked']) {
+							ob.addr({
+								success: function( json ) {
+									json.data.addrs[0] = json;
+									json.data.addrs[0]['addrs.checked'] = true;
+									next(json);
+								},
+								error: function( e ) {
+									ob.error(e);
+								}
+							});
+						} else {
+							next(json);
+						}
+					} else {
+						ob.error('It fails to connect Office Buddy.')
+					}
+				} catch(e) {
+					ob.error(e);
+				}
 				release(btn);
 			},
 			error: function(xhr, code) {

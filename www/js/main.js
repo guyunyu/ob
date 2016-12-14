@@ -165,6 +165,81 @@ ob.ajax = function( opt ) {
 	}
 };
 
+ob.addr = function( opt ) {
+	var popup = $$('.popup-address');
+	if(popup.data('mode') && popup.data('mode') !== 'new') {
+		popup.find('input').val('');
+		popup.find('select').val('');
+		popup.data('mode', 'new');
+	}
+	popup.find('a.update').off('click').on('click', function() {
+		var validated = true;
+		$$(this).parents('.popup-address').find('input[required]').each(function() {
+			if(validated && !$$(this).val()) {
+				fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $$(this).data('errmsg') + '</div></div></div>', this);
+				validated = false;
+			}
+		});
+		if(validated) {
+			$$(this).parents('.popup-address').find('select[required]').each(function() {
+				if(validated && !$$(this).val()) {
+					fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $$(this).data('errmsg') + '</div></div></div>', this);
+					validated = false;
+				}
+			});
+		}
+		if(validated) {
+			var data = {};
+			$$(this).parents('.popup-address').find('input').each(function() {
+				if($$(this).attr('type') === 'checkbox') {
+					if($$(this).prop('checked')) {
+						data[$$(this).attr('name')] = $$(this).data('yes');
+					} else {
+						data[$$(this).attr('name')] = $$(this).data('no');
+					}
+				} else {
+					data[$$(this).attr('name')] = $$(this).val();
+				}
+			});
+			$$(this).parents('.popup-address').find('select').each(function() {
+				data[$$(this).attr('name')] = $$(this).val();
+			});
+			ob.ajax({
+				url: ob.url('/a/execute/account/Address'),
+				method: 'POST',
+				data: data,
+				success: function(dt) {
+					try {
+						var json = JSON.parse(dt);
+						if(json.status === 'success') {
+							if(typeof opt.success === 'function') {
+								data['a.addressId'] = json.rflag.addressId;
+								opt.success(data);
+							}
+						} else {
+							if(typeof opt.error === 'function') {
+								opt.error();
+							}
+						}
+					} catch(e) {
+						if(typeof opt.error === 'function') {
+							opt.error(e);
+						} else {
+							ob.error(e);
+						}
+					}
+				},
+				error: opt.error
+			});
+		} else {
+			if(typeof opt.error === 'function') {
+				opt.error();
+			}
+		}
+	});
+	fw.popup('.popup-address');
+};
+
 ob.ready = function() {
 
 	ob.toolbar.init();

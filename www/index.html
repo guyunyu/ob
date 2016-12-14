@@ -121,13 +121,16 @@
       <div class="content-block">
         <div class="title">Address</div>
         <form class="list-block">
+          <div>
+            <input type="hidden" name="a.addressId"></input>
+          </div>
           <ul>
             <li>
               <div class="item-content">
                 <div class="item-inner">
                   <div class="item-title label">Name</div>
                   <div class="item-input">
-                    <input type="text" name="a.contactPerson" placeholder="Contact Person Name"></input>
+                    <input type="text" name="a.contactPerson" placeholder="Contact Person Name" required="required" data-errmsg="Please fill in contact person name for this address."></input>
                   </div>
                 </div>
               </div>
@@ -137,7 +140,7 @@
                 <div class="item-inner">
                   <div class="item-title label">Phone</div>
                   <div class="item-input">
-                    <input type="text" name="a.phone" placeholder="Mobile / Office Phone"></input>
+                    <input type="text" name="a.phone" placeholder="Mobile / Office Phone" required="required" data-errmsg="Please fill in telephone number."></input>
                   </div>
                 </div>
               </div>
@@ -147,7 +150,7 @@
                 <div class="item-inner">
                   <div class="item-title label">Address</div>
                   <div class="item-input">
-                    <input type="text" name="a.address1" placeholder="Unit, Block Number"></input>
+                    <input type="text" name="a.address1" placeholder="Unit, Block Number" required="required" data-errmsg="Please fill in address details."></input>
                   </div>
                 </div>
               </div>
@@ -167,7 +170,7 @@
                 <div class="item-inner">
                   <div class="item-title label">Postal Code</div>
                   <div class="item-input">
-                    <input type="text" name="a.postalCode" placeholder="Postal Code"></input>
+                    <input type="text" name="a.postalCode" placeholder="Postal Code" required="required" data-errmsg="Please fill in postal code for this address."></input>
                   </div>
                 </div>
               </div>
@@ -205,7 +208,7 @@
                   <div class="item-title label">Avoid Lunch Time</div>
                   <div class="item-input">
                     <label class="label-switch">
-                      <input type="checkbox" name="a.avoidLunchTime" value="Y">
+                      <input type="checkbox" name="a.avoidLunchTime" value="Y" data-yes="Y" data-no="N">
                       <div class="checkbox"></div>
                     </label>
                   </div>
@@ -219,7 +222,7 @@
             <a href="#" class="button button-big button-red close-popup">Cancel</a>
           </div>
           <div class="col-50">
-            <a href="#" class="button button-big button-green">Submit</a>
+            <a href="#" class="button button-big button-green update">Submit</a>
           </div>
         </div>
       </div>

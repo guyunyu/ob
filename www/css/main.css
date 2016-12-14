@@ -53,8 +53,11 @@
 .ob-shoppingbar > div.toolbar-inner > .cart-selected > .cart-total { color: red; margin-left: 3px; }
 .ob-shoppingbar > div.toolbar-inner > a.btn-disable { background-color: gray; }
 
+.ob-popover { padding: 10px; }
+
 .popup-address {}
 .popup-address .title { width: 100%; text-align: center; font-weight: bold; font-size: 120%; }
 .popup-address .list-block { margin-top: 10px; }
 .popup-address .list-block .item-title { white-space: normal; }
 .popup-address .cmd { padding: 0px 10px; }
+.popup-address .error { border: 1px solid red; }
