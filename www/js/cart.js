@@ -313,13 +313,16 @@ ob.pages.cart = {
 				try {
 					var json = JSON.parse(dt);
 					var next = function( json ) {
-						
+						ob.mainView.router.load({
+							url: 'pages/checkout.html',
+							query: json.data
+						});
 					};
 					if(json.status === 'success') {
 						if(!json.data.addrs[0]['addrs.checked']) {
 							ob.addr({
-								success: function( json ) {
-									json.data.addrs[0] = json;
+								success: function( i ) {
+									json.data.addrs[0] = i;
 									json.data.addrs[0]['addrs.checked'] = true;
 									next(json);
 								},

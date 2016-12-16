@@ -17,7 +17,7 @@ ob.url = function( uri ) {
 	if(typeof url === 'string') {
 		return url + uri;
 	} else {
-		return 'http://192.168.4.53:8180/ob' + uri;
+		return 'http://cluster1.localhost:8180/ob' + uri;
 	}
 };
 
@@ -64,6 +64,32 @@ ob.currency = function( q ) {
 	return v;
 };
 
+ob.setValue = function( i, v ) {
+	var $i = $$(i);
+	if($i.attr('type') === 'checkbox') {
+		if($i.data('yes') === v) {
+			$i.prop('checked', true);
+		} else {
+			$i.prop('checked', false);
+		}
+	} else {
+		$i.val(v);
+	}
+};
+
+ob.getValue = function( i ) {
+	var $i = $$(i);
+	if($i.attr('type') === 'checkbox') {
+		if($i.prop('checked')) {
+			return $i.data('yes');
+		} else {
+			return $i.data('no');
+		}
+	} else {
+		return $i.val();
+	}
+};
+
 ob.init = function() {
 	var session = window.localStorage.getItem('session');
 	if(typeof session === 'string') {
@@ -71,8 +97,6 @@ ob.init = function() {
 	} else {
 		ob.session = {};
 	}
-	$$('.ob-icon-login').off('click');
-	$$('.ob-btn-login').off('click');
 	if(!ob.session.mc) {
 		$$('.ob-icon-login').on('click', function() {
 			if(!ob.session.mc) {
@@ -167,76 +191,71 @@ ob.ajax = function( opt ) {
 
 ob.addr = function( opt ) {
 	var popup = $$('.popup-address');
-	if(popup.data('mode') && popup.data('mode') !== 'new') {
-		popup.find('input').val('');
-		popup.find('select').val('');
-		popup.data('mode', 'new');
-	}
-	popup.find('a.update').off('click').on('click', function() {
-		var validated = true;
-		$$(this).parents('.popup-address').find('input[required]').each(function() {
-			if(validated && !$$(this).val()) {
-				fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $$(this).data('errmsg') + '</div></div></div>', this);
-				validated = false;
-			}
-		});
-		if(validated) {
-			$$(this).parents('.popup-address').find('select[required]').each(function() {
+	popup.find('.column').each(function() {
+		if(opt.data && opt.data[this.name]) {
+			ob.setValue(this, opt.data[this.name]);
+		} else {
+			ob.setValue(this, '');
+		}
+	});
+	if(!popup.data('init')) {
+		popup.data('init', true);
+		popup.find('a.update').on('click', function() {
+			var validated = true;
+			$$(this).parents('.popup-address').find('input[required]').each(function() {
 				if(validated && !$$(this).val()) {
 					fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $$(this).data('errmsg') + '</div></div></div>', this);
 					validated = false;
 				}
 			});
-		}
-		if(validated) {
-			var data = {};
-			$$(this).parents('.popup-address').find('input').each(function() {
-				if($$(this).attr('type') === 'checkbox') {
-					if($$(this).prop('checked')) {
-						data[$$(this).attr('name')] = $$(this).data('yes');
-					} else {
-						data[$$(this).attr('name')] = $$(this).data('no');
+			if(validated) {
+				$$(this).parents('.popup-address').find('select[required]').each(function() {
+					if(validated && !$$(this).val()) {
+						fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $$(this).data('errmsg') + '</div></div></div>', this);
+						validated = false;
 					}
-				} else {
-					data[$$(this).attr('name')] = $$(this).val();
-				}
-			});
-			$$(this).parents('.popup-address').find('select').each(function() {
-				data[$$(this).attr('name')] = $$(this).val();
-			});
-			ob.ajax({
-				url: ob.url('/a/execute/account/Address'),
-				method: 'POST',
-				data: data,
-				success: function(dt) {
-					try {
-						var json = JSON.parse(dt);
-						if(json.status === 'success') {
-							if(typeof opt.success === 'function') {
-								data['a.addressId'] = json.rflag.addressId;
-								opt.success(data);
-							}
-						} else {
-							if(typeof opt.error === 'function') {
-								opt.error();
-							}
-						}
-					} catch(e) {
-						if(typeof opt.error === 'function') {
-							opt.error(e);
-						} else {
-							ob.error(e);
-						}
-					}
-				},
-				error: opt.error
-			});
-		} else {
-			if(typeof opt.error === 'function') {
-				opt.error();
+				});
 			}
-		}
-	});
+			if(validated) {
+				var data = {};
+				$$(this).parents('.popup-address').find('.column').each(function() {
+					data[$$(this).attr('name')] = ob.getValue(this);
+				});
+				ob.ajax({
+					url: ob.url('/a/execute/account/Address'),
+					method: 'POST',
+					data: data,
+					success: function(dt) {
+						try {
+							var json = JSON.parse(dt);
+							if(json.status === 'success') {
+								if(typeof opt.success === 'function') {
+									data['a.addressId'] = json.rflag.addressId;
+									opt.success(data);
+								}
+								fw.closeModal('.popup-address');
+							} else {
+								if(typeof opt.error === 'function') {
+									opt.error();
+								}
+							}
+						} catch(e) {
+							if(typeof opt.error === 'function') {
+								opt.error(e);
+							} else {
+								ob.error(e);
+							}
+						}
+					},
+					error: opt.error
+				});
+			} else {
+				if(typeof opt.error === 'function') {
+					opt.error();
+				}
+			}
+		});
+	}
 	fw.popup('.popup-address');
 };
 
@@ -289,7 +308,6 @@ ob.ready = function() {
 							var itemlist = JSON.parse(dt);
 							$$('#div-x').append($$('<div>' + JSON.stringify(itemlist) + '</div>'));
 							$$('#btn-ajax').attr('disabled', 'disabled');
-							$$('#btn-ajax').off('click');
 						},
 						error: function(xhr, e) {
 							fw.alert('error: ' + e);
@@ -300,7 +318,6 @@ ob.ready = function() {
 			$$('#btn-img').on('click', function() {
 				$$('#div-x').append($$('<img src="' + ob.url('/res/images/ob-logo.png') + '" width="250" height="90"></img>'));
 				$$('#btn-img').attr('disabled', 'disabled');
-				$$('#btn-img').off('click');
 			});
 			$$('#btn-scan').on('click', function() {
 				try {
@@ -309,7 +326,6 @@ ob.ready = function() {
 							if(!result.cancelled) {
 								$$('#div-x').append($$('<div>barcode ' + result.format + ' : ' + result.text + '</div>'));
 								$$('#btn-scan').attr('disabled', 'disabled');
-								$$('#btn-scan').off('click');
 							}
 						},
 						function (error) {

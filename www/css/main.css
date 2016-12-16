@@ -52,6 +52,9 @@
 .ob-shoppingbar > div.toolbar-inner > .cart-selected { width: 180px; }
 .ob-shoppingbar > div.toolbar-inner > .cart-selected > .cart-total { color: red; margin-left: 3px; }
 .ob-shoppingbar > div.toolbar-inner > a.btn-disable { background-color: gray; }
+.ob-shoppingbar > div.toolbar-inner > .order-summary { width: 180px; }
+.ob-shoppingbar > div.toolbar-inner > a.confirm-order { width: 100%; height: 100%; background-color: red; }
+.ob-shoppingbar > div.toolbar-inner > a.confirm-order > span { font-size: 14px; color: white; background-image: url(../images/ic_done_white_36px.svg); background-repeat: no-repeat; padding-left: 40px; padding-top: 8px; padding-bottom: 8px; margin-top: 8px; }
 
 .ob-popover { padding: 10px; }
 
