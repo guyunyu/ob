@@ -159,7 +159,7 @@ ob.pages.cart = {
 	},
 	show: function( json ) {
 		if(typeof json.count === 'number' && typeof json.data === 'object' && json.count > 0) {
-			ob.pages.cart.container.find('.ob-item .loading').remove();
+			ob.pages.cart.container.find('.ob-list .loading').remove();
 			ob.pages.cart.container.find('.ob-list').append('<ul></ul>');
 			for(var index=ob.cart.skus.length - 1; index>=0; index--) {
 				var item = ob.cart.skus[index];

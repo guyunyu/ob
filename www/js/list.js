@@ -45,7 +45,7 @@ ob.pages.list = {
 				pageOffset: ob.pages.list.pageOffset
 			},
 			success: function(dt) {
-				ob.pages.list.pageOffset += 20;
+				ob.pages.list.pageOffset += ob.pages.list.pageSize;
 				var itemlist = JSON.parse(dt);
 				if(typeof itemlist.data === 'object') {
 					if(initial) {
