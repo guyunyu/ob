@@ -76,13 +76,16 @@ ob.pages.orderlist = {
 					group.find('.list-group-title .ordno').text(item['oh.transactionNo']);
 					if(item['oh.paymentStatus'] === 'Pending Payment') {
 						group.find('a.pay')
+							.data('id', item['oh.transactionId'])
 							.data('ordno', item['oh.transactionNo'])
 							.data('amt', item['oh.totalAmount'])
 							.on('click', function() {
 
-							if(ob.paypal) {
+							if(ob.paypal.avail) {
+								var id = $$(this).data('id');
 								PayPalMobile.renderSinglePaymentUI(new PayPalPayment(ob.currency($$(this).data('amt')), 'SGD', 'Office Buddy Order ' + $$(this).data('ordno'), 'Sale', new PayPalPaymentDetails(ob.currency($$(this).data('amt')), '0.00', '0.00')), function( rt ) {
-									fw.alert(JSON.stringify(rt));
+									console.log(JSON.stringify(rt));
+									ob.paypal.cache(id, rt);
 								}, function( rt ) {
 									ob.error(JSON.stringify(rt));
 								});

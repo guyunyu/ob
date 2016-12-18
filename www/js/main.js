@@ -10,8 +10,33 @@ ob.mainView = fw.addView('.view-main', {
 });
 
 ob.debug = true;
-ob.paypal = false;
 ob.pages = {};
+
+ob.paypal = {
+	avail: false,
+	cache: function( id, rt ) {
+		var v = window.localStorage.getItem('paypal');
+		var json;
+		if(v) {
+			json = JSON.parse(v);
+		} else {
+			json = {};
+		}
+		json[id] = JSON.stringify(rt);
+		window.localStorage.setItem('paypal', JSON.stringify(json));
+		ob.ajax({
+			url: ob.url('/a/execute/shopping/PayWithPaypal'),
+			method: 'POST',
+			data: {
+				id: id,
+				paypal: rt
+			},
+			success: function( dt ) {
+				
+			}
+		});
+	}
+};
 
 ob.url = function( uri ) {
 	var url = window.localStorage.getItem('url');
@@ -292,14 +317,14 @@ ob.ready = function() {
 			try {
 				PayPalMobile.init({
 					PayPalEnvironmentProduction: '',
-					PayPalEnvironmentSandbox: 'AboCysAL656E1KlAKs4k94VxrmkBpMGOSAKIQ_Oa42RG-BZIYmuAwkbrfcfY3qXUbEsghNVLVsWYFuRX'
+					PayPalEnvironmentSandbox: 'AaHN535MGVNHweeZudwvVmi8hCrGL4S12MbbmwFriqm3oNco_dXNZSY51Av60Ca_BMaXi8_I5is0EQzj'
 				}, function() {
 					PayPalMobile.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
 							merchantName: 'ob'/*,
 							merchantPrivacyPolicyURL: 'http://www.officebuddy.com.sg/ob/privacy.html',
 							merchantUserAgreementURL: 'http://www.officebuddy.com.sg/ob/tc.html'*/
 					}), function() {
-						ob.paypal = true;
+						ob.paypal.avail = true;
 					});
 				});
 			} catch(e) {
