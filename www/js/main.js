@@ -28,13 +28,27 @@ ob.paypal = {
 			url: ob.url('/a/execute/shopping/PayWithPaypal'),
 			method: 'POST',
 			data: {
-				id: id,
-				paypal: rt
+				data: JSON.stringify({
+					id: id,
+					paypal: rt
+				})
 			},
 			success: function( dt ) {
-				
+				var json = JSON.parse(dt);
+				if(json.status === 'success') {
+					if(json.rflag.transactionId) {
+						var c = window.localStorage.getItem('paypal');
+						if(c) {
+							var cx = JSON.parse(c);
+							delete cx[json.rflag.transactionId];
+						}
+					}
+				}
 			}
 		});
+	},
+	getCache: function() {
+		return window.localStorage.getItem('paypal');
 	}
 };
 
@@ -385,7 +399,8 @@ ob.ready = function() {
 			var logs = $$('<ol></ol>');
 			$$('#div-x').append(logs);
 			logs.append('<li> init paypal mobile ... </li>');
-		
+			logs.append('<li> cache entries: </li>');
+			logs.append('<li> ' + ob.paypal.getCache() + '</li>')
 		});
 	} else {
 		ob.init();
