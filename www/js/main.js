@@ -15,40 +15,71 @@ ob.pages = {};
 ob.paypal = {
 	avail: false,
 	cache: function( id, rt ) {
-		var v = window.localStorage.getItem('paypal');
-		var json;
-		if(v) {
-			json = JSON.parse(v);
-		} else {
-			json = {};
-		}
+		var json = this.getCache();
 		json[id] = JSON.stringify(rt);
 		window.localStorage.setItem('paypal', JSON.stringify(json));
+		this.post(id, rt);
+	},
+	post: function( id, v ) {
 		ob.ajax({
 			url: ob.url('/a/execute/shopping/PayWithPaypal'),
 			method: 'POST',
 			data: {
 				data: JSON.stringify({
 					id: id,
-					paypal: rt
+					paypal: v
 				})
 			},
 			success: function( dt ) {
-				var json = JSON.parse(dt);
-				if(json.status === 'success') {
-					if(json.rflag.transactionId) {
-						var c = window.localStorage.getItem('paypal');
-						if(c) {
-							var cx = JSON.parse(c);
-							delete cx[json.rflag.transactionId];
+				try {
+					var json = JSON.parse(dt);
+					if(json.status === 'success') {
+						if(json.rflag.transactionId) {
+							var c = ob.paypal.getCache();
+							delete c[json.rflag.transactionId];
 						}
 					}
-				}
+				} catch(e) {}
 			}
 		});
 	},
 	getCache: function() {
-		return window.localStorage.getItem('paypal');
+		var c = window.localStorage.getItem('paypal');
+		if(c) {
+			return JSON.parse(c);
+		} else {
+			return {};
+		}
+	},
+	cleanup: function() {
+		var json = ob.paypal.getCache();
+		for(var key in json) {
+			this.post(key, json[key]);
+		}
+	},
+	paying: function( id ) {
+		return (typeof this.getCache()[id] === 'object');
+	},
+	pay: function( opt ) {
+		var ppp = new PayPalPayment(
+			ob.currency(opt.amt), 
+			'SGD', 
+			'Office Buddy Order', 
+			'Sale');
+		ppp.invoiceNumber(opt.ordno);
+		ppp.custom(opt.id);
+		PayPalMobile.renderSinglePaymentUI(ppp, function( rt ) {
+			ob.paypal.cache(opt.id, rt);
+			if(typeof opt.success === 'function') {
+				opt.success(opt.id);
+			}
+		}, function( rt ) {
+			if(typeof opt.failure === 'function') {
+				opt.failure(rt);
+			} else {
+				ob.error(JSON.stringify(rt));
+			}
+		});
 	}
 };
 
@@ -339,6 +370,7 @@ ob.ready = function() {
 							merchantUserAgreementURL: 'http://www.officebuddy.com.sg/ob/tc.html'*/
 					}), function() {
 						ob.paypal.avail = true;
+						ob.paypal.cleanup();
 					});
 				});
 			} catch(e) {

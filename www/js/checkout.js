@@ -164,7 +164,22 @@ ob.pages.checkout = {
 				try {
 					var json = JSON.parse(dt);
 					if(json.status === 'success') {
-						fw.alert('ok');
+						var id = json.rflag.transactionId;
+						var ordno = json.rflag.transactionNo;
+						var amt = json.rflag.totalAmount;
+						if(id && ordno && amt && ob.paypal.avail) {
+							ob.paypal.pay({
+								id: id,
+								ordno: ordno,
+								amt: amt,
+								success: function( id ) {
+									// todo
+									fw.alert('paid, next show order info');
+								}
+							});
+						} else {
+							fw.alert('no paypal, show order info directly');
+						}
 					} else {
 						ob.error('It fails to connect Office Buddy.')
 					}
