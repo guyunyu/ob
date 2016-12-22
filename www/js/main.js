@@ -266,6 +266,9 @@ ob.ajax = function( opt ) {
 			headers: headers,
 			success: opt.success,
 			error: function(xhr, code) {
+				if(ob.debug) {
+					fw.alert('visit to url ' + opt.url + ' encounters error in ajax!');
+				}
 				if(typeof opt.error === 'function') {
 					opt.error(xhr, code);
 				} else {
@@ -274,6 +277,9 @@ ob.ajax = function( opt ) {
 			}
 		});
 	} catch(e) {
+		if(ob.debug) {
+			fw.alert('visit to url ' + opt.url + ' encounters error in try-catch!');
+		}
 		if(typeof opt.error === 'function') {
 			opt.error(e);
 		} else {
