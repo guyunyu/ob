@@ -2,7 +2,7 @@ ob.pages.list = {
 	reload: function() {
 		ob.pages.list.container.find('.ob-list').html('');
 		fw.detachInfiniteScroll(ob.pages.list.container.find('.infinite-scroll'));
-		var i = ob.pages.list.container.find('.searchbar').find('input[type="search"]');
+		var i = $$('.searchbar input.search-on-list');
 		var q = i.val();
 		if(q) {
 			ob.pages.list.container.find('.ob-list').append('<p><span class="progressbar-infinite"></span></p>');
@@ -124,7 +124,7 @@ fw.onPageInit('list', function (page) {
 	if(!q) {
 		q = '';
 	}
-	ob.pages.list.container.find('.searchbar').find('input[type="search"]').val(unescape(q));
+	$$('.searchbar input.search-on-list').val(unescape(q));
 	ob.pages.list.reload();
 	ob.toolbar.init();
 });

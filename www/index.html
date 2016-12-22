@@ -32,7 +32,13 @@
             <div class="left">
               <a href="#" class="link icon-only open-panel"><i class="icon icon-form-settings"></i></a>
             </div>
-            <div class="center sliding">Office Buddy</div>
+            <div class="center sliding ob-search">
+              <form class="searchbar searchbar-init" onsubmit="return ob.list(this);">
+                <div class="searchbar-input">
+                  <input type="search" placeholder="Search" class="search-on-main"><a href="#" class="searchbar-clear"></a>
+                </div>
+              </form>
+            </div>
             <div class="right">
               <a href="#" class="link icon-only ob-icon-login"><i class="icon icon-form-password"></i></a>
             </div>
@@ -42,12 +48,6 @@
           <div data-page="index" class="page">
             <div class="page-content">
               <div class="content-block">
-                <form class="searchbar searchbar-init" onsubmit="return ob.list(this);">
-                  <div class="searchbar-input">
-                    <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
-                  </div>
-                  <a href="#" class="searchbar-cancel">Cancel</a>
-                </form>
                 <hr></hr>
                 <div id="div-x">
                   <a href="pages/list.html">Go Item List</a>

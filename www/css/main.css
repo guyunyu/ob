@@ -5,10 +5,12 @@
 .list-block .item-title { white-space: normal; max-height: 54px; }
 .list-block .item-content { font-size: 12px; }
 
+.ob-search { width: 100%; }
+.ob-search .searchbar { background-color: transparent; }
+
 .clearfix { clear: both; }
 .page > div.ob-white { background-color: #fff; }
 
-.page div.ob-search { padding: 5px 0px 10px 0px; }
 .page div.ob-list { margin: 0px; }
 .page div.ob-list .ob-item { width: 100%; font-size: 70%; }
 .page div.ob-list .ob-item > div { width: 100%; }

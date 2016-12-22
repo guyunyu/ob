@@ -3,21 +3,19 @@
     <div class="left">
       <a href="#" class="back link"><i class="f7-icons">chevron_left</i></a>
     </div>
-    <div class="center sliding">Items</div>
+    <div class="center sliding ob-search">
+      <form class="searchbar searchbar-init" onsubmit="return ob.pages.list.reload();">
+        <div class="searchbar-input">
+          <input type="search" placeholder="Search" class="search-on-list"><a href="#" class="searchbar-clear"></a>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 <div class="pages">
   <div data-page="list" class="page">
     <div class="page-content infinite-scroll hide-bars-on-scroll">
       <div class="content-block">
-        <div class="ob-search">
-          <form class="searchbar searchbar-init" onsubmit="return ob.pages.list.reload();">
-            <div class="searchbar-input">
-               <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
-            </div>
-          </form>
-          <div class="searchbar-overlay"></div>
-        </div>
         <div class="ob-list list-block media-list">
         </div>
       </div>
