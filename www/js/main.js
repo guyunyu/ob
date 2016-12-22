@@ -10,6 +10,7 @@ ob.mainView = fw.addView('.view-main', {
 });
 
 ob.debug = true;
+ob.$ = 'SGD';
 ob.pages = {};
 
 ob.paypal = {
@@ -63,7 +64,7 @@ ob.paypal = {
 	pay: function( opt ) {
 		var ppp = new PayPalPayment(
 			ob.currency(opt.amt), 
-			'SGD', 
+			ob.$, 
 			'Office Buddy Order', 
 			'Sale');
 		ppp.invoiceNumber(opt.ordno);
@@ -88,7 +89,7 @@ ob.url = function( uri ) {
 	if(typeof url === 'string') {
 		return url + uri;
 	} else {
-		return 'http://192.168.2.102:8180/ob' + uri;
+		return 'http://cluster1.localhost:8180/ob' + uri;
 	}
 };
 
@@ -133,6 +134,27 @@ ob.currency = function( q ) {
 		v = '0.00';
 	}
 	return v;
+};
+
+ob.date = function ( v ) {
+	var d = new Date(v);
+	var m = d.getMonth() + 1;
+	var date = d.getDate();
+	return (date < 10 ? '0' + date + '/' : date + '/') + (m < 10 ? '0' + m + '/' : m + '/') + d.getFullYear();
+};
+
+ob.datetime = function ( v ) {
+	var d = new Date(v);
+	var m = d.getMonth() + 1;
+	var date = d.getDate();
+	var h = d.getHours();
+	var min = d.getMinutes();
+	var s = d.getSeconds();
+	return (date < 10 ? '0' + date + '/' : date + '/') + (m < 10 ? '0' + m + '/' : m + '/') + d.getFullYear()
+		+ ' '
+		+ ( h < 10 ? '0' + h + ':' : h + ':')
+		+ ( min < 10 ? '0' + min + ':' : min + ':')
+		+ ( s < 10 ? '0' + s : s);
 };
 
 ob.setValue = function( i, v ) {
@@ -432,7 +454,7 @@ ob.ready = function() {
 			$$('#div-x').append(logs);
 			logs.append('<li> init paypal mobile ... </li>');
 			logs.append('<li> cache entries: </li>');
-			logs.append('<li> ' + ob.paypal.getCache() + '</li>')
+			logs.append('<li> ' + JSON.stringify(ob.paypal.getCache()) + '</li>');
 		});
 	} else {
 		ob.init();

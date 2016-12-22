@@ -2,6 +2,8 @@
 
 .content-block { margin-top: 5px; padding: 0px; }
 .label-checkbox { margin-right: 10px; }
+.list-block .item-title { white-space: normal; max-height: 54px; }
+.list-block .item-content { font-size: 12px; }
 
 .clearfix { clear: both; }
 .page > div.ob-white { background-color: #fff; }
@@ -16,7 +18,6 @@
 .page div.ob-list .ob-item .promo > .desc { display: table-cell; vertical-align: middle; font-size: 90%; color: red; padding-left: 5px; }
 .page div.ob-list .ob-item input.qty { width: 60px; height: 25px; padding: 0px 10px; border: 1px solid #eee; text-align: center; }
 .page div.ob-list .ob-item button.plus,button.minus { width: 25px; height: 25px; text-align: center; }
-.page div.ob-list .ob-item .item-title { white-space: normal; max-height: 54px; }
 
 .page div.ob-item { margin: 0px; padding: 0px; }
 .page div.ob-item .main-img { width: 100%; }
@@ -64,3 +65,17 @@
 .popup-address .list-block .item-title { white-space: normal; }
 .popup-address .cmd { padding: 0px 10px; }
 .popup-address .error { border: 1px solid red; }
+
+.page div.ob-order {}
+.page div.ob-order .sect { padding: 10px 10px; margin: 5px 0px; background-color: #fff; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; }
+.page div.ob-order .sect .sect-title {}
+.page div.ob-order .sect .sect-body { padding: 5px 0px 0px 10px; border-top: 1px solid #eee; }
+.page div.ob-order .left { float: left; }
+.page div.ob-order .right { float: right; text-align: right; }
+.page div.ob-order .head {}
+.page div.ob-order .addr .name {}
+.page div.ob-order .addr .phone { margin-left: 20px; }
+.page div.ob-order .addr .detail { color: #bbb; }
+.page div.ob-order .pay {}
+.page div.ob-order .paid { background-image: url(../images/paid_stamp.png); background-repeat: no-repeat; background-position: 300px 5px; }
+.page div.ob-order .pay > .entry {}

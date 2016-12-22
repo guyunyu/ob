@@ -2,7 +2,8 @@ ob.pages.list = {
 	reload: function() {
 		ob.pages.list.container.find('.ob-list').html('');
 		fw.detachInfiniteScroll(ob.pages.list.container.find('.infinite-scroll'));
-		var q = ob.pages.list.container.find('.searchbar').find('input[type="search"]').val();
+		var i = ob.pages.list.container.find('.searchbar').find('input[type="search"]');
+		var q = i.val();
 		if(q) {
 			ob.pages.list.container.find('.ob-list').append('<p><span class="progressbar-infinite"></span></p>');
 			ob.pages.list.find(true);
@@ -10,15 +11,7 @@ ob.pages.list = {
 				ob.pages.list.find(false);
 			});
 		} else {
-			var popover = '<div class="popover">'
-                + '<div class="popover-angle"></div>'
-                + '<div class="popover-inner">'
-                + '<div class="content-block">'
-                + '<p>Please fill in some keyword to find items ...</p>'
-                + '</div>'
-                + '</div>'
-                + '</div>';
-			fw.popover(popover, '.searchbar');
+			i.focus();
 		}
 	},
 	loading: false,
@@ -57,7 +50,26 @@ ob.pages.list = {
 						}
 					}
 					for(var index = 0; index < itemlist.data.length; index++) {
-						var e = $$('<li><div class="ob-item"><a href="#" class="item-link item-content"><div class="item-media"><img src="images/image-placeholder.png" class="lazy lazy-fadein" width="80" height="80"></img></div><div class="item-inner"><div class="item-title-row"><div class="item-title"></div><div class="item-after price"></div></div><div class="item-subtitle"><div class="promo"><span class="icon"></span><span class="desc"></span></div><div class="category"></div><div class="brand"></div></div></div></a></div></li>');
+						var e = $$(
+							'<li>' +
+								'<div class="ob-item">' +
+									'<a href="#" class="item-link item-content">' +
+										'<div class="item-media"><img src="images/image-placeholder.png" class="lazy lazy-fadein" width="80" height="80"></img></div>' +
+										'<div class="item-inner">' +
+											'<div class="item-title-row">' +
+												'<div class="item-title"></div>' +
+												'<div class="item-after price"></div>' +
+											'</div>' +
+											'<div class="item-subtitle">' +
+												'<div class="promo"><span class="icon"></span><span class="desc"></span></div>' +
+												'<div class="category"></div>' +
+												'<div class="brand"></div>' +
+											'</div>' +
+										'</div>' +
+									'</a>' +
+								'</div>' +
+							'</li>'
+						);
 						e.find('.item-title').text(itemlist.data[index].name);
 						e.find('.price').text(!itemlist.data[index].promo_price ? itemlist.data[index].price : itemlist.data[index].promo_price);
 						if(itemlist.data[index].promo_name) {

@@ -66,14 +66,20 @@ ob.pages.orderlist = {
 						'<div class="list-group">' +
 							'<ul>' +
 								'<li class="list-group-title">' +
-									'<span class="ordno"></span>' +
-									'<a href="#" class="pay">Pay Now</a>' +
+									'<div class="item-title-row">' + 
+										'<div class="item-title">' + 
+											'<div class="ordno"><a href="#"></a></div>' +
+										'</div>' + 
+										'<div class="item-after">' + 
+											'<a href="#" class="pay">Pay Now</a>' + 
+										'</div>' + 
+									'</div>' + 
 								'</li>' +
 							'</ul>' +
 						'</div>'
 					);
 					group.data('id', item['oh.transactionId']);
-					group.find('.list-group-title .ordno').text(item['oh.transactionNo']);
+					group.find('.list-group-title .ordno a').data('id', item['oh.transactionId']).text(item['oh.transactionNo']);
 					if(item['oh.transactionStatus'] === 'Pending Payment' && item['oh.paymentStatus'] === 'Pending Payment') {
 						if(ob.paypal.paying(item['oh.transactionId'])) {
 							group.find('a.pay').text('Processing Payment');
@@ -102,10 +108,10 @@ ob.pages.orderlist = {
 								} else {
 									ob.error('PayPal is not available.', true);
 								}
-							});
+							}).text('Pay ' + ob.$ + ' ' + ob.currency(item['oh.totalAmount']));
 						}
 					} else {
-						group.find('a.pay').text(item['oh.transactionStatus']);
+						group.find('a.pay').text(item['oh.paymentStatus'] + ', ' + item['oh.transactionStatus']);
 					}
 					list.append(group);
 				}
@@ -135,7 +141,7 @@ ob.pages.orderlist = {
 					'</li>'
 				);
 				e.find('.item-title').find('a').text(item['od.itemName']);
-				e.find('.price').text('SGD ' + ob.currency(item['od.price']));
+				e.find('.price').text(ob.$ + ' ' + ob.currency(item['od.price']));
 				e.find('.qty').text(ob.quantity(item['od.quantity']) + ' ' + item['od.itemUOM']);
 				if(item['od.promotionName']) {
 					e.find('.promo > .desc').text(item['od.promotionName']);
@@ -163,6 +169,16 @@ ob.pages.orderlist = {
 				group.find('ul').append(e);
 			}
 		}
+		list.find('.list-group-title .ordno a').on('click', function() {
+			var id = $$(this).data('id');
+			if(id) {
+				var url = 'pages/m/shopping/order.html?id=' + id; 
+				ob.mainView.router.load({
+					url: url
+				});
+				return false;
+			}
+		});
 	}
 };
 

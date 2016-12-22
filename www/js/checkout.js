@@ -69,7 +69,7 @@ ob.pages.checkout = {
 				'</li>'
 			);
 			e.find('.item-title').find('a').text(item['i.displayName'] ? item['i.displayName'] : item['t.itemName']);
-			e.find('.price').text('SGD ' + ob.currency(item['k.price']));
+			e.find('.price').text(ob.$ + ' ' + ob.currency(item['k.price']));
 			e.find('.qty').text(ob.quantity(item['h.quantity']) + ' ' + item['t.itemUOM']);
 			if(item['ph.promotionId']) {
 				e.find('.promo > .desc').text(item['ph.promotionName']);
