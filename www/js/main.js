@@ -17,7 +17,7 @@ ob.paypal = {
 	avail: false,
 	cache: function( id, rt ) {
 		var json = this.getCache();
-		json[id] = JSON.stringify(rt);
+		json[id] = rt;
 		window.localStorage.setItem('paypal', JSON.stringify(json));
 		this.post(id, rt);
 	},
@@ -38,6 +38,7 @@ ob.paypal = {
 						if(json.rflag.transactionId) {
 							var c = ob.paypal.getCache();
 							delete c[json.rflag.transactionId];
+							window.localStorage.setItem('paypal', JSON.stringify(c));
 						}
 					}
 				} catch(e) {}
@@ -59,7 +60,8 @@ ob.paypal = {
 		}
 	},
 	paying: function( id ) {
-		return (typeof this.getCache()[id] === 'object');
+		var v = this.getCache()[id];
+		return (typeof v === 'object' || typeof v === 'string');
 	},
 	pay: function( opt ) {
 		var ppp = new PayPalPayment(
