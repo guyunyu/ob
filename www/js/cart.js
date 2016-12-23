@@ -68,6 +68,17 @@ ob.cart = {
 			this.flush();
 		}
 	},
+	cleanup: function( v ) {
+		for(var index=0; index<v.length; index++) {
+			for(var j=0; j<this.skus.length; j++) {
+				if(v[index].skuId === this.skus[j].skuId) {
+					this.skus.splice(j, 1);
+					break;
+				}
+			}
+		}
+		this.flush();
+	},
 	flush: function() {
 		window.localStorage.setItem('cart', JSON.stringify(this.skus));
 		$$('.toolbar .cart .badge').text(this.skus.length);

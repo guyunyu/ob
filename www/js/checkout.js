@@ -167,6 +167,7 @@ ob.pages.checkout = {
 						var id = json.rflag.transactionId;
 						var ordno = json.rflag.transactionNo;
 						var amt = json.rflag.totalAmount;
+						ob.cart.cleanup(skus);
 						if(id && ordno && amt && ob.paypal.avail) {
 							ob.paypal.pay({
 								id: id,
@@ -191,7 +192,6 @@ ob.pages.checkout = {
 								ob.mainView.router.load({
 									url: url
 								});
-								return false;
 							} else {
 								ob.error('Opps! Something goes wrong.');
 							}
