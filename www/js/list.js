@@ -1,22 +1,33 @@
 ob.pages.list = {
-	reload: function() {
-		ob.pages.list.container.find('.ob-list').html('');
-		fw.detachInfiniteScroll(ob.pages.list.container.find('.infinite-scroll'));
+	go: function() {
 		var i = $$('.searchbar input.search-on-list');
 		var q = i.val();
-		if(q) {
+		this.realod(q, '', '');
+		i.blur();
+	},
+	reload: function( q, c, r ) {
+		ob.pages.list.container.find('.ob-list').html('');
+		fw.detachInfiniteScroll(ob.pages.list.container.find('.infinite-scroll'));
+		this.q = q;
+		this.c = c;
+		this.r = r;
+		var i = $$('.searchbar input.search-on-list');
+		if(q || c || r) {
 			ob.pages.list.container.find('.ob-list').append('<p><span class="progressbar-infinite"></span></p>');
 			ob.pages.list.find(true);
 			ob.pages.list.container.find('.infinite-scroll').on('infinite', function () {
 				ob.pages.list.find(false);
 			});
 		} else {
-			i.focus();
+			i.trigger('click');
 		}
 	},
 	loading: false,
 	pageOffset: 0,
 	pageSize: 20,
+	q: '',
+	c: '',
+	r: '',
 	find: function( initial ) {
 		if(initial) {
 			ob.pages.list.loading = false;
@@ -28,12 +39,13 @@ ob.pages.list = {
 			return;
 		}
 		ob.pages.list.loading = true;
-		var i = ob.pages.list.container.find('.searchbar').find('input[type="search"]');
 		ob.ajax({
 			url: ob.url('/a/catalog/Item.List'),
 			method: 'GET',
 			data: {
-				q: i.val(),
+				q: this.q,
+				c: this.c,
+				r: this.r,
 				pageSize: ob.pages.list.pageSize,
 				pageOffset: ob.pages.list.pageOffset
 			},
@@ -114,20 +126,16 @@ ob.pages.list = {
 				}
 			}
 		});
-		i.blur();
 	}
 };
 
-fw.onPageInit('list', function (page) {
+fw.onPageInit('list', function( page ) {
 	ob.pages.list.container = $$(page.container);
-	var q = page.query.q;
-	if(!q) {
-		q = '';
-	}
-	$$('.searchbar input.search-on-list').val(unescape(q));
-	ob.pages.list.reload();
 	ob.toolbar.init();
 });
-fw.onPageAfterAnimation('list', function (page) { 
-	
+fw.onPageAfterAnimation('list', function( page ) { 
+	if(!ob.pages.list.q) {
+		var i = $$('.searchbar input.search-on-list');
+		i.trigger('click');
+	}
 });

@@ -4,12 +4,19 @@
 .label-checkbox { margin-right: 10px; }
 .list-block .item-title { white-space: normal; max-height: 54px; }
 .list-block .item-content { font-size: 12px; }
+.autocomplete-page .gray { color: #666; }
+.autocomplete-page .dark { color: #111; }
 
 .ob-search { width: 100%; }
 .ob-search .searchbar { background-color: transparent; }
 
 .clearfix { clear: both; }
 .page > div.ob-white { background-color: #fff; }
+.page > div.ob-hide-navbar { padding-top: 0px; }
+.ob-navbar {}
+.ob-navbar .left { display: inline-block; }
+.ob-navbar .center { display: inline-block; width: 100%; padding-left: 10px; padding-right: 10px; }
+.ob-navbar:after { content: ''; clear:both; }
 
 .page div.ob-list { margin: 0px; }
 .page div.ob-list .ob-item { width: 100%; font-size: 70%; }

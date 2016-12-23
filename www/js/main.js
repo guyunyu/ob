@@ -138,14 +138,14 @@ ob.currency = function( q ) {
 	return v;
 };
 
-ob.date = function ( v ) {
+ob.date = function( v ) {
 	var d = new Date(v);
 	var m = d.getMonth() + 1;
 	var date = d.getDate();
 	return (date < 10 ? '0' + date + '/' : date + '/') + (m < 10 ? '0' + m + '/' : m + '/') + d.getFullYear();
 };
 
-ob.datetime = function ( v ) {
+ob.datetime = function( v ) {
 	var d = new Date(v);
 	var m = d.getMonth() + 1;
 	var date = d.getDate();
@@ -157,6 +157,19 @@ ob.datetime = function ( v ) {
 		+ ( h < 10 ? '0' + h + ':' : h + ':')
 		+ ( min < 10 ? '0' + min + ':' : min + ':')
 		+ ( s < 10 ? '0' + s : s);
+};
+
+ob.escapeHtml = function( m ) {
+	var esc = {
+		'&': '&amp;',
+		'<': '&lt;',
+		'>': '&gt;',
+		'"': '&quot;',
+		'\'': '&#39;'
+	};
+	return m.replace(/[&<>"']/g, function( m ) {
+		return esc[m];
+	});
 };
 
 ob.setValue = function( i, v ) {
@@ -244,13 +257,10 @@ ob.init = function() {
 	}
 };
 
-ob.list = function( f ) {
-	var i = $$(f).find('input[type="search"]');
-	var q = i.val();
+ob.list = function( v ) {
 	ob.mainView.router.load({
-		url: 'pages/list.html?q=' + escape(q)
+		url: 'pages/list.html?q=' + escape(v.q) + '&c=' + (v.c ? v.c : '') + '&r=' + (v.r ? v.r : '')
 	});
-	i.blur();
 	return false;
 };
 

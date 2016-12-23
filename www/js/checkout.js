@@ -173,12 +173,28 @@ ob.pages.checkout = {
 								ordno: ordno,
 								amt: amt,
 								success: function( id ) {
-									// todo
-									fw.alert('paid, next show order info');
+									var url = 'pages/m/shopping/order.html?id=' + id; 
+									ob.mainView.router.load({
+										url: url
+									});
+								},
+								failure: function( rt ) {
+									var url = 'pages/m/shopping/order.html?id=' + id; 
+									ob.mainView.router.load({
+										url: url
+									});
 								}
 							});
 						} else {
-							fw.alert('no paypal, show order info directly');
+							if(id) {
+								var url = 'pages/m/shopping/order.html?id=' + id; 
+								ob.mainView.router.load({
+									url: url
+								});
+								return false;
+							} else {
+								ob.error('Opps! Something goes wrong.');
+							}
 						}
 					} else {
 						ob.error('It fails to connect Office Buddy.')
