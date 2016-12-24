@@ -216,7 +216,7 @@ ob.pages.cart = {
 							'</div>' + 
 						'</div>' + 
 						'<div class="swipeout-actions-right">' +
-							'<a href="#" class="action1 bg-red item-remove">Remove</a>' + 
+							'<a href="#" class="action1 bg-red ob-item-remove"><i class="icon f7-icons">delete_round</i><span>Remove</span></a>' + 
 						'</div>' + 
 					'</li>'
 				);
@@ -280,13 +280,17 @@ ob.pages.cart = {
 					$$('.toolbar .label-checkbox > input[type="checkbox"]').prop('checked', checkall);
 					ob.pages.cart.calculate();
 				});
-				e.find('a.item-remove').data('id', item['k.skuId']);
-				e.find('a.item-remove').on('click', function() {
+				e.find('a.ob-item-remove').data('id', item['k.skuId']);
+				e.find('a.ob-item-remove').on('click', function() {
 					ob.cart.cleanup([{
 						skuId: $$(this).data('id')
 					}]);
-					$$(this).parents('li.swipeout').remove();
-					ob.pages.cart.calculate();
+					fw.swipeoutDelete($$(this).parents('li.swipeout')[0], function() {
+						ob.pages.cart.calculate();
+					});
+				});
+				e.on('taphold', function() {
+					fw.swipeoutOpen(this, 'right');
 				});
 				ob.pages.cart.container.find('.ob-list ul').append(e);
 			}

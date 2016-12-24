@@ -6,7 +6,8 @@ var $$ = Dom7;
 var ob = new Object();
 
 ob.mainView = fw.addView('.view-main', {
-	dynamicNavbar: true
+	dynamicNavbar: true,
+	tapHold: true
 });
 
 ob.debug = true;
@@ -215,7 +216,7 @@ ob.init = function() {
 			return false;
 		});
 	} else {
-		$$('.ob-icon-login').find('.icon-form-password').removeClass('icon-form-password').addClass('icon-form-name');
+		$$('.ob-icon-login').children('i').text('person');
 	}
 	{
 		$$('.ob-btn-login').on('click', function() {
@@ -373,6 +374,7 @@ ob.addr = function( opt ) {
 ob.ready = function() {
 
 	ob.toolbar.init();
+	ob.barcode.init();
 
 	if(typeof cordova !== 'undefined') {
 		$$(document).on('deviceready', function() {
@@ -484,7 +486,10 @@ ob.ready = function() {
 };
 
 fw.onPageInit('index', function (page) {
+	ob.init();
 	ob.toolbar.init();
+	ob.barcode.init();
+	fw.swiper('div.ob-main-slide > .swiper-container');
 });
 
 fw.onPageAfterAnimation('index', function (page) { 

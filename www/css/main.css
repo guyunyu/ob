@@ -69,6 +69,7 @@
 .ob-shoppingbar > div.toolbar-inner > a.confirm-order > span { font-size: 14px; color: white; background-image: url(../images/ic_done_white_36px.svg); background-repeat: no-repeat; padding-left: 40px; padding-top: 8px; padding-bottom: 8px; margin-top: 8px; }
 
 .ob-popover { padding: 10px; }
+.ob-item-remove > span { margin-left: 10px; }
 
 .popup-address {}
 .popup-address .title { width: 100%; text-align: center; font-weight: bold; font-size: 120%; }
