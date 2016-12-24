@@ -186,8 +186,8 @@ ob.pages.cart = {
 					continue;
 				}
 				var e = $$(
-					'<li>' + 
-						'<div class="ob-item">' + 
+					'<li class="swipeout">' + 
+						'<div class="ob-item swipeout-content">' + 
 							'<div class="item-content">' + 
 								'<div class="item-media">' + 
 									'<label class="label-checkbox">' + 
@@ -214,6 +214,9 @@ ob.pages.cart = {
 									'</div>' + 
 								'</div>' + 
 							'</div>' + 
+						'</div>' + 
+						'<div class="swipeout-actions-right">' +
+							'<a href="#" class="action1 bg-red item-remove">Remove</a>' + 
 						'</div>' + 
 					'</li>'
 				);
@@ -275,6 +278,14 @@ ob.pages.cart = {
 						}
 					});
 					$$('.toolbar .label-checkbox > input[type="checkbox"]').prop('checked', checkall);
+					ob.pages.cart.calculate();
+				});
+				e.find('a.item-remove').data('id', item['k.skuId']);
+				e.find('a.item-remove').on('click', function() {
+					ob.cart.cleanup([{
+						skuId: $$(this).data('id')
+					}]);
+					$$(this).parents('li.swipeout').remove();
 					ob.pages.cart.calculate();
 				});
 				ob.pages.cart.container.find('.ob-list ul').append(e);

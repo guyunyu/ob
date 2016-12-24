@@ -477,6 +477,9 @@ ob.ready = function() {
 	} else {
 		ob.init();
 	}
+
+	fw.swiper('div.ob-main-slide > .swiper-container');
+
 	return false;
 };
 
