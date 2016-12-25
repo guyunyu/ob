@@ -7,6 +7,12 @@ ob.toolbar = {
 			});
 			return false;
 		});
+		$$('.toolbar .catalog').on('click', function() {
+			ob.mainView.router.load({
+				url: 'pages/catalog.html'
+			});
+			return false;
+		});
 		$$('.ob-search input.search-on-main').on('click', function() {
 			return ob.list({
 				q: ''
