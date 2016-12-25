@@ -1,11 +1,23 @@
 ob.pages.orderlist = {
 	init: function( page ) {
 		ob.pages.orderlist.container = $$(page.container);
+		if(page.query.c === 'a') {
+			this.paymentStatus = 'Pending Payment';
+			this.deliveryStatus = '';
+		} else if(page.query.c === 'b') {
+			this.paymentStatus = 'Paid';
+			this.deliveryStatus = 'Pending Delivery';
+		} else {
+			this.paymentStatus = '';
+			this.deliveryStatus = '';
+		}
 		this.find(true);
 	},
 	loading: false,
 	pageOffset: 0,
 	pageSize: 20,
+	paymentStatus: '',
+	deliveryStatus: '',
 	find: function( initial ) {
 		if(initial) {
 			ob.pages.orderlist.loading = false;
@@ -22,7 +34,9 @@ ob.pages.orderlist = {
 			method: 'GET',
 			data: {
 				pageSize: ob.pages.orderlist.pageSize,
-				pageOffset: ob.pages.orderlist.pageOffset
+				pageOffset: ob.pages.orderlist.pageOffset,
+				'oh.paymentStatus': ob.pages.orderlist.paymentStatus,
+				'oh.deliveryStatus': ob.pages.orderlist.deliveryStatus
 			},
 			success: function(dt) {
 				console.log(dt);

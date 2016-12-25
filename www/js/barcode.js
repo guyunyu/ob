@@ -22,10 +22,22 @@ ob.barcode = {
 	},
 	handle: function( c ) {
 		if(typeof c.text === 'string') {
-			if(/^obsrv:http:\/\/.*/.test(c.text)) {
+			var itemURLpre = ob.url('/i/catalog/item/');
+			if(c.text.indexOf(itemURLpre) === 0) {
+				var component = c.text.substr(itemURLpre.length);
+				if(/^[A-Z0-9a-z]{12}\.html$/.test(component)) {
+					var tokens = component.split('.');
+					var url = 'pages/item.html?id=' + tokens[0];
+					ob.mainView.router.load({
+						url: url
+					});
+				}
+			} else if(/^obsrv:http:\/\/.*/.test(c.text)) {
 				window.localStorage.setItem('url', c.text.substr(6));
+				fw.alert('Office Buddy service updated: ' + ob.url(''));
+			} else {
+				fw.alert('Barcode is not recognized: ' + c.text);
 			}
-			fw.alert('Office Buddy service updated: ' + ob.url(''));
 		}
 	}
 };

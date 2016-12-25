@@ -10,6 +10,7 @@ ob.mainView = fw.addView('.view-main', {
 	tapHold: true
 });
 
+ob.version = '0.0.1';
 ob.debug = true;
 ob.$ = 'SGD';
 ob.pages = {};
@@ -270,6 +271,7 @@ ob.ajax = function( opt ) {
 	if(ob.session && ob.session.mc) {
 		headers['mc'] = ob.session.mc;
 	}
+	headers['ver'] = ob.version;
 	try {
 		$$.ajax({
 			url: opt.url,
