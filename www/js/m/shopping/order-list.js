@@ -198,8 +198,7 @@ ob.pages.orderlist = {
 
 fw.onPageInit('order-list', function (page) {
 	ob.pages.orderlist.init(page);
-	ob.toolbar.init();
 });
 fw.onPageAfterAnimation('order-list', function (page) { 
-	
+	ob.toolbar.init();
 });

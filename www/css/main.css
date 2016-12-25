@@ -14,7 +14,7 @@
 .page > div.ob-white { background-color: #fff; }
 
 .ob-transparent { background-color: transparent; }
-.ob-main-body { position: relative; top: -44px; left: 0px; }
+.navbar-through .ob-main-body { padding-top: 0px; padding-bottom: 28px; }
 .ob-main-slide { width: 100%; height: 300px; }
 .ob-main-slide .swiper-slide { height: 300px; }
 .ob-main-slide img { width: 100%; height: 300px; }

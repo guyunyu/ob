@@ -1,6 +1,4 @@
 fw.onPageInit('my', function (page) {
-	ob.toolbar.init();
-
 	if(ob.session.mc) {
 		$$('.ob-icon-login').children('i').text('person');
 		$$('.ob-icon-login').find('a > span.name').text(ob.session.mn);
@@ -12,5 +10,5 @@ fw.onPageInit('my', function (page) {
 	}
 });
 fw.onPageAfterAnimation('my', function (page) { 
-	
+	ob.toolbar.init();
 });

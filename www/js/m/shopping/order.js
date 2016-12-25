@@ -161,9 +161,8 @@ ob.pages.order = {
 
 fw.onPageInit('order', function (page) {
 	ob.pages.order.init(page);
-	ob.toolbar.init();
 });
 
 fw.onPageAfterAnimation('order', function (page) { 
-	
+	ob.toolbar.init();
 });

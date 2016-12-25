@@ -149,5 +149,6 @@ ob.toolbar = {
 				$$('.autocomplete-page .searchbar .searchbar-input').find('input[type="search"]').focus();
 			});
 		}
+		$$('.view-main > .navbar').removeClass('ob-transparent');
 	}
 };

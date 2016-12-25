@@ -483,17 +483,18 @@ ob.ready = function() {
 	}
 
 	fw.swiper('div.ob-main-slide > .swiper-container');
+	$$('.view-main > .navbar').addClass('ob-transparent');
 
 	return false;
 };
 
 fw.onPageInit('index', function (page) {
 	ob.init();
-	ob.toolbar.init();
 	ob.barcode.init();
 	fw.swiper('div.ob-main-slide > .swiper-container');
 });
 
 fw.onPageAfterAnimation('index', function (page) { 
-	
+	ob.toolbar.init();
+	$$('.view-main > .navbar').addClass('ob-transparent');
 });

@@ -216,9 +216,8 @@ ob.pages.checkout = {
 
 fw.onPageInit('checkout', function (page) {
 	ob.pages.checkout.init(page);
-	ob.toolbar.init();
 });
 
 fw.onPageAfterAnimation('checkout', function (page) { 
-	
+	ob.toolbar.init();
 });

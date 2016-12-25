@@ -131,9 +131,9 @@ ob.pages.list = {
 
 fw.onPageInit('list', function( page ) {
 	ob.pages.list.container = $$(page.container);
-	ob.toolbar.init();
 });
 fw.onPageAfterAnimation('list', function( page ) { 
+	ob.toolbar.init();
 	if(!ob.pages.list.q) {
 		var i = $$('.searchbar input.search-on-list');
 		i.trigger('click');

@@ -207,10 +207,9 @@ ob.pages.item = {
 
 fw.onPageInit('item', function (page) {
 	ob.pages.item.init(page);
-	ob.toolbar.init();
 });
 fw.onPageAfterAnimation('item', function (page) { 
-	
+	ob.toolbar.init();
 });
 
 fw.onPageInit('item-foc', function (page) {

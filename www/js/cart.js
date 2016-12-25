@@ -382,9 +382,8 @@ ob.pages.cart = {
 
 fw.onPageInit('cart', function (page) {
 	ob.pages.cart.init(page);
-	ob.toolbar.init();
 });
 
 fw.onPageAfterAnimation('cart', function (page) { 
-	
+	ob.toolbar.init();
 });
