@@ -126,6 +126,7 @@ ob.pages.orderlist = {
 						}
 					} else {
 						group.find('a.pay').text(item['oh.paymentStatus'] + ', ' + item['oh.transactionStatus']);
+						ob.paypal.remove(item['oh.transactionId']);
 					}
 					list.append(group);
 				}

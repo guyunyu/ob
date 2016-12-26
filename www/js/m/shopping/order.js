@@ -30,7 +30,6 @@ ob.pages.order = {
 		if(json.status === 'success') {
 			ob.pages.order.data = json.data;
 			ob.pages.order.container.find('.ob-order .head .ordno').text(json.data['oh.transactionNo']);
-			ob.pages.order.container.find('.ob-order .head .status').text(json.data['oh.transactionStatus']);
 			ob.pages.order.container.find('.ob-order .addr .name').text(json.data['oa.contactPerson']);
 			ob.pages.order.container.find('.ob-order .addr .phone').text(json.data['oa.phone']);
 			ob.pages.order.container.find('.ob-order .addr .detail').text(json.data['oa.address1'] + ( json.data['oa.address2'] ? ' ' + json.data['oa.address2'] : ''));
@@ -134,27 +133,31 @@ ob.pages.order = {
 		ob.pages.order.container.find('.ob-order .total .tax-info').text('(' + json.data['oh.taxCode'] + ' of ' + ob.currency(json.data['oh.taxAmount']) + ' inclusive)');
 
 		if(json.data['oh.transactionStatus'] === 'Pending Payment' && json.data['oh.paymentStatus'] === 'Pending Payment') {
-			ob.pages.order.container.find('.ob-shoppingbar .order-total').text(ob.currency(json.data['oh.totalAmount']));
-			ob.pages.order.container.find('.ob-shoppingbar .confirm-order').on('click', function() {
-				if(ob.paypal.avail) {
-					ob.paypal.pay({
-						id: ob.pages.order.data['oh.transactionId'],
-						ordno: ob.pages.order.data['oh.transactionNo'],
-						amt: ob.pages.order.data['oh.totalAmount'],
-						success: function( id ) {
-							ob.pages.order.data['oh.transactionStatus'] = 'Wait for Processing';
-							ob.pages.order.data['oh.paymentStatus'] = 'Paid';
-							ob.pages.order.container.find('.ob-order .head .status').text('Processing Payment');
-							ob.pages.order.container.find('.ob-shoppingbar').remove();
-							ob.pages.order.container.find('.ob-order .pay').addClass('paid');
-						}
-					});
-				} else {
-					ob.error('PayPal is not available.', true);
-				}
-			});
+			if(ob.paypal.paying(json.data['oh.transactionId'])) {
+				ob.pages.order.container.find('.ob-order .head .status').text('Processing Payment');
+			} else {
+				ob.pages.order.container.find('.ob-order .head .status').text(json.data['oh.paymentStatus'] + ', ' + json.data['oh.transactionStatus']);
+				ob.pages.order.container.find('.ob-shoppingbar .order-total').text(ob.currency(json.data['oh.totalAmount']));
+				ob.pages.order.container.find('.ob-shoppingbar .confirm-order').on('click', function() {
+					if(ob.paypal.avail) {
+						ob.paypal.pay({
+							id: ob.pages.order.data['oh.transactionId'],
+							ordno: ob.pages.order.data['oh.transactionNo'],
+							amt: ob.pages.order.data['oh.totalAmount'],
+							success: function( id ) {
+								ob.pages.order.container.find('.ob-order .head .status').text('Processing Payment');
+								ob.pages.order.container.find('.ob-shoppingbar').remove();
+								ob.pages.order.container.find('.ob-order .pay').addClass('paid');
+							}
+						});
+					} else {
+						ob.error('PayPal is not available.', true);
+					}
+				});
+			}
 		} else {
 			ob.pages.order.container.find('.ob-shoppingbar').remove();
+			ob.paypal.remove(json.data['oh.transactionId']);
 		}
 	},
 };

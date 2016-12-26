@@ -24,28 +24,31 @@ ob.paypal = {
 		this.post(id, rt);
 	},
 	post: function( id, v ) {
-		ob.ajax({
-			url: ob.url('/a/execute/shopping/PayWithPaypal'),
-			method: 'POST',
-			data: {
-				data: JSON.stringify({
-					id: id,
-					paypal: v
-				})
-			},
-			success: function( dt ) {
-				try {
-					var json = JSON.parse(dt);
-					if(json.status === 'success') {
-						if(json.rflag.transactionId) {
-							var c = ob.paypal.getCache();
-							delete c[json.rflag.transactionId];
-							window.localStorage.setItem('paypal', JSON.stringify(c));
+		if(v!=='posted') {
+			ob.ajax({
+				url: ob.url('/a/execute/shopping/PayWithPaypal'),
+				method: 'POST',
+				data: {
+					data: JSON.stringify({
+						id: id,
+						paypal: v
+					})
+				},
+				success: function( dt ) {
+					try {
+						var json = JSON.parse(dt);
+						if(json.status === 'success') {
+							if(json.rflag.transactionId) {
+								var c = ob.paypal.getCache();
+								delete c[json.rflag.transactionId];
+								c[json.rflag.transactionId] = 'posted';
+								window.localStorage.setItem('paypal', JSON.stringify(c));
+							}
 						}
-					}
-				} catch(e) {}
-			}
-		});
+					} catch(e) {}
+				}
+			});
+		}
 	},
 	getCache: function() {
 		var c = window.localStorage.getItem('paypal');
@@ -64,6 +67,13 @@ ob.paypal = {
 	paying: function( id ) {
 		var v = this.getCache()[id];
 		return (typeof v === 'object' || typeof v === 'string');
+	},
+	remove: function( id ) {
+		var c = ob.paypal.getCache();
+		if(c[id]) {
+			delete c[id];
+			window.localStorage.setItem('paypal', JSON.stringify(c));
+		}
 	},
 	pay: function( opt ) {
 		var ppp = new PayPalPayment(
