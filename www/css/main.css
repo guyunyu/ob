@@ -101,3 +101,7 @@ div.ob-my-info i.icon { margin-right: 10px; }
 div.ob-iconic-row { width: 100%; height: 60px; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 10px; }
 div.ob-iconic-row a { display: block; width: 100%; text-align: center; }
 div.ob-iconic-row a > span { display: block; }
+
+div.ob-catalog .list-block { margin-top: 5px; }
+div.ob-catalog .list-block .item-content { padding-left: 0px; min-height: 10px; }
+div.ob-catalog .list-block .item-content .item-inner { min-height: 10px; padding-left: 15px; padding-top: 6px; padding-bottom: 6px; }

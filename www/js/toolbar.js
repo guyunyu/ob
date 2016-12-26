@@ -167,7 +167,7 @@ ob.toolbar = {
 						if(autocomplete.value[0].q) {
 							$$(autocomplete.input).val(autocomplete.value[0].q);
 						}
-						ob.pages.list.reload(
+						ob.pages.list.go(
 							autocomplete.value[0].q,
 							autocomplete.value[0].c,
 							autocomplete.value[0].r

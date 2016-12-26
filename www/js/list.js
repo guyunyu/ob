@@ -1,9 +1,7 @@
 ob.pages.list = {
-	go: function() {
-		var i = $$('.searchbar input.search-on-list');
-		var q = i.val();
-		this.realod(q, '', '');
-		i.blur();
+	go: function( q, c, r ) {
+		// setTimeout(ob.mainView.router.reloadPage('pages/list.html?q=' + escape(q) + '&c=' + (c ? c : '') + '&r=' + (r ? r : '')), 500);
+		this.reload(q, c, r);
 	},
 	reload: function( q, c, r ) {
 		ob.pages.list.container.find('.ob-list').html('');
@@ -131,11 +129,12 @@ ob.pages.list = {
 
 fw.onPageInit('list', function( page ) {
 	ob.pages.list.container = $$(page.container);
+	ob.pages.list.reload(
+		page.query.q ? page.query.q : '',
+		page.query.c ? page.query.c : '',
+		page.query.r ? page.query.r : ''
+	);
 });
 fw.onPageAfterAnimation('list', function( page ) { 
 	ob.toolbar.init();
-	if(!ob.pages.list.q) {
-		var i = $$('.searchbar input.search-on-list');
-		i.trigger('click');
-	}
 });
