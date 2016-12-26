@@ -12,6 +12,7 @@ ob.mainView = fw.addView('.view-main', {
 
 ob.version = '0.0.1';
 ob.debug = true;
+ob.online = true;
 ob.$ = 'SGD';
 ob.pages = {};
 
@@ -383,6 +384,21 @@ ob.addr = function( opt ) {
 	fw.popup('.popup-address');
 };
 
+ob.checkNetwork = function() {
+	var n = navigator.connection.type;
+	if(n === Connection.NONE) {
+		if(ob.online) {
+			ob.error('network is offline');
+		}
+		ob.online = false;
+	} else {
+		if(!ob.online) {
+			fw.alert('network is back online');
+		}
+		ob.online = true;
+	}
+};
+
 ob.ready = function() {
 
 	ob.toolbar.init();
@@ -412,6 +428,14 @@ ob.ready = function() {
 					ob.mainView.router.back();
 				}
 			});
+
+			document.addEventListener('offline', function() {
+				ob.checkNetwork();
+			}, false);
+			document.addEventListener('online', function() {
+				ob.checkNetwork();
+			}, false);
+			ob.checkNetwork();
 
 			try {
 				PayPalMobile.init({
