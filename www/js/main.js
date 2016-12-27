@@ -46,6 +46,7 @@ ob.paypal = {
 	post: function( id, v ) {
 		if(v!=='posted') {
 			ob.ajax({
+				daemon: true,
 				url: ob.url('/a/execute/shopping/PayWithPaypal'),
 				method: 'POST',
 				data: {
@@ -318,11 +319,15 @@ ob.ajax = function( opt ) {
 			timeout: opt.timeout || 20000,
 			headers: headers,
 			success: function(dt) {
-				ob.loading(false);
+				if(!opt.daemon) {
+					ob.loading(false);
+				}
 				opt.success(dt);
 			},
 			error: function(xhr, code) {
-				ob.loading(false);
+				if(!opt.daemon) {
+					ob.loading(false);
+				}
 				if(ob.debug) {
 					fw.alert('visit to url ' + opt.url + ' encounters error in ajax!');
 				}
@@ -333,9 +338,13 @@ ob.ajax = function( opt ) {
 				}
 			}
 		});
-		ob.loading(true);
+		if(!opt.daemon) {
+			ob.loading(true);
+		}
 	} catch(e) {
-		ob.loading(false);
+		if(!opt.daemon) {
+			ob.loading(false);
+		}
 		if(ob.debug) {
 			fw.alert('visit to url ' + opt.url + ' encounters error in try-catch!');
 		}
