@@ -1,23 +1,44 @@
 ob.toolbar = {
-	init: function() {
-		ob.cart.init();
-		$$('.toolbar .me').on('click', function() {
+	init: function( page ) {
+		ob.log('ob.toolbar.init(' + (page && page.name ? page.name : ' - ') + ')');
+		ob.cart.init(page);
+		var toolbar_showme = function() {
+			if(!ob.mainView.allowPageChange) {
+				ob.log('showme: allowPageChange=false;');
+				ob.mainView.allowPageChange = true;
+			}
 			ob.mainView.router.load({
 				url: 'pages/m/my.html'
 			});
 			return false;
-		});
-		$$('.toolbar .catalog').on('click', function() {
+		};
+		var toolbar_showcat = function() {
+			if(!ob.mainView.allowPageChange) {
+				ob.log('showme: allowPageChange=false;');
+				ob.mainView.allowPageChange = true;
+			}
 			ob.mainView.router.load({
 				url: 'pages/catalog.html'
 			});
 			return false;
-		});
-		$$('.ob-search input.search-on-main').on('click', function() {
+		};
+		var toolbar_showmainsearch = function() {
 			return ob.list({
 				q: ''
 			});
-		});
+		};
+		$$('.toolbar .me').off('click', toolbar_showme);
+		$$('.toolbar .catalog').off('click', toolbar_showcat);
+		if(page && page.name) {
+			$$('div.page').each(function() {
+				if($$(this).data('page') === page.name) {
+					$$(this).find('.toolbar .me').on('click', toolbar_showme);
+					$$(this).find('.toolbar .catalog').on('click', toolbar_showcat);
+				}
+			});
+		}
+		$$('.ob-search input.search-on-main').off('click', toolbar_showmainsearch);
+		$$('.ob-search input.search-on-main').on('click', toolbar_showmainsearch);
 		if($$('.ob-search input.search-on-list').length === 1) {
 			var ajax_queue = [];
 			var ajax_delay = function( ) {

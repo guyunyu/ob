@@ -136,5 +136,5 @@ fw.onPageInit('list', function( page ) {
 	);
 });
 fw.onPageAfterAnimation('list', function( page ) { 
-	ob.toolbar.init();
+	ob.toolbar.init(page);
 });

@@ -209,7 +209,7 @@ fw.onPageInit('item', function (page) {
 	ob.pages.item.init(page);
 });
 fw.onPageAfterAnimation('item', function (page) { 
-	ob.toolbar.init();
+	ob.toolbar.init(page);
 });
 
 fw.onPageInit('item-foc', function (page) {

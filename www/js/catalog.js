@@ -18,5 +18,5 @@ fw.onPageInit('catalog', function (page) {
 });
 
 fw.onPageAfterAnimation('catalog', function (page) { 
-	ob.toolbar.init();
+	ob.toolbar.init(page);
 });

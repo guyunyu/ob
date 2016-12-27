@@ -16,6 +16,25 @@ ob.online = true;
 ob.$ = 'SGD';
 ob.pages = {};
 
+ob.loginfo = [];
+ob.log = function( m, s ) {
+	if(s) {
+		var divx = $$('#div-x');
+		divx.children().remove();
+		var html = $$('<ol></ol>');
+		for(var index=0; index<ob.loginfo.length; index++) {
+			var e = $$('<li></li>');
+			e.text(ob.loginfo[index]);
+			html.append(e);
+		}
+		divx.append(html);
+	} else {
+		if(ob.debug && m) {
+			ob.loginfo.push(m);
+		}
+	}
+};
+
 ob.paypal = {
 	avail: false,
 	cache: function( id, rt ) {
@@ -211,6 +230,14 @@ ob.getValue = function( i ) {
 	}
 };
 
+ob.loading = function( flag ) {
+	if(flag) {
+		$$('div.loading').show();
+	} else {
+		$$('div.loading').hide();
+	}
+};
+
 ob.init = function() {
 	var session = window.localStorage.getItem('session');
 	if(typeof session === 'string') {
@@ -290,8 +317,12 @@ ob.ajax = function( opt ) {
 			data: opt.data,
 			timeout: opt.timeout || 20000,
 			headers: headers,
-			success: opt.success,
+			success: function(dt) {
+				ob.loading(false);
+				opt.success(dt);
+			},
 			error: function(xhr, code) {
+				ob.loading(false);
 				if(ob.debug) {
 					fw.alert('visit to url ' + opt.url + ' encounters error in ajax!');
 				}
@@ -302,7 +333,9 @@ ob.ajax = function( opt ) {
 				}
 			}
 		});
+		ob.loading(true);
 	} catch(e) {
+		ob.loading(false);
 		if(ob.debug) {
 			fw.alert('visit to url ' + opt.url + ' encounters error in try-catch!');
 		}
@@ -401,7 +434,9 @@ ob.checkNetwork = function() {
 
 ob.ready = function() {
 
-	ob.toolbar.init();
+	ob.toolbar.init({
+		name: 'index'
+	});
 	ob.barcode.init();
 
 	if(typeof cordova !== 'undefined') {
@@ -456,61 +491,6 @@ ob.ready = function() {
 
 			ob.init();
 
-			$$('#div-x').append($$('<div>device is ready to use</div><hr></hr><ol><li><div><input type="text" class="mod-url"></input></div><div><button id="btn-ajax">Test Ajax</button></div></li><li><button id="btn-img">Test Image</button></li><li><button id="btn-scan">Test Scan</button></li><li><button id="btn-pay">Pay</button></li></ol>'));
-			$$('.mod-url').val(ob.url(''));
-			$$('#btn-ajax').on('click', function() {
-				window.localStorage.setItem('url', $$('.mod-url').val());
-				try {
-					$$.ajax({
-						url: ob.url('/a/catalog/Item.List'),
-						method: 'GET',
-						timeout: 20000,
-						data: {
-							q: 'coffee',
-							pageSize: 1,
-							pageOffset: 0
-						},
-						success: function(dt) {
-							var itemlist = JSON.parse(dt);
-							$$('#div-x').append($$('<div>' + JSON.stringify(itemlist) + '</div>'));
-							$$('#btn-ajax').attr('disabled', 'disabled');
-						},
-						error: function(xhr, e) {
-							fw.alert('error: ' + e);
-						}
-					});
-				} catch(err) { fw.alert(err); }
-			});
-			$$('#btn-img').on('click', function() {
-				$$('#div-x').append($$('<img src="' + ob.url('/res/images/ob-logo.png') + '" width="250" height="90"></img>'));
-				$$('#btn-img').attr('disabled', 'disabled');
-			});
-			$$('#btn-scan').on('click', function() {
-				try {
-					cordova.plugins.barcodeScanner.scan(
-						function (result) {
-							if(!result.cancelled) {
-								$$('#div-x').append($$('<div>barcode ' + result.format + ' : ' + result.text + '</div>'));
-								$$('#btn-scan').attr('disabled', 'disabled');
-							}
-						},
-						function (error) {
-							fw.alert("Scanning failed: " + error);
-						},
-						{
-							prompt: 'Place a barcode inside the scan area'
-						}
-					);
-				} catch(e) {
-					fw.alert(e);
-				}
-			});
-		
-			var logs = $$('<ol></ol>');
-			$$('#div-x').append(logs);
-			logs.append('<li> init paypal mobile ... </li>');
-			logs.append('<li> cache entries: </li>');
-			logs.append('<li> ' + JSON.stringify(ob.paypal.getCache()) + '</li>');
 		});
 	} else {
 		ob.init();
@@ -518,6 +498,8 @@ ob.ready = function() {
 
 	fw.swiper('div.ob-main-slide > .swiper-container');
 	$$('.view-main > .navbar').addClass('ob-transparent');
+
+	ob.loading(false);
 
 	return false;
 };
@@ -529,6 +511,8 @@ fw.onPageInit('index', function (page) {
 });
 
 fw.onPageAfterAnimation('index', function (page) { 
-	ob.toolbar.init();
+	ob.toolbar.init({
+		name: 'index'
+	});
 	$$('.view-main > .navbar').addClass('ob-transparent');
 });

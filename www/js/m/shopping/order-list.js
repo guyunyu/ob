@@ -201,5 +201,5 @@ fw.onPageInit('order-list', function (page) {
 	ob.pages.orderlist.init(page);
 });
 fw.onPageAfterAnimation('order-list', function (page) { 
-	ob.toolbar.init();
+	ob.toolbar.init(page);
 });

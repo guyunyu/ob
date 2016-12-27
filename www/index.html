@@ -23,7 +23,9 @@
     <div class="panel panel-left panel-reveal">
       <div class="content-block">
         <p>TODO: menus</p>
-        <div class="div-x"></div>
+        <a href="#" onclick="return ob.log(false, true);">Log Info</a>
+        <div id="div-x">
+        </div>
       </div>
     </div>
     <div class="views">
@@ -31,7 +33,10 @@
         <div class="navbar">
           <div class="navbar-inner">
             <div class="left">
+            <!-- 
               <a href="#" class="link icon-only ob-icon-scan"><i class="icon f7-icons">eye</i></a>
+            -->
+              <a href="#" class="link icon-only open-panel"><i class="icon icon-form-settings"></i></a>
             </div>
             <div class="center sliding ob-search">
               <form class="searchbar searchbar-init" onsubmit="return false;">
@@ -41,7 +46,10 @@
               </form>
             </div>
             <div class="right">
+            <!-- 
               <a href="#" class="link icon-only ob-icon-login"><i class="icon f7-icons">login</i></a>
+            -->
+              <a href="#" class="link icon-only ob-icon-scan"><i class="icon f7-icons">eye</i></a>
             </div>
           </div>
         </div>
@@ -245,6 +253,13 @@
           <div class="col-50">
             <a href="#" class="button button-big button-green update">Submit</a>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading">
+      <div class="inner">
+        <div class="mask">
+          <img src="images/loading.gif"></img>
         </div>
       </div>
     </div>

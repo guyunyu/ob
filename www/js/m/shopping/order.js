@@ -167,5 +167,5 @@ fw.onPageInit('order', function (page) {
 });
 
 fw.onPageAfterAnimation('order', function (page) { 
-	ob.toolbar.init();
+	ob.toolbar.init(page);
 });

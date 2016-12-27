@@ -10,5 +10,5 @@ fw.onPageInit('my', function (page) {
 	}
 });
 fw.onPageAfterAnimation('my', function (page) { 
-	ob.toolbar.init();
+	ob.toolbar.init(page);
 });

@@ -1,18 +1,22 @@
 ob.cart = {
 	skus: [],
-	init: function() {
+	init: function(page) {
 		var cache = window.localStorage.getItem('cart');
 		if(cache) {
 			this.skus = JSON.parse(cache);
 		}
 		this.flush();
-		$$('.toolbar .cart').on('click', function() {
+		var toolbar_showcart = function() {
+			if(!ob.mainView.allowPageChange) {
+				ob.log('showme: allowPageChange=false;');
+				ob.mainView.allowPageChange = true;
+			}
 			ob.mainView.router.load({
 				url: 'pages/cart.html'
 			});
 			return false;
-		});
-		$$('.toolbar .add').on('click', function() {
+		};
+		var toolbar_addcart = function() {
 			if(ob.pages.item) {
 				if(ob.pages.item.sku) {
 					ob.cart.add(ob.pages.item.sku, 1);
@@ -26,7 +30,17 @@ ob.cart = {
 				}
 			}
 			return false;
-		});
+		};
+		$$('.toolbar .cart').off('click', toolbar_showcart);
+		$$('.toolbar .add').off('click', toolbar_addcart);
+		if(page && page.name) {
+			$$('div.page').each(function() {
+				if($$(this).data('page') === page.name) {
+					$$(this).find('.toolbar .cart').on('click', toolbar_showcart);
+					$$(this).find('.toolbar .add').on('click', toolbar_addcart);
+				}
+			});
+		}
 	},
 	add: function( skuId, qty ) {
 		if(qty > 0) {
@@ -385,5 +399,5 @@ fw.onPageInit('cart', function (page) {
 });
 
 fw.onPageAfterAnimation('cart', function (page) { 
-	ob.toolbar.init();
+	ob.toolbar.init(page);
 });
