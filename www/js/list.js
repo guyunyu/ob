@@ -9,15 +9,12 @@ ob.pages.list = {
 		this.q = q;
 		this.c = c;
 		this.r = r;
-		var i = $$('.searchbar input.search-on-list');
 		if(q || c || r) {
 			ob.pages.list.container.find('.ob-list').append('<p><span class="progressbar-infinite"></span></p>');
 			ob.pages.list.find(true);
 			ob.pages.list.container.find('.infinite-scroll').on('infinite', function () {
 				ob.pages.list.find(false);
 			});
-		} else {
-			i.trigger('click');
 		}
 	},
 	loading: false,
@@ -138,4 +135,8 @@ fw.onPageInit('list', function( page ) {
 });
 fw.onPageAfterAnimation('list', function( page ) { 
 	ob.toolbar.init(page);
+	if(!page.query.q && !page.query.c && !page.query.r) {
+		var i = $$('.searchbar input.search-on-list');
+		i.trigger('click');
+	}
 });
