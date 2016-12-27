@@ -38,6 +38,7 @@ ob.pages.list = {
 		}
 		ob.pages.list.loading = true;
 		ob.ajax({
+			deamon: !initial,
 			url: ob.url('/a/catalog/Item.List'),
 			method: 'GET',
 			data: {

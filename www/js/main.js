@@ -334,7 +334,9 @@ ob.ajax = function( opt ) {
 				if(typeof opt.error === 'function') {
 					opt.error(xhr, code);
 				} else {
-					ob.error(code);
+					if(!opt.daemon) {
+						ob.error(code);
+					}
 				}
 			}
 		});

@@ -55,6 +55,7 @@ ob.toolbar = {
 				}
 				autocomplete.showPreloader();
 				ob.ajax({
+					daemon: true,
 					url: ob.url('/a/catalog/Item.List'),
 					method: 'GET',
 					data: {
