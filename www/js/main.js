@@ -458,10 +458,10 @@ ob.ready = function() {
 					fw.closeModal();
 					fw.actions([
 						{
-							text: 'Stay with Office Buddy'
+							text: '<i class="icon f7-icons">reply</i>&nbsp;<span>Stay</span>',
 						},
 						{
-							text: 'Confirm to Exit',
+							text: '<i class="icon f7-icons">logout</i>&nbsp;<span>Quit</span>',
 							color: 'red',
 							onClick: function() {
 								try {
