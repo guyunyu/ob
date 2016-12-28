@@ -306,6 +306,12 @@ ob.list = function( v ) {
 };
 
 ob.ajax = function( opt ) {
+	if(!ob.online) {
+		if(!opt.daemon) {
+			fw.alert('Opps! Please check your network connection!');
+		}
+		return false;
+	}
 	var headers = opt.headers || {};
 	if(ob.session && ob.session.mc) {
 		headers['mc'] = ob.session.mc;
@@ -429,17 +435,13 @@ ob.addr = function( opt ) {
 };
 
 ob.checkNetwork = function() {
-	var n = navigator.connection.type;
-	if(n === Connection.NONE) {
-		if(ob.online) {
-			ob.error('network is offline');
+	if(navigator && navigator.connection) {
+		var n = navigator.connection.type;
+		if(n === Connection.NONE) {
+			ob.online = false;
+		} else {
+			ob.online = true;
 		}
-		ob.online = false;
-	} else {
-		if(!ob.online) {
-			fw.alert('network is back online');
-		}
-		ob.online = true;
 	}
 };
 
@@ -527,3 +529,5 @@ fw.onPageAfterAnimation('index', function (page) {
 	});
 	$$('.view-main > .navbar').addClass('ob-transparent');
 });
+
+ob.ready();

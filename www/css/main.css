@@ -19,9 +19,9 @@ div.loading:after { content: ''; clear: both; }
 
 .ob-transparent { background-color: transparent; }
 .navbar-through .ob-main-body { padding-top: 0px; padding-bottom: 28px; }
-.ob-main-slide { width: 100%; height: 300px; }
-.ob-main-slide .swiper-slide { height: 300px; }
-.ob-main-slide img { width: 100%; height: 300px; }
+.ob-main-slide { width: 100%; height: 200px; }
+.ob-main-slide .swiper-slide { height: 200px; }
+.ob-main-slide img { width: 100%; height: 200px; }
 .ob-main-slide:after { content: ''; clear: both; }
 .ob-main-ad { width: 100%; }
 .ob-main-ad img { width: 100%; }
