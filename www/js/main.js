@@ -447,6 +447,11 @@ ob.checkNetwork = function() {
 
 ob.ready = function() {
 
+	ob.toolbar.init({
+		name: 'index'
+	});
+	ob.barcode.init();
+
 	if(typeof cordova !== 'undefined') {
 		$$(document).on('deviceready', function() {
 		
@@ -524,5 +529,3 @@ fw.onPageAfterAnimation('index', function (page) {
 	});
 	$$('.view-main > .navbar').addClass('ob-transparent');
 });
-
-ob.ready();

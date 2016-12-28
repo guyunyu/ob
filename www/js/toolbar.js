@@ -207,7 +207,3 @@ ob.toolbar = {
 		$$('.view-main > .navbar').removeClass('ob-transparent');
 	}
 };
-
-ob.toolbar.init({
-	name: 'index'
-});
