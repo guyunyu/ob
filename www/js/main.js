@@ -447,11 +447,6 @@ ob.checkNetwork = function() {
 
 ob.ready = function() {
 
-	ob.toolbar.init({
-		name: 'index'
-	});
-	ob.barcode.init();
-
 	if(typeof cordova !== 'undefined') {
 		$$(document).on('deviceready', function() {
 		

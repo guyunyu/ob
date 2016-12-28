@@ -41,3 +41,5 @@ ob.barcode = {
 		}
 	}
 };
+
+ob.barcode.init();
