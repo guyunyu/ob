@@ -23,63 +23,63 @@
 	<preference name="DisallowOverscroll" value="true"/>
 	<preference name="android-minSdkVersion" value="16"/>
 	<preference name="orientation" value="all"/>
-	<preference name="SplashScreen" value="www/splashes"/>
+	<preference name="SplashScreen" value="res/splashes"/>
 	<preference name="SplashScreenDelay" value="10000"/>
 	<preference name="AutoHideSplashScreen" value="true"/>
 	<preference name="SplashMaintainAspectRatio" value="true"/>
-	<icon src="www/icons/ob-128x128.png"/>
-	<splash src="www/splashes/ob-1920x1280.png"/>
+	<icon src="res/icons/ob-128x128.png"/>
+	<splash src="res/splashes/ob-1920x1280.png"/>
 	<platform name="android">
 		<allow-intent href="market:*"/>
-        <icon density="ldpi" src="www/icons/ob-36x36.png"/>
-        <icon density="mdpi" src="www/icons/ob-48x48.png"/>
-        <icon density="hdpi" src="www/icons/ob-72x72.png"/>
-        <icon density="xhdpi" src="www/icons/ob-96x96.png"/>
-        <icon density="xxhdpi" src="www/icons/ob-144x144.png"/>
-        <icon density="xxxhdpi" src="www/icons/ob-192x192.png"/>
-        <splash density="land-ldpi" src="www/splashes/ob-320x240.png"/>
-        <splash density="land-mdpi" src="www/splashes/ob-480x320.png"/>
-        <splash density="land-hdpi" src="www/splashes/ob-800x480.png"/>
-        <splash density="land-xhdpi" src="www/splashes/ob-1280x720.png"/>
-        <splash density="land-xxhdpi" src="www/splashes/ob-1600x960.png"/>
-        <splash density="land-xxxhdpi" src="www/splashes/ob-1920x1280.png"/>
-        <splash density="port-ldpi" src="www/splashes/ob-240x320.png"/>
-        <splash density="port-mdpi" src="www/splashes/ob-320x480.png"/>
-        <splash density="port-hdpi" src="www/splashes/ob-480x800.png"/>
-        <splash density="port-xhdpi" src="www/splashes/ob-720x1280.png"/>
-        <splash density="port-xxhdpi" src="www/splashes/ob-960x1600.png"/>
-        <splash density="port-xxxhdpi" src="www/splashes/ob-1280x1920.png"/>
+        <icon density="ldpi" src="res/icons/ob-36x36.png"/>
+        <icon density="mdpi" src="res/icons/ob-48x48.png"/>
+        <icon density="hdpi" src="res/icons/ob-72x72.png"/>
+        <icon density="xhdpi" src="res/icons/ob-96x96.png"/>
+        <icon density="xxhdpi" src="res/icons/ob-144x144.png"/>
+        <icon density="xxxhdpi" src="res/icons/ob-192x192.png"/>
+        <splash density="land-ldpi" src="res/splashes/ob-320x240.png"/>
+        <splash density="land-mdpi" src="res/splashes/ob-480x320.png"/>
+        <splash density="land-hdpi" src="res/splashes/ob-800x480.png"/>
+        <splash density="land-xhdpi" src="res/splashes/ob-1280x720.png"/>
+        <splash density="land-xxhdpi" src="res/splashes/ob-1600x960.png"/>
+        <splash density="land-xxxhdpi" src="res/splashes/ob-1920x1280.png"/>
+        <splash density="port-ldpi" src="res/splashes/ob-240x320.png"/>
+        <splash density="port-mdpi" src="res/splashes/ob-320x480.png"/>
+        <splash density="port-hdpi" src="res/splashes/ob-480x800.png"/>
+        <splash density="port-xhdpi" src="res/splashes/ob-720x1280.png"/>
+        <splash density="port-xxhdpi" src="res/splashes/ob-960x1600.png"/>
+        <splash density="port-xxxhdpi" src="res/splashes/ob-1280x1920.png"/>
 	</platform>
 	<platform name="ios">
 		<allow-intent href="itms:*"/>
 		<allow-intent href="itms-apps:*"/>
 		<preference name="BackupWebStorage" value="none"/>
-        <icon height="57" platform="ios" src="www/icons/ob-57x57.png" width="57"/>
-        <icon height="114" platform="ios" src="www/icons/ob-114x114.png" width="114"/>
-        <icon height="40" platform="ios" src="www/icons/ob-40x40.png" width="40"/>
-        <icon height="80" platform="ios" src="www/icons/ob-80x80.png" width="80"/>
-        <icon height="50" platform="ios" src="www/icons/ob-50x50.png" width="50"/>
-        <icon height="100" platform="ios" src="www/icons/ob-100x100.png" width="100"/>
-        <icon height="60" platform="ios" src="www/icons/ob-60x60.png" width="60"/>
-        <icon height="120" platform="ios" src="www/icons/ob-120x120.png" width="120"/>
-        <icon height="180" platform="ios" src="www/icons/ob-180x180.png" width="180"/>
-        <icon height="72" platform="ios" src="www/icons/ob-72x72.png" width="72"/>
-        <icon height="144" platform="ios" src="www/icons/ob-144x144.png" width="144"/>
-        <icon height="76" platform="ios" src="www/icons/ob-76x76.png" width="76"/>
-        <icon height="152" platform="ios" src="www/icons/ob-152x152.png" width="152"/>
-        <icon height="29" platform="ios" src="www/icons/ob-29x29.png" width="29"/>
-        <icon height="58" platform="ios" src="www/icons/ob-58x58.png" width="58"/>
-        <icon height="87" platform="ios" src="www/icons/ob-87x87.png" width="87"/>
-        <splash height="1136" platform="ios" src="www/splashes/ob-640x1136.png" width="640"/>
-        <splash height="1334" platform="ios" src="www/splashes/ob-750x1334.png" width="750"/>
-        <splash height="2208" platform="ios" src="www/splashes/ob-1242x2208.png" width="1242"/>
-        <splash height="1242" platform="ios" src="www/splashes/ob-2208x1242.png" width="2208"/>
-        <splash height="1536" platform="ios" src="www/splashes/ob-2048x1536.png" width="2048"/>
-        <splash height="768" platform="ios" src="www/splashes/ob-1024x768.png" width="1024"/>
-        <splash height="2048" platform="ios" src="www/splashes/ob-1536x2048.png" width="1536"/>
-        <splash height="1024" platform="ios" src="www/splashes/ob-768x1024.png" width="768"/>
-        <splash height="960" platform="ios" src="www/splashes/ob-640x960.png" width="640"/>
-        <splash height="480" platform="ios" src="www/splashes/ob-320x480.png" width="320"/>
+        <icon height="57" platform="ios" src="res/icons/ob-57x57.png" width="57"/>
+        <icon height="114" platform="ios" src="res/icons/ob-114x114.png" width="114"/>
+        <icon height="40" platform="ios" src="res/icons/ob-40x40.png" width="40"/>
+        <icon height="80" platform="ios" src="res/icons/ob-80x80.png" width="80"/>
+        <icon height="50" platform="ios" src="res/icons/ob-50x50.png" width="50"/>
+        <icon height="100" platform="ios" src="res/icons/ob-100x100.png" width="100"/>
+        <icon height="60" platform="ios" src="res/icons/ob-60x60.png" width="60"/>
+        <icon height="120" platform="ios" src="res/icons/ob-120x120.png" width="120"/>
+        <icon height="180" platform="ios" src="res/icons/ob-180x180.png" width="180"/>
+        <icon height="72" platform="ios" src="res/icons/ob-72x72.png" width="72"/>
+        <icon height="144" platform="ios" src="res/icons/ob-144x144.png" width="144"/>
+        <icon height="76" platform="ios" src="res/icons/ob-76x76.png" width="76"/>
+        <icon height="152" platform="ios" src="res/icons/ob-152x152.png" width="152"/>
+        <icon height="29" platform="ios" src="res/icons/ob-29x29.png" width="29"/>
+        <icon height="58" platform="ios" src="res/icons/ob-58x58.png" width="58"/>
+        <icon height="87" platform="ios" src="res/icons/ob-87x87.png" width="87"/>
+        <splash height="1136" platform="ios" src="res/splashes/ob-640x1136.png" width="640"/>
+        <splash height="1334" platform="ios" src="res/splashes/ob-750x1334.png" width="750"/>
+        <splash height="2208" platform="ios" src="res/splashes/ob-1242x2208.png" width="1242"/>
+        <splash height="1242" platform="ios" src="res/splashes/ob-2208x1242.png" width="2208"/>
+        <splash height="1536" platform="ios" src="res/splashes/ob-2048x1536.png" width="2048"/>
+        <splash height="768" platform="ios" src="res/splashes/ob-1024x768.png" width="1024"/>
+        <splash height="2048" platform="ios" src="res/splashes/ob-1536x2048.png" width="1536"/>
+        <splash height="1024" platform="ios" src="res/splashes/ob-768x1024.png" width="768"/>
+        <splash height="960" platform="ios" src="res/splashes/ob-640x960.png" width="640"/>
+        <splash height="480" platform="ios" src="res/splashes/ob-320x480.png" width="320"/>
 	</platform>
 	<plugin name="cordova-plugin-whitelist" spec="~1.2.0"/>	
 	<plugin name="phonegap-plugin-barcodescanner" spec="~6.0.3"/>
@@ -90,7 +90,7 @@
 	<gap:config-file platform="android" parent="/manifest">
 		<uses-sdk android:minSdkVersion="16" tools:overrideLibrary="com.paypal.android.sdk.payments"/>
 		<supports-screens android:xlargeScreens="true" android:largeScreens="true" android:smallScreens="true"/>
-		<application android:theme="@style/Theme.OBTheme"/>
+		<application android:theme="@android:style/Theme.NoTitleBar"/>
 	</gap:config-file>
 
 </widget>
