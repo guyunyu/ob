@@ -90,7 +90,7 @@
 	<gap:config-file platform="android" parent="/manifest">
 		<uses-sdk android:minSdkVersion="16" tools:overrideLibrary="com.paypal.android.sdk.payments"/>
 		<supports-screens android:xlargeScreens="true" android:largeScreens="true" android:smallScreens="true"/>
-		<application android:theme="@style/OBTheme"/>
+		<application android:theme="@style/Theme.OBTheme"/>
 	</gap:config-file>
 
 </widget>
