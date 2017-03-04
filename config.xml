@@ -20,7 +20,15 @@
 	<allow-intent href="sms:*"/>
 	<allow-intent href="mailto:*"/>
 	<allow-intent href="geo:*"/>
+	<preference name="DisallowOverscroll" value="true"/>
+	<preference name="android-minSdkVersion" value="16"/>
+	<preference name="orientation" value="all"/>
+	<preference name="SplashScreen" value="www/splashes"/>
+	<preference name="SplashScreenDelay" value="3000"/>
+	<preference name="AutoHideSplashScreen" value="true"/>
+	<preference name="SplashMaintainAspectRatio" value="true"/>
 	<icon src="www/icons/ob-128x128.png"/>
+	<splash src="www/splashes/ob-1920x1280.png"/>
 	<platform name="android">
 		<allow-intent href="market:*"/>
         <icon density="ldpi" src="www/icons/ob-36x36.png"/>
@@ -73,8 +81,6 @@
         <splash height="960" platform="ios" src="www/splashes/ob-640x960.png" width="640"/>
         <splash height="480" platform="ios" src="www/splashes/ob-320x480.png" width="320"/>
 	</platform>
-	<preference name="DisallowOverscroll" value="true"/>
-	<preference name="android-minSdkVersion" value="16"/>
 	<plugin name="cordova-plugin-whitelist" spec="~1.2.0"/>	
 	<plugin name="phonegap-plugin-barcodescanner" spec="~6.0.3"/>
 	<plugin name="com.paypal.cordova.mobilesdk" source="npm"/>
