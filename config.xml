@@ -24,7 +24,7 @@
 	<preference name="android-minSdkVersion" value="16"/>
 	<preference name="orientation" value="all"/>
 	<preference name="SplashScreen" value="www/splashes"/>
-	<preference name="SplashScreenDelay" value="3000"/>
+	<preference name="SplashScreenDelay" value="10000"/>
 	<preference name="AutoHideSplashScreen" value="true"/>
 	<preference name="SplashMaintainAspectRatio" value="true"/>
 	<icon src="www/icons/ob-128x128.png"/>
@@ -89,6 +89,8 @@
 
 	<gap:config-file platform="android" parent="/manifest">
 		<uses-sdk android:minSdkVersion="16" tools:overrideLibrary="com.paypal.android.sdk.payments"/>
+		<supports-screens android:xlargeScreens="true" android:largeScreens="true" android:smallScreens="true"/>
+		<application android:theme="@style/OBTheme"/>
 	</gap:config-file>
 
 </widget>

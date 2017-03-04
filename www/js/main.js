@@ -504,6 +504,8 @@ ob.ready = function() {
 
 			ob.init();
 
+			navigator.splashscreen.hide();
+
 		});
 	} else {
 		ob.init();

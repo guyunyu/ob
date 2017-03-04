@@ -1,0 +1,8 @@
+<resources>
+	<color name="peach">#fff07e58</color>
+	<style name="OBTheme" parent="android:Theme.Light">
+		<item name="android:background">@color/peach</item>
+		<item name="android:windowBackground">@color/peach</item>
+		<item name="android:colorBackground">@color/peach</item>
+	</style>
+</resources>
