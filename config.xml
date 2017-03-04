@@ -20,13 +20,36 @@
 	<allow-intent href="sms:*"/>
 	<allow-intent href="mailto:*"/>
 	<allow-intent href="geo:*"/>
+	<icon src="www/icons/ob-128x128.png"/>
 	<platform name="android">
 		<allow-intent href="market:*"/>
+        <icon density="ldpi" src="www/icons/ob-36x36.png"/>
+        <icon density="mdpi" src="www/icons/ob-48x48.png"/>
+        <icon density="hdpi" src="www/icons/ob-72x72.png"/>
+        <icon density="xhdpi" src="www/icons/ob-96x96.png"/>
+        <icon density="xxhdpi" src="www/icons/ob-144x144.png"/>
+        <icon density="xxxhdpi" src="www/icons/ob-192x192.png"/>
 	</platform>
 	<platform name="ios">
 		<allow-intent href="itms:*"/>
 		<allow-intent href="itms-apps:*"/>
 		<preference name="BackupWebStorage" value="none"/>
+        <icon height="57" platform="ios" src="www/icons/ob-57x57.png" width="57"/>
+        <icon height="114" platform="ios" src="www/icons/ob-114x114.png" width="114"/>
+        <icon height="40" platform="ios" src="www/icons/ob-40x40.png" width="40"/>
+        <icon height="80" platform="ios" src="www/icons/ob-80x80.png" width="80"/>
+        <icon height="50" platform="ios" src="www/icons/ob-50x50.png" width="50"/>
+        <icon height="100" platform="ios" src="www/icons/ob-100x100.png" width="100"/>
+        <icon height="60" platform="ios" src="www/icons/ob-60x60.png" width="60"/>
+        <icon height="120" platform="ios" src="www/icons/ob-120x120.png" width="120"/>
+        <icon height="180" platform="ios" src="www/icons/ob-180x180.png" width="180"/>
+        <icon height="72" platform="ios" src="www/icons/ob-72x72.png" width="72"/>
+        <icon height="144" platform="ios" src="www/icons/ob-144x144.png" width="144"/>
+        <icon height="76" platform="ios" src="www/icons/ob-76x76.png" width="76"/>
+        <icon height="152" platform="ios" src="www/icons/ob-152x152.png" width="152"/>
+        <icon height="29" platform="ios" src="www/icons/ob-29x29.png" width="29"/>
+        <icon height="58" platform="ios" src="www/icons/ob-58x58.png" width="58"/>
+        <icon height="87" platform="ios" src="www/icons/ob-87x87.png" width="87"/>
 	</platform>
 	<preference name="DisallowOverscroll" value="true"/>
 	<preference name="android-minSdkVersion" value="16"/>
