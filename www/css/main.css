@@ -7,7 +7,7 @@
 .autocomplete-page .gray { color: #666; }
 .autocomplete-page .dark { color: #111; }
 
-.ob-search { width: 100%; }
+.ob-search { width: 100%; opacity: 0.8; }
 .ob-search .searchbar { background-color: transparent; }
 
 .clearfix { clear: both; }
@@ -109,3 +109,23 @@ div.ob-iconic-row a > span { display: block; }
 div.ob-catalog .list-block { margin-top: 5px; }
 div.ob-catalog .list-block .item-content { padding-left: 0px; min-height: 10px; }
 div.ob-catalog .list-block .item-content .item-inner { min-height: 10px; padding-left: 15px; padding-top: 6px; padding-bottom: 6px; }
+
+div.ob-nopadding div.row > div.col-50 { width: -webkit-calc((100% - 0px*1) / 2); width: calc((100% - 0px*1) / 2); }
+div.ob-nopadding div.row > div.col-47 { width: 47%; width: -webkit-calc((100% - 5px*1) / 2); width: calc((100% - 5px*1) / 2); }
+div.ob-nopadding div.row > div.col-33 { width: 33%; width: -webkit-calc((100% - 0px*1) / 3); width: calc((100% - 0px*1) / 3); }
+div.ob-nopadding div.row > div.col-66 { width: 66%; width: -webkit-calc((100% - 0px*1) / 1.5); width: calc((100% - 0px*1) / 1.5); }
+div.ob-nopadding div.row > div.col-03 { width: 5px; }
+div.ob-subadv div.ob-decorhor { width: 100%; height: 5px; background-image: url(../images/decorhor-ed5a23.jpg); background-repeat: repeat-y; background-position: 100px 0px; }
+div.ob-subadv div.ob-decorver { width: 5px; height: 50px; background-image: url(../images/decorver-ed5a23.jpg); background-repeat: repeat-x; background-position: 0px 20px; }
+
+div.ob-sect { background-color: #fff; }
+div.ob-sect .ob-caption { width: 100%; height: 20px; padding: 12px; font-size: 110%; color: #fff; }
+div.ob-offer .ob-caption { background-color: #f07e58; }
+div.ob-hardware > .ob-caption { background-color: #954876; }
+div.ob-hardware > .ob-caption .ob-caption-sub { background-color: #c49cb4; }
+div.ob-homecare > .ob-caption { background-color: #4a898e; }
+div.ob-homecare > .ob-caption .ob-caption-sub { background-color: #a3c0c6; }
+div.ob-stationery > .ob-caption { background-color: #517a96; }
+div.ob-stationery > .ob-caption .ob-caption-sub { background-color: #a1b6c7; }
+div.ob-beverage > .ob-caption { background-color: #c8385c; }
+div.ob-beverage > .ob-caption .ob-caption-sub { background-color: #dd96a8; }
