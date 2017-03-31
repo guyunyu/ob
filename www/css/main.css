@@ -1,4 +1,4 @@
-#div-x button { padding: 5px 10px; margin: 10px; }
+body { width: 100%; padding: 0px; margin: 0px; overflow-x: hidden; }
 
 .content-block { margin-top: 5px; padding: 0px; }
 .label-checkbox { margin-right: 10px; }
@@ -118,6 +118,19 @@ div.ob-nopadding div.row > div.col-03 { width: 5px; }
 div.ob-subadv div.ob-decorhor { width: 100%; height: 5px; background-image: url(../images/decorhor-ed5a23.jpg); background-repeat: repeat-y; background-position: 100px 0px; }
 div.ob-subadv div.ob-decorver { width: 5px; height: 50px; background-image: url(../images/decorver-ed5a23.jpg); background-repeat: repeat-x; background-position: 0px 20px; }
 
+div.ob-search,
+div.ob-f07e58 { background-color: #f07e58; color:#fff; opacity: 0.95; margin: 0px; padding: 0px; }
+div.ob-f07e58 a { color: #fff; }
+a { color: #f07e58; }
+.button { border-color: #f07e58; color: #f07e58; }
+label.label-checkbox input[type="checkbox"]:checked + .item-media i.icon-form-checkbox, label.label-checkbox input[type="radio"]:checked + .item-media i.icon-form-checkbox { background-color: #f07e58; }
+.tabbar a.active { color: #f07e58; }
+div.ob-search div.help-text { background-color: #fff; }
+div.ob-search a.ob-cancel { display: block; color: #fff; margin-left: 10px; margin-right: 5px; }
+div.ob-search div.help-text > div.list-block { margin: 0px; }
+div.ob-search div.help-text a { color: #aaa; }
+div.ob-search div.help-text .ac .item-title { color: #333; font-weight: bold; }
+div.ob-search div.help-text .ac .item-title a { color: #aaa; margin-left: 20px; }
 div.ob-sect { background-color: #fff; }
 div.ob-sect .ob-caption { width: 100%; height: 20px; padding: 12px; font-size: 110%; color: #fff; }
 div.ob-offer .ob-caption { background-color: #f07e58; }
@@ -129,3 +142,4 @@ div.ob-stationery > .ob-caption { background-color: #517a96; }
 div.ob-stationery > .ob-caption .ob-caption-sub { background-color: #a1b6c7; }
 div.ob-beverage > .ob-caption { background-color: #c8385c; }
 div.ob-beverage > .ob-caption .ob-caption-sub { background-color: #dd96a8; }
+div.ob-footsep { background-color: #fafafa; padding: 15px 0px 25px 0px; text-align: center; width: 100%; }

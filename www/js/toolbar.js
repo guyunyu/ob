@@ -22,11 +22,6 @@ ob.toolbar = {
 			});
 			return false;
 		};
-		var toolbar_showmainsearch = function() {
-			return ob.list({
-				q: ''
-			});
-		};
 		$$('.toolbar .me').off('click', toolbar_showme);
 		$$('.toolbar .catalog').off('click', toolbar_showcat);
 		if(page && page.name) {
@@ -37,9 +32,19 @@ ob.toolbar = {
 				}
 			});
 		}
-		$$('.ob-search input.search-on-main').off('click', toolbar_showmainsearch);
-		$$('.ob-search input.search-on-main').on('click', toolbar_showmainsearch);
-		if($$('.ob-search input.search-on-list').length === 1) {
+		var toolbar_acrender = function( dl ) {
+			var ul = $$('.popup-search .help-text .searchbar-found > ul.ac');
+			if(ul.length === 0) {
+				ul = $$('<ul class="ac"></ul>');
+				$$('.popup-search .help-text .searchbar-found').prepend(ul);
+			}
+			ul.children().remove();
+			for(var index=0; index<dl.length; index++) {
+				var li = $$(dl[index].name);
+				ul.append(li);
+			}
+		};
+		var toolbar_acmainsearch = function( iref ) {
 			var ajax_queue = [];
 			var ajax_delay = function( ) {
 				var autocomplete, query, render;
@@ -69,13 +74,16 @@ ob.toolbar = {
 						var results = [];
 						var json = JSON.parse(dt);
 						if(typeof json.count == 'number' && json.count > 0) {
-							var t = Template7.compile('<div class="item-title gray">{{left}}</div><div class="item-after dark">{{right}}</div>');
+							var t1 = Template7.compile('<li class="item-content"><div class="item-inner"><div class="item-title"><a href="pages/list.html?q={{q}}&c={{c}}&r={{r}}" onclick="fw.closeModal(\'.popup-search\'); return true;">{{title}}</a></div></div></li>');
+							var t2 = Template7.compile('<li class="item-content"><div class="item-inner"><div class="item-title">{{title}}</div></div></li>');
 							results.push({
 								id: 0,
 								q: query,
-								name: t({
-									left: 'show all items matching <b>' + ob.escapeHtml(query) + '</b>' + ' (' + json.count + ( parseInt(json.count, 10) > 1 ? ' items' : ' item' ) + ')',
-									right: ''
+								name: t1({
+									title: 'show all items matching <b>' + ob.escapeHtml(query) + '</b>' + ' (' + json.count + ( parseInt(json.count, 10) > 1 ? ' items' : ' item' ) + ')',
+									q: query,
+									c: '',
+									r: ''
 								})
 							});
 							if(json.variables.facets) {
@@ -84,9 +92,8 @@ ob.toolbar = {
 										results.push({
 											id: -1,
 											q: query,
-											name: t({
-												left: '',
-												right: 'items within selected category'
+											name: t2({
+												title: 'items within selected category'
 											})
 										});
 									}
@@ -96,9 +103,11 @@ ob.toolbar = {
 											id: results.length,
 											c: item.id,
 											q: query,
-											name: t({
-												left: query + ' (' + item.count + ( parseInt(item.count, 10) > 1 ? ' items' : ' item' ) + ')',
-												right: item.name
+											name: t1({
+												title: item.name + ' (' + item.count + ( parseInt(item.count, 10) > 1 ? ' items' : ' item' ) + ')',
+												q: query,
+												c: item.id,
+												r: ''
 											})
 										});
 									}
@@ -108,9 +117,8 @@ ob.toolbar = {
 										results.push({
 											id: -2,
 											q: query,
-											name: t({
-												left: '',
-												right: 'items within selected brand'
+											name: t2({
+												title: 'items within selected brand'
 											})
 										});
 									}
@@ -120,54 +128,34 @@ ob.toolbar = {
 											id: results.length,
 											r: item.id,
 											q: query,
-											name: t({
-												left: query + ' (' + item.count + ( parseInt(item.count, 10) > 1 ? ' items' : ' item' ) + ')',
-												right: item.name
+											name: t1({
+												title: item.name + ' (' + item.count + ( parseInt(item.count, 10) > 1 ? ' items' : ' item' ) + ')',
+												q: query,
+												c: '',
+												r: item.id
 											})
 										});
 									}
 								}
 							}
 						}
-						render(results);
+						toolbar_acrender(results);
 					}
 				});
 			};
 			var i = fw.autocomplete({
-				input: '.ob-search input.search-on-list',
-				openIn: 'page',
-				view: ob.mainView,
-				opener: $$('.ob-search input[type="search"]'),
-				pageTitle: 'Find Product ...',
-				notFoundText: 'No Item matches!',
-				preloader: true,
-				backOnSelect: false,
+				input: 'input.search-on-popup',
+				openIn: 'dropdown',
+				preloader: false,
+				expandInput: false,
 				valueProperty: 'id',
 				textProperty: 'name',
+				dropdownPlaceholderText: 'Search Keywords ...',
 				limit: 20,
 				expandInput: true,
-				itemTemplate: 
-					'<li>' +
-						'<label class="label-{{inputType}} item-content">' +
-							'<input type="{{inputType}}" name="{{inputName}}" value="{{value}}" {{#if selected}}checked{{/if}}>' +
-							'{{#if material}}' +
-							'<div class="item-media">' +
-								'<i class="icon icon-form-{{inputType}}"></i>' +
-							'</div>' +
-							'<div class="item-inner">{{text}}</div>' +
-							'{{else}}' +
-							'{{#if checkbox}}' +
-							'<div class="item-media">' +
-								'<i class="icon icon-form-checkbox"></i>' +
-							'</div>' +
-							'{{/if}}' +
-							'<div class="item-inner">{{text}}</div>' +
-							'{{/if}}' +
-						'</label>' +
-					'</li>',
 				source: function (autocomplete, query, render) {
 					if (query.length === 0) {
-						render([]);
+						toolbar_acrender([]);
 						return;
 					}
 					ajax_queue.push({
@@ -180,30 +168,33 @@ ob.toolbar = {
 				onOpen: function( autocomplete ) {
 				},
 				onChange: function( autocomplete, value ) {
-					if(value.length === 1 && value[0].id >= 0) {
-						autocomplete.params.view.router.back();
-					}
 				},
 				onClose: function( autocomplete ) {
-					if(autocomplete.value.length === 1 && (autocomplete.value[0].q || autocomplete.value[0].c || autocomplete.value[0].r)) {
-						if(autocomplete.value[0].q) {
-							$$(autocomplete.input).val(autocomplete.value[0].q);
-						}
-						ob.pages.list.go(
-							autocomplete.value[0].q,
-							autocomplete.value[0].c,
-							autocomplete.value[0].r
-						);
-						return false;
-					} else {
-						return false;
-					}
 				}
 			});
+			i.positionDropDown = function() {};
 			fw.onPageAfterAnimation('autocomplete-' + i.inputName, function( page ) { 
 				$$('.autocomplete-page .searchbar .searchbar-input').find('input[type="search"]').focus();
 			});
-		}
+		};
+		var toolbar_showmainsearch = function() {
+			if(!$$('.popup-search').data('init')) {
+				var xpop = $$('.popup-search');
+				xpop.on('opened', function() {
+					$$(this).find('input.search-on-popup').focus();
+				});
+				xpop.find('a.ob-cancel').on('click', function() {
+					fw.closeModal('.popup-search');
+				});
+				toolbar_acmainsearch(xpop.find('input.search-on-popup'));
+				xpop.data('init', true);
+			}
+			fw.popup('.popup-search');
+		};
+		$$('.ob-search input.search-on-main').off('click', toolbar_showmainsearch);
+		$$('.ob-search input.search-on-main').on('click', toolbar_showmainsearch);
+		$$('.ob-search input.search-on-list').off('click', toolbar_showmainsearch);
+		$$('.ob-search input.search-on-list').on('click', toolbar_showmainsearch);
 		$$('.view-main > .navbar').removeClass('ob-transparent');
 	}
 };

@@ -1,22 +1,24 @@
 ob.barcode = {
 	init: function() {
 		$$('.ob-icon-scan').on('click', function() {
-			try {
-				cordova.plugins.barcodeScanner.scan(
-					function (result) {
-						if(!result.cancelled) {
-							ob.barcode.handle(result);
+			if(typeof cordova !== 'undefined') {
+				try {
+					cordova.plugins.barcodeScanner.scan(
+						function (result) {
+							if(!result.cancelled) {
+								ob.barcode.handle(result);
+							}
+						},
+						function (error) {
+							fw.alert("Scanning failed: " + error);
+						},
+						{
+							prompt: 'Place a barcode inside the scan area'
 						}
-					},
-					function (error) {
-						fw.alert("Scanning failed: " + error);
-					},
-					{
-						prompt: 'Place a barcode inside the scan area'
-					}
-				);
-			} catch(e) {
-				fw.alert(e);
+					);
+				} catch(e) {
+					fw.alert(e);
+				}
 			}
 		});
 	},

@@ -512,7 +512,7 @@ ob.ready = function() {
 	}
 
 	fw.swiper('div.ob-main-slide > .swiper-container');
-	$$('.view-main > .navbar').addClass('ob-transparent');
+	$$('.view-main > .navbar').addClass('ob-f07e58');
 
 	ob.loading(false);
 
@@ -529,5 +529,5 @@ fw.onPageAfterAnimation('index', function (page) {
 	ob.toolbar.init({
 		name: 'index'
 	});
-	$$('.view-main > .navbar').addClass('ob-transparent');
+	$$('.view-main > .navbar').addClass('ob-f07e58');
 });

@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' data:">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -20,6 +20,7 @@
   <body>
     <div class="statusbar-overlay"></div>
     <div class="panel-overlay"></div>
+    <!-- 
     <div class="panel panel-left panel-reveal">
       <div class="content-block">
         <p>TODO: menus</p>
@@ -28,6 +29,7 @@
         </div>
       </div>
     </div>
+    -->
     <div class="views">
       <div class="view view-main">
         <div class="navbar">
@@ -35,8 +37,8 @@
             <div class="left">
             <!-- 
               <a href="#" class="link icon-only ob-icon-scan"><i class="icon f7-icons">eye</i></a>
-            -->
               <a href="#" class="link icon-only open-panel"><i class="icon icon-form-settings"></i></a>
+            -->
             </div>
             <div class="center sliding ob-search">
               <form class="searchbar searchbar-init" onsubmit="return false;">
@@ -49,7 +51,7 @@
             <!-- 
               <a href="#" class="link icon-only ob-icon-login"><i class="icon f7-icons">login</i></a>
             -->
-              <a href="#" class="link icon-only ob-icon-scan"><i class="icon f7-icons">eye</i></a>
+              <a href="#" class="link icon-only ob-icon-scan"><i class="icon f7-icons">bars</i></a>
             </div>
           </div>
         </div>
@@ -61,16 +63,16 @@
                   <div class="swiper-container">
                     <div class="swiper-wrapper">
                       <div class="swiper-slide">
-                        <img src="content/images/adv-main02.png"></img>
+                        <a href="pages/list.html?c=D27BA2168546,D27BAB5E8546&amp;r=1B7575F4-7DB"><img src="content/images/adv-main02.png"></img></a>
                       </div>
                       <div class="swiper-slide">
-                        <img src="content/images/adv-main02.png"></img>
+                        <a href="pages/list.html?c=D27BA2168546,D27BAB5E8546&amp;r=1B7575F4-7DB"><img src="content/images/adv-main02.png"></img></a>
                       </div>
                       <div class="swiper-slide">
-                        <img src="content/images/adv-main02.png"></img>
+                        <a href="pages/list.html?c=D27BA2168546,D27BAB5E8546&amp;r=1B7575F4-7DB"><img src="content/images/adv-main02.png"></img></a>
                       </div>
                       <div class="swiper-slide">
-                        <img src="content/images/adv-main02.png"></img>
+                        <a href="pages/list.html?c=D27BA2168546,D27BAB5E8546&amp;r=1B7575F4-7DB"><img src="content/images/adv-main02.png"></img></a>
                       </div>
                     </div>
                   </div>
@@ -82,13 +84,116 @@
                   </div>
                   <div class="row">
                     <div class="col-47">
-                      <a href="@{/t/catalog/list.html?q=beverage&nbsp;snack}"><img width="100%" height="100%" src="content/images/adv-sub01.png"></img></a>
+                      <a href="@{pages/list.html?q=beverage&nbsp;snack"><img width="100%" height="100%" src="content/images/adv-sub01.png"></img></a>
                     </div>
                     <div class="col-03">
                       <div class="ob-decorver"></div>
                     </div>
                     <div class="col-47">
-                      <a href="@{/t/catalog/list.html?q=computer&nbsp;electronics}"><img width="100%" height="100%" src="content/images/adv-sub02.png"></img></a>
+                      <a href="@{pages/list.html?q=computer&nbsp;electronics"><img width="100%" height="100%" src="content/images/adv-sub02.png"></img></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ob-sect ob-stationery">
+                  <div class="ob-caption"><span>Stationeries</span></div>
+                  <div class="ob-detail ob-nopadding">
+                    <div class="row">
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF397998546"><img width="100%" height="100%" src="content/images/doublea.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF37D808546"><img width="100%" height="100%" src="content/images/writinginstr.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF370558546"><img width="100%" height="100%" src="content/images/filing.png"></img></a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF34CD58546"><img width="100%" height="100%" src="content/images/cutting.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF360658546"><img width="100%" height="100%" src="content/images/stapler.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF3401B8546"><img width="100%" height="100%" src="content/images/battery.png"></img></a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-33">
+                        <a href="pages/list.html?q=art&nbsp;craft"><img width="100%" height="100%" src="content/images/artcraft.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF37A378546"><img width="100%" height="100%" src="content/images/correction.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF3227F8546"><img width="100%" height="100%" src="content/images/binding.png"></img></a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF346758546"><img width="100%" height="100%" src="content/images/tape.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?q=calculator"><img width="100%" height="100%" src="content/images/calculator.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?q=card"><img width="100%" height="100%" src="content/images/card.png"></img></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ob-sect ob-beverage">
+                  <div class="ob-caption"><span>Beverages &amp; Snacks</span></div>
+                  <div class="ob-detail ob-nopadding">
+                    <div class="row">
+                      <div class="col-33">
+                        <a href="pages/list.html?q=water"><img width="100%" height="100%" src="content/images/water.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?q=energy&nbsp;drink"><img width="100%" height="100%" src="content/images/energydrink.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF2BF098546"><img width="100%" height="100%" src="content/images/milk.png"></img></a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-33">
+                        <a href="pages/list.html?r=1B74F5C0-7DB"><img width="100%" height="100%" src="content/images/dilmah.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF28A618546"><img width="100%" height="100%" src="content/images/candrink.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF2ED338546"><img width="100%" height="100%" src="content/images/coffee.png"></img></a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-33">
+                        <a href="pages/list.html?q=biscuit"><img width="100%" height="100%" src="content/images/biscuit.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html"><img width="100%" height="100%" src="content/images/crips.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <div>
+                          <a href="pages/list.html?c=9FF302168546"><img width="100%" height="100%" src="content/images/cereal.png"></img></a>
+                        </div>
+                        <div>
+                          <a href="pages/list.html?q=nuts"><img width="100%" height="100%" src="content/images/nuts.png"></img></a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF2D3488546"><img width="100%" height="100%" src="content/images/malt.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?c=9FF2B3DA8546"><img width="100%" height="100%" src="content/images/chocolate.png"></img></a>
+                      </div>
+                      <div class="col-33">
+                        <a href="pages/list.html?q=sweet"><img width="100%" height="100%" src="content/images/sweets.png"></img></a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -96,9 +201,9 @@
                   <div class="ob-caption"><span>Special Offer</span></div>
                   <div class="ob-detail ob-nopadding">
                     <div class="row">
-                      <div class="col-33"><a th:href="@{/t/catalog/list.html?r=1B74F5C0-7DB}"><img width="100%" height="100%" src="content/images/offer01.png"></img></a></div>
-                      <div class="col-33"><a th:href="@{/t/catalog/list.html?r=1B75EF70-7DB}"><img width="100%" height="100%" src="content/images/offer02.png"></img></a></div>
-                      <div class="col-33"><a th:href="@{/t/catalog/list.html?r=1B76122A-7DB}"><img width="100%" height="100%" src="content/images/offer03.png"></img></a></div>
+                      <div class="col-33"><a href="pages/list.html?r=1B74F5C0-7DB"><img width="100%" height="100%" src="content/images/offer01.png"></img></a></div>
+                      <div class="col-33"><a href="pages/list.html?r=1B75EF70-7DB"><img width="100%" height="100%" src="content/images/offer02.png"></img></a></div>
+                      <div class="col-33"><a href="pages/list.html?r=1B76122A-7DB"><img width="100%" height="100%" src="content/images/offer03.png"></img></a></div>
                     </div>
                   </div>
                 </div>
@@ -107,26 +212,26 @@
                   <div class="ob-detail ob-nopadding">
                     <div class="row">
                       <div class="col-33">
-                        <a th:href="@{/t/catalog/list.html?c=0153ABFE93B3}"><img width="100%" height="100%" src="content/images/hardware.png"></img></a>
+                        <a href="pages/list.html?c=0153ABFE93B3"><img width="100%" height="100%" src="content/images/hardware.png"></img></a>
                       </div>
                       <div class="col-66">
                         <div>
-                          <a th:href="@{/t/catalog/list.html?c=0108C8D74792}"><img width="100%" height="100%" src="content/images/cartridge.png"></img></a>
+                          <a href="pages/list.html?c=0108C8D74792"><img width="100%" height="100%" src="content/images/cartridge.png"></img></a>
                         </div>
                         <div>
-                          <a th:href="@{/t/catalog/list.html?q=computer&nbsp;accessory}"><img width="100%" height="100%" src="content/images/accessory.png"></img></a>
+                          <a href="pages/list.html?q=computer&nbsp;accessory"><img width="100%" height="100%" src="content/images/accessory.png"></img></a>
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-33">
-                        <a th:href="@{/t/catalog/list.html?q=thumbdrive}"><img width="100%" height="100%" src="content/images/thumbdrive.png"></img></a>
+                        <a href="pages/list.html?q=thumbdrive"><img width="100%" height="100%" src="content/images/thumbdrive.png"></img></a>
                       </div>
                       <div class="col-33">
-                        <a th:href="@{/t/catalog/list.html?q=thumbdrive}"><img width="100%" height="100%" src="content/images/thumbdrive.png"></img></a>
+                        <a href="pages/list.html?q=thumbdrive"><img width="100%" height="100%" src="content/images/thumbdrive.png"></img></a>
                       </div>
                       <div class="col-33">
-                        <a th:href="@{/t/catalog/list.html?q=thumbdrive}"><img width="100%" height="100%" src="content/images/thumbdrive.png"></img></a>
+                        <a href="pages/list.html?q=thumbdrive"><img width="100%" height="100%" src="content/images/thumbdrive.png"></img></a>
                       </div>
                     </div>
                   </div>
@@ -136,27 +241,30 @@
                   <div class="ob-detail ob-nopadding">
                     <div class="row">
                       <div class="col-33">
-                        <a th:href="@{/t/catalog/list.html?q=air&nbsp;freshener}"><img width="100%" height="100%" src="content/images/airfreshener.png"></img></a>
+                        <a href="pages/list.html?q=air&nbsp;freshener"><img width="100%" height="100%" src="content/images/airfreshener.png"></img></a>
                       </div>
                       <div class="col-33">
-                        <a th:href="@{/t/catalog/list.html?q=cleaning}"><img width="100%" height="100%" src="content/images/cleaningequipment.png"></img></a>
+                        <a href="pages/list.html?q=cleaning"><img width="100%" height="100%" src="content/images/cleaningequipment.png"></img></a>
                       </div>
                       <div class="col-33">
-                        <a th:href="@{/t/catalog/list.html?q=disposiable}"><img width="100%" height="100%" src="content/images/disposiable.png"></img></a>
+                        <a href="pages/list.html?q=disposiable"><img width="100%" height="100%" src="content/images/disposiable.png"></img></a>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-33">
-                        <a th:href="@{/t/catalog/list.html?c=9FF2FB128546}"><img width="100%" height="100%" src="content/images/paper.png"></img></a>
+                        <a href="pages/list.html?c=9FF2FB128546"><img width="100%" height="100%" src="content/images/paper.png"></img></a>
                       </div>
                       <div class="col-33">
-                        <a th:href="@{/t/catalog/list.html?q=mug}"><img width="100%" height="100%" src="content/images/mug.png"></img></a>
+                        <a href="pages/list.html?q=mug"><img width="100%" height="100%" src="content/images/mug.png"></img></a>
                       </div>
                       <div class="col-33">
-                        <a th:href="@{/t/catalog/list.html?c=9FF2DCC88546}"><img width="100%" height="100%" src="content/images/towel.png"></img></a>
+                        <a href="pages/list.html?c=9FF2DCC88546"><img width="100%" height="100%" src="content/images/towel.png"></img></a>
                       </div>
                     </div>
                   </div>
+                </div>
+                <div class="ob-footsep">
+                  <span>Office Buddy: Happy Shopping!</span>
                 </div>
               </div>
             </div>
@@ -329,6 +437,35 @@
           </div>
           <div class="col-50">
             <a href="#" class="button button-big button-green update">Submit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup popup-search">
+      <div class="content-block ob-search">
+        <div class="center sliding">
+          <form class="searchbar searchbar-init" onsubmit="return false;">
+            <div class="searchbar-input">
+              <input type="search" placeholder="Search" class="search-on-popup">
+              <a href="#" class="searchbar-clear"></a>
+            </div>
+            <a href="#" class="link icon-only ob-cancel"><i class="icon f7-icons">close</i></a>
+          </form>
+        </div>
+        <div class="help-text">
+          <div class="list-block list-block-search searchbar-found">
+            <ul>
+              <li class="item-content">
+                <div class="item-inner">
+                  <div class="item-title"><a href="pages/list.html?c=0108C8D74792" onclick="fw.closeModal('.popup-search'); return true;">cartridge</a></div>
+                </div>
+              </li>
+              <li class="item-content">
+                <div class="item-inner">
+                  <div class="item-title"><a href="pages/list.html?c=9FF397998546" onclick="fw.closeModal('.popup-search'); return true;">copier paper</a></div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
