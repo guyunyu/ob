@@ -270,7 +270,7 @@
             </div>
             <div class="toolbar tabbar tabbar-labels">
               <div class="toolbar-inner">
-                <a href="#" class="tab-link home-top active">
+                <a href="#" onclick="window.location.reload(); return false;" class="tab-link home-top active">
                   <i class="icon f7-icons">home</i>
                   <span class="tabbar-label">Home</span>
                 </a>
@@ -394,7 +394,7 @@
                 <div class="item-inner">
                   <div class="item-title label">Address Type</div>
                   <div class="item-input">
-                    <select name="a.addressType" class="column">
+                    <select name="a.addressType" class="column" required="required" data-errmsg="Please choose address type.">
                       <option value="Office">Office</option>
                       <option value="Home">Home</option>
                     </select>
@@ -407,7 +407,7 @@
                 <div class="item-inner">
                   <div class="item-title label">Preferred Delivery Time</div>
                   <div class="item-input">
-                    <select name="a.preferredDeliveryTime" class="column">
+                    <select name="a.preferredDeliveryTime" class="column" required="required" data-errmsg="Please choose preferred delivery time.">
                       <option value="Morning">Morning</option>
                       <option value="Afternoon">Afternoon</option>
                       <option value="Evening">Evening</option>
@@ -457,12 +457,12 @@
             <ul>
               <li class="item-content">
                 <div class="item-inner">
-                  <div class="item-title"><a href="pages/list.html?c=0108C8D74792" onclick="fw.closeModal('.popup-search'); return true;">cartridge</a></div>
+                  <a href="pages/list.html?c=0108C8D74792" onclick="fw.closeModal('.popup-search'); return true;"><div class="item-title">cartridge</div></a>
                 </div>
               </li>
               <li class="item-content">
                 <div class="item-inner">
-                  <div class="item-title"><a href="pages/list.html?c=9FF397998546" onclick="fw.closeModal('.popup-search'); return true;">copier paper</a></div>
+                  <a href="pages/list.html?c=9FF397998546" onclick="fw.closeModal('.popup-search'); return true;"><div class="item-title">copier paper</div></a>
                 </div>
               </li>
             </ul>

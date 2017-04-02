@@ -29,10 +29,10 @@ div.loading:after { content: ''; clear: both; }
 .page div.ob-list { margin: 0px; }
 .page div.ob-list .ob-item { width: 100%; font-size: 70%; }
 .page div.ob-list .ob-item > div { width: 100%; }
-.page div.ob-list .ob-item .price { font-weight: bold; color: red; font-size: 110%; }
+.page div.ob-list .ob-item .price { font-weight: bold; color: #f07e58; font-size: 110%; }
 .page div.ob-list .ob-item .promo { display: table; }
-.page div.ob-list .ob-item .promo > .icon { display: table-cell; vertical-align: middle; width: 16px; height: 16px; background-color: red; }
-.page div.ob-list .ob-item .promo > .desc { display: table-cell; vertical-align: middle; font-size: 90%; color: red; padding-left: 5px; }
+.page div.ob-list .ob-item .promo > .icon { display: table-cell; vertical-align: middle; width: 16px; height: 16px; background-color: #f07e58; }
+.page div.ob-list .ob-item .promo > .desc { display: table-cell; vertical-align: middle; font-size: 90%; color: #f07e58; padding-left: 5px; }
 .page div.ob-list .ob-item input.qty { width: 60px; height: 25px; padding: 0px 10px; border: 1px solid #eee; text-align: center; }
 .page div.ob-list .ob-item button.plus,button.minus { width: 25px; height: 25px; text-align: center; }
 
@@ -42,15 +42,15 @@ div.loading:after { content: ''; clear: both; }
 .page div.ob-item .detail { display: none; padding: 10px; }
 .page div.ob-item .detail > .title {}
 .page div.ob-item .detail > .title > .name { font-size: 110%; }
-.page div.ob-item .detail > .title > .promo { color: red; }
+.page div.ob-item .detail > .title > .promo { color: #f07e58; }
 .page div.ob-item .detail > .price {}
 .page div.ob-item .detail > .price > .up {}
 .page div.ob-item .detail > .price > .up > .lbl {}
-.page div.ob-item .detail > .price > .up > .val { font-weight: bold; color: red; font-size: 130%; }
+.page div.ob-item .detail > .price > .up > .val { font-weight: bold; color: #f07e58; font-size: 130%; }
 .page div.ob-item .detail > .price > .promo {}
 .page div.ob-item .detail > .price > .promo ul { list-style-type: none; margin-top: 5px; }
 .page div.ob-item .detail > .price > .promo ul > li { float: left; display: table; height: 36px; }
-.page div.ob-item .detail > .price > .promo ul > li:first-child > div { background-color: red; color: white; padding: 3px; margin: 3px; display: table-cell; vertical-align: middle; }
+.page div.ob-item .detail > .price > .promo ul > li:first-child > div { background-color: #f07e58; color: white; padding: 3px; margin: 3px; display: table-cell; vertical-align: middle; }
 .page div.ob-item .detail > .price > .promo ul > li > a > img { margin-left: 5px; width: 36px; height: 36px; }
 .page div.ob-item .detail > .price > .promo ul > li > span { margin-left: 3px; display: table-cell; vertical-align: middle; }
 .page div.ob-item .detail > .price > .promo ul > li:last-child { margin-left: 5px; }
@@ -60,19 +60,19 @@ div.loading:after { content: ''; clear: both; }
 
 .ob-shoppingbar > div.toolbar-inner { padding-left: 8px; padding-right: 0px; font-size: 12px; }
 .ob-shoppingbar > div.toolbar-inner > a.tab-link { width: 25%; }
-.ob-shoppingbar > div.toolbar-inner > a.add { width: 100%; height: 100%; background-color: red; }
+.ob-shoppingbar > div.toolbar-inner > a.add { width: 100%; height: 100%; background-color: #f07e58; }
 .ob-shoppingbar > div.toolbar-inner > a.add > span { font-size: 14px; color: white; background-image: url(../images/ic_add_shopping_cart_white_36px.svg); background-repeat: no-repeat; padding-left: 40px; padding-top: 8px; padding-bottom: 8px; margin-top: 8px; }
 .toolbar .icon > span.badge { font-family: arial; }
-.ob-shoppingbar > div.toolbar-inner > a.checkout { width: 100%; height: 100%; background-color: red; }
-.ob-shoppingbar > div.toolbar-inner > a.checkout > span { font-size: 14px; color: white; background-image: url(../images/ic_done_white_36px.svg); background-repeat: no-repeat; padding-left: 40px; padding-top: 8px; padding-bottom: 8px; margin-top: 8px; }
+.ob-shoppingbar > div.toolbar-inner > a.checkout { width: 100%; height: 100%; background-color: #f07e58; }
+.ob-shoppingbar > div.toolbar-inner > a.checkout > span { font-size: 14px; color: white; background-image: url(../images/ic_done_white_36px.svg); background-position: 3px -3px; background-repeat: no-repeat; padding-left: 45px; padding-top: 8px; padding-bottom: 8px; margin-top: 8px; }
 .ob-shoppingbar > div.toolbar-inner > a.checkout > span > .item-count { font-size: 10px; margin-left: 5px; }
 .ob-shoppingbar > div.toolbar-inner > .cart-selectall { width: 50px; }
 .ob-shoppingbar > div.toolbar-inner > .cart-selected { width: 180px; }
-.ob-shoppingbar > div.toolbar-inner > .cart-selected > .cart-total { color: red; margin-left: 3px; }
+.ob-shoppingbar > div.toolbar-inner > .cart-selected > .cart-total { color: #f07e58; margin-left: 3px; }
 .ob-shoppingbar > div.toolbar-inner > a.btn-disable { background-color: gray; }
 .ob-shoppingbar > div.toolbar-inner > .order-summary { width: 180px; }
-.ob-shoppingbar > div.toolbar-inner > a.confirm-order { width: 100%; height: 100%; background-color: red; }
-.ob-shoppingbar > div.toolbar-inner > a.confirm-order > span { font-size: 14px; color: white; background-image: url(../images/ic_done_white_36px.svg); background-repeat: no-repeat; padding-left: 40px; padding-top: 8px; padding-bottom: 8px; margin-top: 8px; }
+.ob-shoppingbar > div.toolbar-inner > a.confirm-order { width: 100%; height: 100%; background-color: #f07e58; }
+.ob-shoppingbar > div.toolbar-inner > a.confirm-order > span { font-size: 14px; color: white; background-image: url(../images/ic_done_white_36px.svg); background-position: 3px -3px; background-repeat: no-repeat; padding-left: 45px; padding-top: 8px; padding-bottom: 8px; margin-top: 8px; }
 
 .ob-popover { padding: 10px; }
 .ob-item-remove > span { margin-left: 10px; }
@@ -102,9 +102,10 @@ div.ob-my-info { width: 100%; height: 150px; display: table; }
 div.ob-my-info > div { width: 100%; height: 100%; padding: 50px; display: table-cell; vertical-align: middle; }
 div.ob-my-info i.icon { margin-right: 10px; }
 
-div.ob-iconic-row { width: 100%; height: 60px; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 10px; }
-div.ob-iconic-row a { display: block; width: 100%; text-align: center; }
+div.ob-iconic-row { width: 100%; border-top: 1px solid #eee; padding: 10px; margin-bottom: 20px; }
+div.ob-iconic-row a { display: block; width: 100%; text-align: center; color: #111; }
 div.ob-iconic-row a > span { display: block; }
+div.ob-iconic-row .title { font-size: 110%; padding: 5px; margin-bottom: 5px; color: #f07e58; }
 
 div.ob-catalog .list-block { margin-top: 5px; }
 div.ob-catalog .list-block .item-content { padding-left: 0px; min-height: 10px; }
@@ -128,9 +129,10 @@ label.label-checkbox input[type="checkbox"]:checked + .item-media i.icon-form-ch
 div.ob-search div.help-text { background-color: #fff; }
 div.ob-search a.ob-cancel { display: block; color: #fff; margin-left: 10px; margin-right: 5px; }
 div.ob-search div.help-text > div.list-block { margin: 0px; }
-div.ob-search div.help-text a { color: #aaa; }
-div.ob-search div.help-text .ac .item-title { color: #333; font-weight: bold; }
-div.ob-search div.help-text .ac .item-title a { color: #aaa; margin-left: 20px; }
+div.ob-search div.help-text a { color: #aaa; width: 100%; }
+div.ob-search div.help-text .ac .item-title { color: #333; }
+div.ob-search div.help-text .ac .item-title strong { color: #000; }
+div.ob-search div.help-text .ac a div.item-title { color: #aaa; margin-left: 20px; }
 div.ob-sect { background-color: #fff; }
 div.ob-sect .ob-caption { width: 100%; height: 20px; padding: 12px; font-size: 110%; color: #fff; }
 div.ob-offer .ob-caption { background-color: #f07e58; }
@@ -143,3 +145,8 @@ div.ob-stationery > .ob-caption .ob-caption-sub { background-color: #a1b6c7; }
 div.ob-beverage > .ob-caption { background-color: #c8385c; }
 div.ob-beverage > .ob-caption .ob-caption-sub { background-color: #dd96a8; }
 div.ob-footsep { background-color: #fafafa; padding: 15px 0px 25px 0px; text-align: center; width: 100%; }
+div.ob-address .head { border-bottom: 1px solid #eee; padding: 10px; }
+div.ob-address .head .add { text-align: right; }
+div.ob-address .head .title { font-weight: bold; }
+div.ob-address .ob-list { margin-bottom: 60px; }
+div.ob-orderhistory .title { padding: 15px; font-weight: bold; }

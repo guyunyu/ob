@@ -74,13 +74,13 @@ ob.toolbar = {
 						var results = [];
 						var json = JSON.parse(dt);
 						if(typeof json.count == 'number' && json.count > 0) {
-							var t1 = Template7.compile('<li class="item-content"><div class="item-inner"><div class="item-title"><a href="pages/list.html?q={{q}}&c={{c}}&r={{r}}" onclick="fw.closeModal(\'.popup-search\'); return true;">{{title}}</a></div></div></li>');
+							var t1 = Template7.compile('<li class="item-content"><div class="item-inner"><a href="pages/list.html?q={{q}}&c={{c}}&r={{r}}" onclick="fw.closeModal(\'.popup-search\'); return true;"><div class="item-title">{{title}}</div></a></div></li>');
 							var t2 = Template7.compile('<li class="item-content"><div class="item-inner"><div class="item-title">{{title}}</div></div></li>');
 							results.push({
 								id: 0,
 								q: query,
 								name: t1({
-									title: 'show all items matching <b>' + ob.escapeHtml(query) + '</b>' + ' (' + json.count + ( parseInt(json.count, 10) > 1 ? ' items' : ' item' ) + ')',
+									title: 'show all items matching <strong>' + ob.escapeHtml(query) + '</strong>' + ' (' + json.count + ( parseInt(json.count, 10) > 1 ? ' items' : ' item' ) + ')',
 									q: query,
 									c: '',
 									r: ''
@@ -177,6 +177,15 @@ ob.toolbar = {
 				$$('.autocomplete-page .searchbar .searchbar-input').find('input[type="search"]').focus();
 			});
 		};
+		var toolbar_onmainsearch = function() {
+			if(this.value) {
+				ob.list({
+					q: this.value
+				});
+				fw.closeModal('.popup-search');
+			}
+			return false;
+		};
 		var toolbar_showmainsearch = function() {
 			if(!$$('.popup-search').data('init')) {
 				var xpop = $$('.popup-search');
@@ -186,6 +195,7 @@ ob.toolbar = {
 				xpop.find('a.ob-cancel').on('click', function() {
 					fw.closeModal('.popup-search');
 				});
+				xpop.find('input.search-on-popup').on('search', toolbar_onmainsearch);
 				toolbar_acmainsearch(xpop.find('input.search-on-popup'));
 				xpop.data('init', true);
 			}

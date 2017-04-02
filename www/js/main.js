@@ -132,7 +132,7 @@ ob.error = function(e, f) {
 	if(ob.debug || f) {
 		fw.alert(e);
 	} else {
-		fw.alert('Opps! Something goes wrong.');
+		fw.alert('Oops! Something goes wrong.');
 	}
 };
 
@@ -272,7 +272,7 @@ ob.init = function() {
                         + '<div class="popover-angle"></div>'
                         + '<div class="popover-inner">'
                         + '<div class="content-block">'
-                        + '<p>Opps!</p>'
+                        + '<p>Oops!</p>'
                         + '<p>This field is required to sign in!</p>'
                         + '</div>'
                         + '</div>'
@@ -288,9 +288,14 @@ ob.init = function() {
 				method: 'POST',
 				data: data,
 				success: function(dt) {
-					window.localStorage.setItem('session', dt);
-					fw.closeModal();
-					ob.init();
+					var json = JSON.parse(dt);
+					if(json.login === '1') {
+						window.localStorage.setItem('session', dt);
+						fw.closeModal();
+						window.location.reload();
+					} else {
+						fw.alert('Oops! It fails to sign in.');
+					}
 				}
 			});
 			return false;
@@ -308,7 +313,7 @@ ob.list = function( v ) {
 ob.ajax = function( opt ) {
 	if(!ob.online) {
 		if(!opt.daemon) {
-			fw.alert('Opps! Please check your network connection!');
+			fw.alert('Oops! Please check your network connection!');
 		}
 		return false;
 	}
@@ -425,9 +430,9 @@ ob.addr = function( opt ) {
 					error: opt.error
 				});
 			} else {
-				if(typeof opt.error === 'function') {
-					opt.error();
-				}
+//				if(typeof opt.error === 'function') {
+//					opt.error();
+//				}
 			}
 		});
 	}

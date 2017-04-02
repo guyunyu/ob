@@ -4,9 +4,8 @@ ob.pages.checkout = {
 		ob.pages.checkout.data = page.query;
 		ob.pages.checkout.container.find('.ob-address .head .add > a').on('click', function() {
 			ob.addr({
-				success: function( i ) {
-					ob.pages.checkout.data.addrs.push(a);
-					ob.pages.checkout.insertAddr(a);
+				success: function( a ) {
+					ob.pages.checkout.merge(a);
 				},
 				error: function( e ) {
 					ob.error(e);
@@ -18,6 +17,38 @@ ob.pages.checkout = {
 			return false;
 		});
 		this.show();
+	},
+	merge: function( i ) {
+		var isnew = true;
+		for(var j=0; j<ob.pages.checkout.data.addrs.length; j++) {
+			var a = ob.pages.checkout.data.addrs[j];
+			if(i['a.addressId'] === a['a.addressId']) {
+				ob.pages.checkout.data.addrs[j] = i;
+				ob.pages.checkout.container.find('div.ob-address > .swiper-container > .swiper-wrapper > div.swiper-slide').each(function() {
+					if($$(this).find('a.edit').data('id') === i['a.addressId']) {
+						ob.pages.checkout.fillAddr($$(this), i);
+					}
+				});
+				isnew = false;
+				break;
+			}
+		}
+		if(isnew) {
+			ob.pages.checkout.data.addrs.push(i);
+			ob.pages.checkout.container.find('div.ob-address > .swiper-container > .swiper-wrapper').children().remove();
+			for(var index=0; index<ob.pages.checkout.data.addrs.length; index++) {
+				var item = ob.pages.checkout.data.addrs[index];
+				ob.pages.checkout.insertAddr(item);
+			}
+			if(ob.pages.checkout.container.find('div.ob-address > .swiper-container > .swiper-wrapper > .swiper-slide').length > 1) {
+				var w = fw.swiper(ob.pages.checkout.container.find('.swiper-container'), {
+					pagination:'.swiper-pagination'
+				});
+				for(var index=0; index<ob.pages.checkout.data.addrs.length; index++) {
+					w.slideNext();
+				}
+			}
+		}
 	},
 	show: function() {
 		var json = ob.pages.checkout.data;
@@ -114,18 +145,7 @@ ob.pages.checkout = {
 			ob.addr({
 				data: data,
 				success: function( i ) {
-					for(var j=0; j<ob.pages.checkout.data.addrs.length; j++) {
-						var a = ob.pages.checkout.data.addrs[j];
-						if(i['a.addressId'] === a['a.addressId']) {
-							ob.pages.checkout.data.addrs[j] = i;
-							ob.pages.checkout.container.find('div.ob-address > .swiper-container > .swiper-wrapper > div.swiper-slide').each(function() {
-								if($$(this).find('a.edit').data('id') === i['a.addressId']) {
-									ob.pages.checkout.fillAddr($$(this), i);
-								}
-							});
-							break;
-						}
-					}
+					ob.pages.checkout.merge(i);
 				},
 				error: function( e ) {
 					ob.error(e);
@@ -193,7 +213,7 @@ ob.pages.checkout = {
 									url: url
 								});
 							} else {
-								ob.error('Opps! Something goes wrong.');
+								ob.error('Oops! Something goes wrong.');
 							}
 						}
 					} else {

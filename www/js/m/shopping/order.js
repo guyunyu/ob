@@ -138,7 +138,7 @@ ob.pages.order = {
 			if(ob.paypal.paying(json.data['oh.transactionId'])) {
 				ob.pages.order.container.find('.ob-order .head .status').text('Processing Payment');
 			} else {
-				ob.pages.order.container.find('.ob-order .head .status').text(json.data['oh.paymentStatus'] + ', ' + json.data['oh.transactionStatus']);
+				ob.pages.order.container.find('.ob-order .head .status').text(json.data['oh.transactionStatus']);
 				ob.pages.order.container.find('.ob-shoppingbar .order-total').text(ob.currency(json.data['oh.totalAmount']));
 				ob.pages.order.container.find('.ob-shoppingbar .confirm-order').on('click', function() {
 					if(ob.paypal.avail) {
