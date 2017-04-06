@@ -110,6 +110,10 @@ div.ob-iconic-row .title { font-size: 110%; padding: 5px; margin-bottom: 5px; co
 div.ob-catalog .list-block { margin-top: 5px; }
 div.ob-catalog .list-block .item-content { padding-left: 0px; min-height: 10px; }
 div.ob-catalog .list-block .item-content .item-inner { min-height: 10px; padding-left: 15px; padding-top: 6px; padding-bottom: 6px; }
+div.ob-catalog > div.icons > div.row { padding-bottom: 15px; }
+div.ob-catalog > div.icons { padding: 15px; }
+div.ob-catalog > div.icons .icon {}
+div.ob-catalog > div.icons .icon > div { text-align: center; }
 
 div.ob-nopadding div.row > div.col-50 { width: -webkit-calc((100% - 0px*1) / 2); width: calc((100% - 0px*1) / 2); }
 div.ob-nopadding div.row > div.col-47 { width: 47%; width: -webkit-calc((100% - 5px*1) / 2); width: calc((100% - 5px*1) / 2); }

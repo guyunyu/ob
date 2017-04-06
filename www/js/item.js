@@ -108,7 +108,7 @@ ob.pages.item = {
 									});
 									return false;
 								});
-								li.find('span').text('x' + focs[index].qty);
+								li.find('span').text('x' + focs[index].focqty);
 								ul.append(li);
 							}
 							ul.append('<li><span>(while stocks last)</span></li>');
