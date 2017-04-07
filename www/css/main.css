@@ -33,8 +33,8 @@ div.loading:after { content: ''; clear: both; }
 .page div.ob-list .ob-item .promo { display: table; }
 .page div.ob-list .ob-item .promo > .icon { display: table-cell; vertical-align: middle; width: 16px; height: 16px; background-color: #f07e58; }
 .page div.ob-list .ob-item .promo > .desc { display: table-cell; vertical-align: middle; font-size: 90%; color: #f07e58; padding-left: 5px; }
-.page div.ob-list .ob-item input.qty { width: 60px; height: 25px; padding: 0px 10px; border: 1px solid #eee; text-align: center; }
-.page div.ob-list .ob-item button.plus,button.minus { width: 25px; height: 25px; text-align: center; }
+.page div.ob-list .ob-item input.qty { width: 60px; height: 25px; padding: 0px 10px; border: 1px solid #eee; text-align: center; margin-left: 3px; margin-right: 3px; }
+.page div.ob-list .ob-item a.plus,a.minus { color: inherit; }
 
 .page div.ob-item { margin: 0px; padding: 0px; }
 .page div.ob-item .main-img { width: 100%; }
@@ -124,7 +124,7 @@ div.ob-subadv div.ob-decorhor { width: 100%; height: 5px; background-image: url(
 div.ob-subadv div.ob-decorver { width: 5px; height: 50px; background-image: url(../images/decorver-ed5a23.jpg); background-repeat: repeat-x; background-position: 0px 20px; }
 
 div.ob-search,
-div.ob-f07e58 { background-color: #f07e58; color:#fff; opacity: 0.95; margin: 0px; padding: 0px; }
+div.ob-f07e58 { background: url(../images/navbg-f07e58.png); color:#fff; opacity: 0.95; margin: 0px; padding: 0px; }
 div.ob-f07e58 a { color: #fff; }
 a { color: #f07e58; }
 .button { border-color: #f07e58; color: #f07e58; }
@@ -154,3 +154,4 @@ div.ob-address .head .add { text-align: right; }
 div.ob-address .head .title { font-weight: bold; }
 div.ob-address .ob-list { margin-bottom: 60px; }
 div.ob-orderhistory .title { padding: 15px; font-weight: bold; }
+div.navbar .back span.text { padding-left: 5px; padding-top: 3px; text-transform: capitalize; }

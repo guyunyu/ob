@@ -223,7 +223,7 @@ ob.pages.cart = {
 											'<div class="price"></div>' + 
 										'</div>' + 
 										'<div class="item-after">' + 
-											'<button class="minus">-</button><input type="number" class="qty"></input><button class="plus">+</button>' + 
+											'<a href="#" class="minus"><i class="icon f7-icons">delete</i></a><input type="number" class="qty"></input><a href="#" class="plus"><i class="icon f7-icons">add</i></a>' + 
 										'</div>' + 
 									'</div>' + 
 								'</div>' + 
@@ -257,7 +257,7 @@ ob.pages.cart = {
 						ob.cart.update($$(this).data('skuid'), $$(this).val());
 						ob.pages.cart.calculate();
 					});
-				e.find('button.plus').on('click', function() {
+				e.find('.plus').on('click', function() {
 					var q = $$(this).parent().find('input.qty');
 					var v = parseInt(q.val(), 10) + 1;
 					if(v<10000) {
@@ -265,7 +265,7 @@ ob.pages.cart = {
 					}
 					return false;
 				});
-				e.find('button.minus').on('click', function() {
+				e.find('.minus').on('click', function() {
 					var q = $$(this).parent().find('input.qty');
 					var v = parseInt(q.val(), 10) - 1;
 					if(v>0) {

@@ -124,7 +124,7 @@ ob.url = function( uri ) {
 	if(typeof url === 'string') {
 		return url + uri;
 	} else {
-		return 'http://cluster1.localhost:8180/ob' + uri;
+		return 'http://www.officebuddy.com.sg/ob' + uri;
 	}
 };
 
