@@ -79,7 +79,7 @@ ob.pages.order = {
 				}
 				if(item['i.pictureURL']) {
 					var img = ob.url('/images/' + item['i.pictureURL'] + '-80x80.PNG');
-					e.find('img').attr('data-src', img);
+					e.find('img').attr('data-src', img).attr('data-rel', 'external');
 					e.find('a.item-link-real').data('id', item['t.itemId']).data('img', img);
 				} else {
 					e.find('a.item-link-real').data('id', item['t.itemId']);

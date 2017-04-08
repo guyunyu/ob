@@ -33,8 +33,9 @@ div.loading:after { content: ''; clear: both; }
 .page div.ob-list .ob-item .promo { display: table; }
 .page div.ob-list .ob-item .promo > .icon { display: table-cell; vertical-align: middle; width: 16px; height: 16px; background-color: #f07e58; }
 .page div.ob-list .ob-item .promo > .desc { display: table-cell; vertical-align: middle; font-size: 90%; color: #f07e58; padding-left: 5px; }
-.page div.ob-list .ob-item input.qty { width: 60px; height: 25px; padding: 0px 10px; border: 1px solid #eee; text-align: center; margin-left: 3px; margin-right: 3px; }
-.page div.ob-list .ob-item a.plus,a.minus { color: inherit; }
+.page div.ob-list .ob-item input.qty { width: 40px; height: 27px; padding: 0px 5px; border: 1px solid #eee; text-align: center; font-size: 90%; }
+.page div.ob-list .ob-item a.plus,a.minus { color: #666; border: 1px solid #eee; padding: 0px 3px; }
+.page div.ob-list .ob-item a.plus[disabled],a.minus[disabled] { color: #eee; }
 
 .page div.ob-item { margin: 0px; padding: 0px; }
 .page div.ob-item .main-img { width: 100%; }
@@ -155,3 +156,5 @@ div.ob-address .head .title { font-weight: bold; }
 div.ob-address .ob-list { margin-bottom: 60px; }
 div.ob-orderhistory .title { padding: 15px; font-weight: bold; }
 div.navbar .back span.text { padding-left: 5px; padding-top: 3px; text-transform: capitalize; }
+div.tabbar { box-shadow: 1px 1px 5px 0px #a2958a; background-color: #fff; }
+.bg-f07e58 { background-color: #f07e58; }

@@ -243,7 +243,7 @@ ob.pages.cart = {
 				}
 				if(item['i.pictureURL']) {
 					var img = ob.url('/images/' + item['i.pictureURL'] + '-80x80.PNG');
-					e.find('img').attr('data-src', img);
+					e.find('img').attr('data-src', img).attr('data-rel', 'external');
 					e.find('a.item-link-real').data('id', item['t.itemId']).data('img', img);
 				} else {
 					e.find('a.item-link-real').data('id', item['t.itemId']);
@@ -253,10 +253,29 @@ ob.pages.cart = {
 					.data('price', item['k.price'])
 					.val(item.qty)
 					.on('change', function() {
-						$$(this).val(parseInt($$(this).val(), 10));
+						var v = parseInt($$(this).val(), 10);
+						if(v >= 9999) {
+							v = 9999;
+							$$(this).parent().find('.plus').attr('disabled', 'disabled');
+						} else {
+							$$(this).parent().find('.plus').removeAttr('disabled');
+						}
+						if(v <= 1) {
+							v = 1;
+							$$(this).parent().find('.minus').attr('disabled', 'disabled');
+						} else {
+							$$(this).parent().find('.minus').removeAttr('disabled');
+						}
+						$$(this).val(v);
 						ob.cart.update($$(this).data('skuid'), $$(this).val());
 						ob.pages.cart.calculate();
 					});
+				if(item.qty <= 1) {
+					e.find('.minus').attr('disabled', 'disabled');
+				}
+				if(item.qty >= 9999) {
+					e.find('.plus').attr('disabled', 'disabled');
+				}
 				e.find('.plus').on('click', function() {
 					var q = $$(this).parent().find('input.qty');
 					var v = parseInt(q.val(), 10) + 1;
@@ -307,6 +326,7 @@ ob.pages.cart = {
 					fw.swipeoutOpen(this, 'right');
 				});
 				ob.pages.cart.container.find('.ob-list ul').append(e);
+				e.find('input.qty').css('height', e.find('.plus').outerHeight() + 'px');
 			}
 		} else {
 			ob.pages.cart.container.find('.ob-item .loading').html('').append('<div><span>fail to get item info</span></div>');

@@ -9,11 +9,11 @@
 	<description>
 		Office Buddy shopping client
 	</description>
-	<author email="guyunyu@evolt-technologies.com" href="http://www.officebuddy.com.sg">
+	<author email="contact@officebuddy.com.sg" href="http://www.officebuddy.com.sg">
 		Office Buddy IT Team
 	</author>
 	<content src="index.html"/>
-	<access origin="*"/>
+	<access origin="http://www.officebuddy.com.sg"/>
 	<allow-intent href="http://*/*"/>
 	<allow-intent href="https://*/*"/>
 	<allow-intent href="tel:*"/>

@@ -50,11 +50,11 @@ ob.pages.item = {
 				}
 			}
 			if(images.length === 1) {
-				ob.pages.item.container.find('.ob-item .main-img').find('img').attr('src', ob.url('/images/' + images[0] + '.PNG'));
+				ob.pages.item.container.find('.ob-item .main-img').find('img').attr('src', ob.url('/images/' + images[0] + '.PNG')).attr('data-rel', 'external');
 			} else if(images.length > 1) {
 				var swiper = '<div class="swiper-container"><div class="swiper-wrapper">';
 				for(var index=0; index<images.length; index++) {
-					swiper += ( '<div class="swiper-slide"><img src="' + ob.url('/images/' + images[index] + '.PNG') + '"></img></div>' );
+					swiper += ( '<div class="swiper-slide"><img width="100%" height="100%" src="' + ob.url('/images/' + images[index] + '.PNG') + '" data-rel="external"></img></div>' );
 				}
 				swiper += '</div></div>';
 				ob.pages.item.container.find('.ob-item .main-img').html('').append(swiper);
@@ -97,7 +97,7 @@ ob.pages.item = {
 								var a = li.find('a');
 								a.data('id', focs[index].itemId);
 								if(focs[index].pictureURL) {
-									img.attr('src', ob.url('/images/' + focs[index].pictureURL + '-36x36.PNG'));
+									img.attr('src', ob.url('/images/' + focs[index].pictureURL + '-36x36.PNG')).attr('data-rel', 'external');
 									a.data('img', focs[index].pictureURL);
 								} else {
 									img.attr('src', 'images/image-placeholder.png');

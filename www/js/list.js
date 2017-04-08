@@ -88,7 +88,7 @@ ob.pages.list = {
 						}
 						if(itemlist.data[index].thumbnail) {
 							var img = ob.url('/images/' + itemlist.data[index].thumbnail + '-80x80.PNG');
-							e.find('img').attr('data-src', img);
+							e.find('img').attr('data-src', img).attr('data-rel', 'external');
 							e.find('a').data('id', itemlist.data[index].id).data('img', img);
 						} else {
 							e.find('a').data('id', itemlist.data[index].id);
