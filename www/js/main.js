@@ -492,10 +492,10 @@ ob.ready = function() {
 
 			try {
 				PayPalMobile.init({
-					PayPalEnvironmentProduction: '',
+					PayPalEnvironmentProduction: 'AfbfCNZkt31ms-TbXKtJqNzhVcOV6To6M9tAJ9rnOEeOJz9eNbbQzWXoGOACg30f3i2ONqVmzNdhO7nT',
 					PayPalEnvironmentSandbox: 'AaHN535MGVNHweeZudwvVmi8hCrGL4S12MbbmwFriqm3oNco_dXNZSY51Av60Ca_BMaXi8_I5is0EQzj'
 				}, function() {
-					PayPalMobile.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
+					PayPalMobile.prepareToRender('PayPalEnvironmentProduction', new PayPalConfiguration({
 							merchantName: 'ob'/*,
 							merchantPrivacyPolicyURL: 'http://www.officebuddy.com.sg/ob/privacy.html',
 							merchantUserAgreementURL: 'http://www.officebuddy.com.sg/ob/tc.html'*/

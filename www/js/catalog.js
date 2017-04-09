@@ -1,14 +1,9 @@
 ob.pages.catalog = {
 	init: function( page ) {
 		ob.pages.catalog.container = $$(page.container);
-		ob.pages.catalog.container.find('.ob-catalog .ob-category a').on('click', function() {
-			var cid = $$(this).data('cid');
-			if(cid) {
-				ob.mainView.router.load({
-					url: 'pages/list.html?c=' + cid
-				});
-				return false;
-			}
+		ob.pages.catalog.container.find('.brands').css({
+			height: (ob.pages.catalog.container.find('.toolbar').offset().top - ob.pages.catalog.container.find('.brands').offset().top - 15) + 'px',
+			overflow: 'scroll'
 		});
 	}
 };

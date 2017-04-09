@@ -58,6 +58,11 @@ ob.pages.my = {
 			$$('.ob-orderhistory').hide();
 			$$('.ob-address').hide();
 		}
+		ob.pages.my.container.find('.ob-address .ob-list').css({
+			height: (ob.pages.my.container.find('.toolbar').offset().top - ob.pages.my.container.find('.ob-address .ob-list').offset().top - 25) + 'px',
+			overflow: 'scroll',
+			'margin-bottom': '0px'
+		});
 	},
 	merge: function( i ) {
 		var isnew = true;

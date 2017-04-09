@@ -1,6 +1,6 @@
 body { padding: 0px; margin: 0px; }
 
-.content-block { margin-top: 5px; padding: 0px; }
+.content-block { margin-top: 0px; padding: 0px; }
 .label-checkbox { margin-right: 10px; }
 .list-block .item-title { white-space: normal; max-height: 54px; }
 .list-block .item-content { font-size: 12px; }
@@ -18,7 +18,7 @@ div.loading:after { content: ''; clear: both; }
 .page > div.ob-white { background-color: #fff; }
 
 .ob-transparent { background-color: transparent; }
-.navbar-through .ob-main-body { padding-top: 0px; padding-bottom: 28px; }
+.navbar-through .ob-main-body { padding-top: 10px; padding-bottom: 38px; }
 .ob-main-slide { width: 100%; height: 200px; }
 .ob-main-slide .swiper-slide { height: 200px; }
 .ob-main-slide img { width: 100%; height: 200px; }
@@ -86,12 +86,13 @@ div.loading:after { content: ''; clear: both; }
 .popup-address .error { border: 1px solid red; }
 
 .page div.ob-order {}
-.page div.ob-order .sect { padding: 10px 10px; margin: 5px 0px; background-color: #fff; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; }
+.page div.ob-order .sect { padding: 10px 10px; margin: 5px 0px; background-color: #fff; border-bottom: 1px solid #f1f1f1; }
 .page div.ob-order .sect .sect-title {}
 .page div.ob-order .sect .sect-body { padding: 5px 0px 0px 10px; border-top: 1px solid #eee; }
 .page div.ob-order .left { float: left; }
 .page div.ob-order .right { float: right; text-align: right; }
 .page div.ob-order .head {}
+.page div.ob-order .addr { border-bottom: none; }
 .page div.ob-order .addr .name {}
 .page div.ob-order .addr .phone { margin-left: 20px; }
 .page div.ob-order .addr .detail { color: #bbb; }
@@ -99,8 +100,8 @@ div.loading:after { content: ''; clear: both; }
 .page div.ob-order .paid { background-image: url(../images/paid_stamp.png); background-repeat: no-repeat; background-position: 260px 5px; }
 .page div.ob-order .pay > .entry {}
 
-div.ob-my-info { width: 100%; height: 150px; display: table; }
-div.ob-my-info > div { width: 100%; height: 100%; padding: 50px; display: table-cell; vertical-align: middle; }
+div.ob-my-info { width: 100%; height: 150px; display: table; background: url(../images/my-bg.jpg) 0px -90px; }
+div.ob-my-info > div { width: 100%; height: 100%; padding: 50px; display: table-cell; vertical-align: middle; color: #fff; }
 div.ob-my-info i.icon { margin-right: 10px; }
 
 div.ob-iconic-row { border-top: 1px solid #eee; padding: 10px; margin-bottom: 20px; }
@@ -108,13 +109,20 @@ div.ob-iconic-row a { display: block; width: 100%; text-align: center; color: #1
 div.ob-iconic-row a > span { display: block; }
 div.ob-iconic-row .title { font-size: 110%; padding: 5px; margin-bottom: 5px; color: #f07e58; }
 
+.navbar-through div.ob-catalog { padding-top: 10px; padding-bottom: 28px; }
 div.ob-catalog .list-block { margin-top: 5px; }
 div.ob-catalog .list-block .item-content { padding-left: 0px; min-height: 10px; }
 div.ob-catalog .list-block .item-content .item-inner { min-height: 10px; padding-left: 15px; padding-top: 6px; padding-bottom: 6px; }
-div.ob-catalog > div.icons > div.row { padding-bottom: 15px; }
-div.ob-catalog > div.icons { padding: 15px; }
-div.ob-catalog > div.icons .icon {}
-div.ob-catalog > div.icons .icon > div { text-align: center; }
+div.ob-catalog div.icons > div.row { padding-bottom: 15px; }
+div.ob-catalog div.icons { padding: 15px; }
+div.ob-catalog div.icons .icon {}
+div.ob-catalog div.icons .icon > div { text-align: center; font-size: 80%; }
+div.ob-catalog div.brands { border-right: 1px solid #eee; }
+div.ob-catalog div.ob-catalog-slide { width: 100%; height: 200px; }
+div.ob-catalog div.ob-catalog-slide .swiper-slide { height: 200px; }
+div.ob-catalog div.ob-catalog-slide img { width: 100%; height: 200px; }
+div.ob-catalog div.ob-catalog-slide:after { content: ''; clear: both; }
+
 
 div.ob-nopadding div.row > div.col-50 { width: -webkit-calc((100% - 0px*1) / 2); width: calc((100% - 0px*1) / 2); }
 div.ob-nopadding div.row > div.col-47 { width: 47%; width: -webkit-calc((100% - 5px*1) / 2); width: calc((100% - 5px*1) / 2); }
@@ -158,3 +166,7 @@ div.ob-orderhistory .title { padding: 15px; font-weight: bold; }
 div.navbar .back span.text { padding-left: 5px; padding-top: 3px; text-transform: capitalize; }
 div.tabbar { box-shadow: 1px 1px 5px 0px #a2958a; background-color: #fff; }
 .bg-f07e58 { background-color: #f07e58; }
+.modal-button { color: #f07e58; }
+
+div.ob-cart-head { background: url(../images/cart-bg.png) 0px -40px; height: 150px; }
+div.ob-cart-empty { padding-top: 50px; text-align: center; display: none; }

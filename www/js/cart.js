@@ -103,7 +103,7 @@ ob.pages.cart = {
 	init: function( page ) {
 		ob.pages.cart.container = $$(page.container);
 		if(ob.cart.skus.length > 0) {
-			ob.pages.cart.container.find('.ob-item .loading').append('<p><span class="progressbar-infinite"></span></p>');
+			ob.pages.cart.container.find('.loading').append('<p><span class="progressbar-infinite"></span></p>');
 			var skus = '';
 			for(var index=ob.cart.skus.length - 1; index>=0; index--) {
 				var item = ob.cart.skus[index];
@@ -135,6 +135,7 @@ ob.pages.cart = {
 		} else {
 			this.show({
 				count: 0,
+				noerror: true,
 				data: {}
 			});
 		}
@@ -184,7 +185,7 @@ ob.pages.cart = {
 	},
 	show: function( json ) {
 		if(typeof json.count === 'number' && typeof json.data === 'object' && json.count > 0) {
-			ob.pages.cart.container.find('.ob-list .loading').remove();
+			ob.pages.cart.container.find('.loading').remove();
 			ob.pages.cart.container.find('.ob-list').append('<ul></ul>');
 			for(var index=ob.cart.skus.length - 1; index>=0; index--) {
 				var item = ob.cart.skus[index];
@@ -320,6 +321,9 @@ ob.pages.cart = {
 					}]);
 					fw.swipeoutDelete($$(this).parents('li.swipeout')[0], function() {
 						ob.pages.cart.calculate();
+						if(ob.pages.cart.container.find('.ob-list').find('ul').children().length <= 1 && ob.cart.skus.length === 0) {
+							ob.pages.cart.container.find('.ob-cart-empty').show();
+						}
 					});
 				});
 				e.on('taphold', function() {
@@ -328,8 +332,19 @@ ob.pages.cart = {
 				ob.pages.cart.container.find('.ob-list ul').append(e);
 				e.find('input.qty').css('height', e.find('.plus').outerHeight() + 'px');
 			}
+			if(ob.pages.cart.container.find('.ob-list').find('ul').children().length > 5) {
+				ob.pages.cart.container.find('.ob-cart-head').remove();
+				ob.pages.cart.container.find('.ob-cart-empty').hide();
+			} else if(ob.pages.cart.container.find('.ob-list').find('ul').children().length === 0) {
+				ob.pages.cart.container.find('.ob-cart-empty').show();
+			} else {
+				ob.pages.cart.container.find('.ob-cart-empty').hide();
+			}
+		} else if(json.noerror) {
+			ob.pages.cart.container.find('.loading').remove();
+			ob.pages.cart.container.find('.ob-cart-empty').show();
 		} else {
-			ob.pages.cart.container.find('.ob-item .loading').html('').append('<div><span>fail to get item info</span></div>');
+			ob.pages.cart.container.find('.loading').html('').append('<div><span>fail to get item info</span></div>');
 		}
 	},
 	checkout: function( t ) {
