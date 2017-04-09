@@ -58,8 +58,9 @@ ob.pages.my = {
 			$$('.ob-orderhistory').hide();
 			$$('.ob-address').hide();
 		}
+		var h = (ob.pages.my.container.find('.toolbar').offset().top - ob.pages.my.container.find('.ob-address .ob-list').offset().top - 25);
 		ob.pages.my.container.find('.ob-address .ob-list').css({
-			height: (ob.pages.my.container.find('.toolbar').offset().top - ob.pages.my.container.find('.ob-address .ob-list').offset().top - 25) + 'px',
+			height: ( h < 141 ? 141 : h ) + 'px',
 			overflow: 'scroll',
 			'margin-bottom': '0px'
 		});
