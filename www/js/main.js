@@ -259,7 +259,7 @@ ob.init = function() {
 		$$('.ob-icon-login').children('i').text('person');
 	}
 	{
-		$$('.ob-btn-login').on('click', function() {
+		$$('div.login-screen .ob-btn-login').on('click', function() {
 			var f = $$(this).parents('form')[0];
 			var data = {
 				rem: 1,
@@ -271,7 +271,7 @@ ob.init = function() {
 					var popover = '<div class="popover popover-password">'
                         + '<div class="popover-angle"></div>'
                         + '<div class="popover-inner">'
-                        + '<div class="content-block">'
+                        + '<div class="content-block" style="padding: 0px 20px;">'
                         + '<p>Oops!</p>'
                         + '<p>This field is required to sign in!</p>'
                         + '</div>'
@@ -297,6 +297,17 @@ ob.init = function() {
 						fw.alert('Oops! It fails to sign in.');
 					}
 				}
+			});
+			return false;
+		});
+		$$('div.login-screen .ob-btn-login-cancel').on('click', function() {
+			fw.closeModal();
+			return false;
+		});
+		$$('div.login-screen .ob-btn-login-signup').on('click', function() {
+			fw.closeModal();
+			ob.mainView.router.load({
+				url: 'pages/m/reg.html'
 			});
 			return false;
 		});

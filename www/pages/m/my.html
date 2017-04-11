@@ -12,44 +12,61 @@
 <div class="pages">
   <div data-page="my" class="page">
     <div class="ob-white page-content">
-      <div class="ob-my-info">
-        <div class="ob-icon-login">
-          <i class="icon f7-icons">login</i>
-          <a href="#" class=""><span>Hello, </span><span class="name">Sign In or Sign Up</span><span>!</span></a>
+      <div class="ob-signed-in">
+        <div class="ob-my-info">
+          <div class="ob-icon-login">
+            <i class="icon f7-icons">login</i>
+            <a href="#" class=""><span>Hello, </span><span class="name">Sign In or Sign Up</span><span>!</span></a>
+          </div>
+        </div>
+        <div class="ob-orderhistory ob-iconic-row">
+          <div class="title">Order History</div>
+          <div class="row">
+            <div class="col-33">
+              <a href="pages/m/shopping/order-list.html?c=a">
+                <i class="icon f7-icons">card</i>
+                <span>Pending Payment</span>
+              </a>
+            </div>
+            <div class="col-33">
+              <a href="pages/m/shopping/order-list.html?c=b">
+                <i class="icon f7-icons">box</i>
+                <span>Processing</span>
+              </a>
+            </div>
+            <div class="col-33">
+              <a href="pages/m/shopping/order-list.html?c=">
+                <i class="icon f7-icons">bars</i>
+                <span>All Orders</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="ob-address ob-iconic-row">
+          <div class="head row">
+            <div class="col-66 title">Delivery Address</div>
+            <div class="col-33 add">
+              <a href="#"><i class="icon f7-icons">add</i></a>
+            </div>
+          </div>
+          <div class="ob-list list-block">
+          </div>
         </div>
       </div>
-      <div class="ob-orderhistory ob-iconic-row">
-        <div class="title">Order History</div>
-        <div class="row">
-          <div class="col-33">
-            <a href="pages/m/shopping/order-list.html?c=a">
-              <i class="icon f7-icons">card</i>
-              <span>Pending Payment</span>
-            </a>
-          </div>
-          <div class="col-33">
-            <a href="pages/m/shopping/order-list.html?c=b">
-              <i class="icon f7-icons">box</i>
-              <span>Processing</span>
-            </a>
-          </div>
-          <div class="col-33">
-            <a href="pages/m/shopping/order-list.html?c=">
-              <i class="icon f7-icons">bars</i>
-              <span>All Orders</span>
-            </a>
-          </div>
+      <div class="ob-signed-out">
+        <div class="signed-out-icon">
+          <i class="icon f7-icons">person</i>
         </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="ob-address ob-iconic-row">
-        <div class="head row">
-          <div class="col-66 title">Delivery Address</div>
-          <div class="col-33 add">
-            <a href="#"><i class="icon f7-icons">add</i></a>
+        <div class="signed-out-cmd">
+          <div class="row">
+            <div class="col-50">
+              <a href="#" class="button button-big button-red sign-in">Sign In</a>
+            </div>
+            <div class="col-50">
+              <a href="#" class="button button-big button-green sign-up">Sign Up for Free</a>
+            </div>
           </div>
-        </div>
-        <div class="ob-list list-block">
         </div>
       </div>
     </div>

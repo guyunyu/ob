@@ -14,10 +14,10 @@ ob.pages.my = {
 		});
 
 		if(ob.session.mc) {
-			$$('.ob-icon-login').children('i').text('person');
-			$$('.ob-icon-login').find('a > span.name').text(ob.session.mn);
+			ob.pages.my.container.find('.ob-icon-login').children('i').text('person');
+			ob.pages.my.container.find('.ob-icon-login').find('a > span.name').text(ob.session.mn);
 			var signout = $$('<a href="#"><span>[ Sign Out ]</span></a>');
-			$$('.ob-icon-login').append(signout);
+			ob.pages.my.container.find('.ob-icon-login').append(signout);
 			signout.on('click', function() {
 				window.localStorage.setItem('session', '{}');
 				ob.session = {};
@@ -49,14 +49,21 @@ ob.pages.my = {
 					}
 				}
 			});
-
+			ob.pages.my.container.find('.ob-signed-in').show();
+			ob.pages.my.container.find('.ob-signed-out').hide();
 		} else {
-			$$('.ob-icon-login').find('a').on('click', function() {
+			ob.pages.my.container.find('.ob-signed-out').find('a.sign-in').on('click', function() {
 				fw.loginScreen();
 				return false;
 			});
-			$$('.ob-orderhistory').hide();
-			$$('.ob-address').hide();
+			ob.pages.my.container.find('.ob-signed-out').find('a.sign-up').on('click', function() {
+				ob.mainView.router.load({
+					url: 'pages/m/reg.html'
+				});
+				return false;
+			});
+			ob.pages.my.container.find('.ob-signed-out').show();
+			ob.pages.my.container.find('.ob-signed-in').hide();
 		}
 		var h = (ob.pages.my.container.find('.toolbar').offset().top - ob.pages.my.container.find('.ob-address .ob-list').offset().top - 25);
 		ob.pages.my.container.find('.ob-address .ob-list').css({
