@@ -54,6 +54,9 @@ ob.pages.list = {
 						ob.pages.list.container.find('.ob-list').html('');
 						if(itemlist.data.length > 0) {
 							ob.pages.list.container.find('.ob-list').append('<ul></ul>');
+							if(ob.pages.list.q) {
+								ob.pages.list.addRecent(ob.pages.list.q);
+							}
 						} else {
 							ob.pages.list.container.find('.ob-list').append('<div><span>There is no item matching the keyword!</span></div>');
 						}
@@ -123,13 +126,49 @@ ob.pages.list = {
 				}
 			}
 		});
+	},
+	addRecent: function( q ) {
+		if(!ob.pages.list.recents) {
+			var str = window.localStorage.getItem('recentListQ');
+			if(str) {
+				ob.pages.list.recents = JSON.parse(str);
+			} else {
+				ob.pages.list.recents = [];
+			}
+		}
+		var exists = false;
+		for(var index=0; index<ob.pages.list.recents.length; index++) {
+			if(ob.pages.list.recents[index] === q) {
+				exists = true;
+				ob.pages.list.recents.splice(index, 1);
+				break;
+			}
+		}
+		if(!exists) {
+			while(ob.pages.list.recents.length >= 10) {
+				ob.pages.list.recents.pop();
+			}
+		}
+		ob.pages.list.recents.unshift(q);
+		window.localStorage.setItem('recentListQ', JSON.stringify(ob.pages.list.recents));
+	},
+	getRecent: function() {
+		if(!ob.pages.list.recents) {
+			var str = window.localStorage.getItem('recentListQ');
+			if(str) {
+				ob.pages.list.recents = JSON.parse(str);
+			} else {
+				ob.pages.list.recents = [];
+			}
+		}
+		return ob.pages.list.recents;
 	}
 };
 
 fw.onPageInit('list', function( page ) {
 	ob.pages.list.container = $$(page.container);
 	ob.pages.list.reload(
-		page.query.q ? page.query.q : '',
+		page.query.q ? unescape(page.query.q) : '',
 		page.query.c ? page.query.c : '',
 		page.query.r ? page.query.r : ''
 	);

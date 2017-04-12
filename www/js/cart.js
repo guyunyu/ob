@@ -198,6 +198,8 @@ ob.pages.cart = {
 					}
 				}
 				if(!item['k.skuId']) {
+					ob.cart.skus.splice(index, 1);
+					ob.cart.flush();
 					continue;
 				}
 				var e = $$(
