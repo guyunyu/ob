@@ -463,6 +463,10 @@ ob.checkNetwork = function() {
 
 ob.ready = function() {
 
+	if($$(window).width() < 300) {
+		fw.alert('Screen resolution is too low. Office Buddy display could possibly go out of shape.');
+	}
+
 	ob.toolbar.init({
 		name: 'index'
 	});
