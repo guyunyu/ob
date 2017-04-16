@@ -54,7 +54,7 @@ ob.pages.item = {
 			} else if(images.length > 1) {
 				var swiper = '<div class="swiper-container"><div class="swiper-wrapper">';
 				for(var index=0; index<images.length; index++) {
-					swiper += ( '<div class="swiper-slide"><img width="100%" height="100%" src="' + ob.url('/images/' + images[index] + '.PNG') + '" data-rel="external"></img></div>' );
+					swiper += ( '<div class="swiper-slide"><img width="100%" src="' + ob.url('/images/' + images[index] + '.PNG') + '" data-rel="external"></img></div>' );
 				}
 				swiper += '</div></div>';
 				ob.pages.item.container.find('.ob-item .main-img').html('').append(swiper);

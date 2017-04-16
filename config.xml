@@ -88,7 +88,7 @@
 	<plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1"/>
 
 	<gap:config-file platform="android" parent="/manifest">
-		<uses-sdk android:minSdkVersion="16" tools:overrideLibrary="com.paypal.android.sdk.payments"/>
+		<uses-sdk android:minSdkVersion="21" tools:overrideLibrary="com.paypal.android.sdk.payments"/>
 		<supports-screens android:xlargeScreens="true" android:largeScreens="true" android:smallScreens="true"/>
 		<application android:theme="@android:style/Theme.Light.NoTitleBar"/>
 	</gap:config-file>

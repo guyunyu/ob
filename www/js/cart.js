@@ -143,7 +143,7 @@ ob.pages.cart = {
 			ob.pages.cart.checkout(this);
 			return false;
 		});
-		$$('.toolbar .label-checkbox > input[type="checkbox"]').on('change', function() {
+		$$('.toolbar .label-checkbox > input[type="checkbox"]').on('click', function() {
 			ob.pages.cart.selectAll(this.checked);
 			return false;
 		});
@@ -306,7 +306,7 @@ ob.pages.cart = {
 					});
 					return false;
 				});
-				e.find('input[type="checkbox"]').on('change', function() {
+				e.find('input[type="checkbox"]').on('click', function() {
 					var checkall = true;
 					$$('.ob-list .ob-item input[type="checkbox"]').each(function() {
 						if(!$$(this).prop('checked')) {
