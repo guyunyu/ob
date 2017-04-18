@@ -1,7 +1,7 @@
 ob.pages.my = {
 	init: function( page ) {
 
-		ob.pages.my.container = $$(page.container);
+		ob.pages.my.container = $(page.container);
 		ob.pages.my.container.find('.ob-address .head .add > a').on('click', function() {
 			ob.addr({
 				success: function( a ) {
@@ -16,7 +16,7 @@ ob.pages.my = {
 		if(ob.session.mc) {
 			ob.pages.my.container.find('.ob-icon-login').children('i').text('person');
 			ob.pages.my.container.find('.ob-icon-login').find('a > span.name').text(ob.session.mn);
-			var signout = $$('<a href="#"><span>[ Sign Out ]</span></a>');
+			var signout = $('<a href="#"><span>[ Sign Out ]</span></a>');
 			ob.pages.my.container.find('.ob-icon-login').append(signout);
 			signout.on('click', function() {
 				window.localStorage.setItem('session', '{}');
@@ -79,8 +79,8 @@ ob.pages.my = {
 			if(i['a.addressId'] === a['a.addressId']) {
 				ob.pages.my.data.addresses[j] = i;
 				ob.pages.my.container.find('div.ob-address > .ob-list > ul > li').each(function() {
-					if($$(this).data('id') === i['a.addressId']) {
-						ob.pages.my.fillAddr($$(this), i);
+					if($(this).data('id') === i['a.addressId']) {
+						ob.pages.my.fillAddr($(this), i);
 					}
 				});
 				isnew = false;
@@ -113,10 +113,10 @@ ob.pages.my = {
 	insertAddr: function( item ) {
 		var ul = ob.pages.my.container.find('div.ob-address > .ob-list > ul');
 		if(ul.length === 0) {
-			ul = $$('<ul></ul>');
+			ul = $('<ul></ul>');
 			ob.pages.my.container.find('div.ob-address > .ob-list').append(ul);
 		}
-		var e = $$(
+		var e = $(
 			'<li>' + 
 				'<div class="ob-item">' + 
 					'<div class="item-content">' + 
@@ -132,7 +132,7 @@ ob.pages.my = {
 		);
 		ob.pages.my.fillAddr(e, item);
 		e.data('id', item['a.addressId']).on('click', function() {
-			var addressId = $$(this).data('id');
+			var addressId = $(this).data('id');
 			var data = {};
 			for(var i=0; i<ob.pages.my.data.addresses.length; i++) {
 				var a = ob.pages.my.data.addresses[i];

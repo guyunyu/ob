@@ -1,6 +1,6 @@
 ob.pages.order = {
 	init: function( page ) {
-		ob.pages.order.container = $$(page.container);
+		ob.pages.order.container = $(page.container);
 		ob.pages.order.id = page.query.id;
 		ob.ajax({
 			url: ob.url('/a/shopping/ViewOrder'),
@@ -40,7 +40,7 @@ ob.pages.order = {
 				if(!item['detail.checked']) {
 					continue;
 				}
-				var e = $$(
+				var e = $(
 					'<li>' + 
 						'<div class="ob-item">' + 
 							'<div class="item-content">' + 
@@ -85,8 +85,8 @@ ob.pages.order = {
 					e.find('a.item-link-real').data('id', item['t.itemId']);
 				}
 				e.find('a.item-link-real').on('click', function() {
-					var img = $$(this).data('img');
-					var url = 'pages/item.html?id=' + $$(this).data('id'); 
+					var img = $(this).data('img');
+					var url = 'pages/item.html?id=' + $(this).data('id'); 
 					if(img) {
 						url += ( '&img=' + escape(img) );
 					}

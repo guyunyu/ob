@@ -1,6 +1,6 @@
 ob.pages.orderlist = {
 	init: function( page ) {
-		ob.pages.orderlist.container = $$(page.container);
+		ob.pages.orderlist.container = $(page.container);
 		if(page.query.c === 'a') {
 			this.paymentStatus = 'Pending Payment';
 			this.deliveryStatus = '';
@@ -76,7 +76,7 @@ ob.pages.orderlist = {
 			for(var index = 0; index < json.data.length; index++) {
 				var item = json.data[index];
 				if(!group || group.data('id') !== item['oh.transactionId']) {
-					group = $$(
+					group = $(
 						'<div class="list-group">' +
 							'<ul>' +
 								'<li class="list-group-title">' +
@@ -106,13 +106,13 @@ ob.pages.orderlist = {
 	
 								if(ob.paypal.avail) {
 									ob.paypal.pay({
-										id: $$(this).data('id'),
-										ordno: $$(this).data('ordno'),
-										amt: $$(this).data('amt'),
+										id: $(this).data('id'),
+										ordno: $(this).data('ordno'),
+										amt: $(this).data('amt'),
 										success: function( id ) {
 											ob.pages.orderlist.container.find('.ob-list > div.list-group').each(function() {
-												if($$(this).data('id') === id) {
-													var c = $$(this).find('a.pay').parent();
+												if($(this).data('id') === id) {
+													var c = $(this).find('a.pay').parent();
 													c.find('a.pay').remove();
 													c.append('<a href="#" class="pay">Processing Payment</a>');
 												}
@@ -130,7 +130,7 @@ ob.pages.orderlist = {
 					}
 					list.append(group);
 				}
-				var e = $$(
+				var e = $(
 					'<li class="item-content">' + 
 						'<div class="item-media">' + 
 							'<a href="#" class="after-checkbox item-link-real"><img src="images/image-placeholder.png" class="lazy lazy-fadein" width="80" height="80"></img></a>' + 
@@ -171,8 +171,8 @@ ob.pages.orderlist = {
 					e.find('a.item-link-real').data('id', item['od.itemId']);
 				}
 				e.find('a.item-link-real').on('click', function() {
-					var img = $$(this).data('img');
-					var url = 'pages/item.html?id=' + $$(this).data('id'); 
+					var img = $(this).data('img');
+					var url = 'pages/item.html?id=' + $(this).data('id'); 
 					if(img) {
 						url += ( '&img=' + escape(img) );
 					}
@@ -185,7 +185,7 @@ ob.pages.orderlist = {
 			}
 		}
 		list.find('.list-group-title .ordno a').on('click', function() {
-			var id = $$(this).data('id');
+			var id = $(this).data('id');
 			if(id) {
 				var url = 'pages/m/shopping/order.html?id=' + id; 
 				ob.mainView.router.load({

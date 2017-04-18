@@ -1,6 +1,6 @@
 ob.pages.checkout = {
 	init: function( page ) {
-		ob.pages.checkout.container = $$(page.container);
+		ob.pages.checkout.container = $(page.container);
 		ob.pages.checkout.data = page.query;
 		ob.pages.checkout.container.find('.ob-address .head .add > a').on('click', function() {
 			ob.addr({
@@ -12,7 +12,7 @@ ob.pages.checkout = {
 				}
 			});
 		});
-		$$('.toolbar .confirm-order').on('click', function() {
+		$('.toolbar .confirm-order').on('click', function() {
 			ob.pages.checkout.order();
 			return false;
 		});
@@ -25,8 +25,8 @@ ob.pages.checkout = {
 			if(i['a.addressId'] === a['a.addressId']) {
 				ob.pages.checkout.data.addrs[j] = i;
 				ob.pages.checkout.container.find('div.ob-address > .swiper-container > .swiper-wrapper > div.swiper-slide').each(function() {
-					if($$(this).find('a.edit').data('id') === i['a.addressId']) {
-						ob.pages.checkout.fillAddr($$(this), i);
+					if($(this).find('a.edit').data('id') === i['a.addressId']) {
+						ob.pages.checkout.fillAddr($(this), i);
 					}
 				});
 				isnew = false;
@@ -70,7 +70,7 @@ ob.pages.checkout = {
 			if(!item['cart.checked']) {
 				continue;
 			}
-			var e = $$(
+			var e = $(
 				'<li>' + 
 					'<div class="ob-item">' + 
 						'<div class="item-content">' + 
@@ -113,7 +113,7 @@ ob.pages.checkout = {
 			}
 			ob.pages.checkout.container.find('.ob-list ul').append(e);
 		}
-		$$('.toolbar .order-summary .order-total').text(ob.currency(json['m.totalAmount']));
+		$('.toolbar .order-summary .order-total').text(ob.currency(json['m.totalAmount']));
 	},
 	fillAddr: function( e, item ) {
 		e.find('.name').text(item['a.contactPerson']);
@@ -121,7 +121,7 @@ ob.pages.checkout = {
 		e.find('.addr').text(item['a.address1'] + ( item['a.address2'] ? ' ' + item['a.address2'] : ''));
 	},
 	insertAddr: function( item ) {
-		var e = $$(
+		var e = $(
 			'<div class="swiper-slide">' +
 			  '<ul>' +
 			    '<li><span class="name"></span></li>' +
@@ -133,7 +133,7 @@ ob.pages.checkout = {
 		);
 		ob.pages.checkout.fillAddr(e, item);
 		e.find('a.edit').data('id', item['a.addressId']).on('click', function() {
-			var addressId = $$(this).data('id');
+			var addressId = $(this).data('id');
 			var data = {};
 			for(var i=0; i<ob.pages.checkout.data.addrs.length; i++) {
 				var a = ob.pages.checkout.data.addrs[i];

@@ -19,11 +19,11 @@ ob.pages = {};
 ob.loginfo = [];
 ob.log = function( m, s ) {
 	if(s) {
-		var divx = $$('#div-x');
+		var divx = $('#div-x');
 		divx.children().remove();
-		var html = $$('<ol></ol>');
+		var html = $('<ol></ol>');
 		for(var index=0; index<ob.loginfo.length; index++) {
-			var e = $$('<li></li>');
+			var e = $('<li></li>');
 			e.text(ob.loginfo[index]);
 			html.append(e);
 		}
@@ -206,7 +206,7 @@ ob.escapeHtml = function( m ) {
 };
 
 ob.setValue = function( i, v ) {
-	var $i = $$(i);
+	var $i = $(i);
 	if($i.attr('type') === 'checkbox') {
 		if($i.data('yes') === v) {
 			$i.prop('checked', true);
@@ -219,7 +219,7 @@ ob.setValue = function( i, v ) {
 };
 
 ob.getValue = function( i ) {
-	var $i = $$(i);
+	var $i = $(i);
 	if($i.attr('type') === 'checkbox') {
 		if($i.prop('checked')) {
 			return $i.data('yes');
@@ -233,9 +233,9 @@ ob.getValue = function( i ) {
 
 ob.loading = function( flag ) {
 	if(flag) {
-		$$('div.loading').show();
+		$('div.loading').show();
 	} else {
-		$$('div.loading').hide();
+		$('div.loading').hide();
 	}
 };
 
@@ -247,7 +247,7 @@ ob.init = function() {
 		ob.session = {};
 	}
 	if(!ob.session.mc) {
-		$$('.ob-icon-login').on('click', function() {
+		$('.ob-icon-login').on('click', function() {
 			if(!ob.session.mc) {
 				fw.loginScreen();
 			} else {
@@ -256,11 +256,11 @@ ob.init = function() {
 			return false;
 		});
 	} else {
-		$$('.ob-icon-login').children('i').text('person');
+		$('.ob-icon-login').children('i').text('person');
 	}
 	{
-		$$('div.login-screen .ob-btn-login').on('click', function() {
-			var f = $$(this).parents('form')[0];
+		$('div.login-screen .ob-btn-login').on('click', function() {
+			var f = $(this).parents('form')[0];
 			var data = {
 				rem: 1,
 				ajx: 1
@@ -300,11 +300,11 @@ ob.init = function() {
 			});
 			return false;
 		});
-		$$('div.login-screen .ob-btn-login-cancel').on('click', function() {
+		$('div.login-screen .ob-btn-login-cancel').on('click', function() {
 			fw.closeModal();
 			return false;
 		});
-		$$('div.login-screen .ob-btn-login-signup').on('click', function() {
+		$('div.login-screen .ob-btn-login-signup').on('click', function() {
 			fw.closeModal();
 			ob.mainView.router.load({
 				url: 'pages/m/reg.html'
@@ -381,7 +381,7 @@ ob.ajax = function( opt ) {
 };
 
 ob.addr = function( opt ) {
-	var popup = $$('.popup-address');
+	var popup = $('.popup-address');
 	popup.find('.column').each(function() {
 		if(opt.data && opt.data[this.name]) {
 			ob.setValue(this, opt.data[this.name]);
@@ -393,24 +393,24 @@ ob.addr = function( opt ) {
 		popup.data('init', true);
 		popup.find('a.update').on('click', function() {
 			var validated = true;
-			$$(this).parents('.popup-address').find('input[required]').each(function() {
-				if(validated && !$$(this).val()) {
-					fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $$(this).data('errmsg') + '</div></div></div>', this);
+			$(this).parents('.popup-address').find('input[required]').each(function() {
+				if(validated && !$(this).val()) {
+					fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $(this).data('errmsg') + '</div></div></div>', this);
 					validated = false;
 				}
 			});
 			if(validated) {
-				$$(this).parents('.popup-address').find('select[required]').each(function() {
-					if(validated && !$$(this).val()) {
-						fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $$(this).data('errmsg') + '</div></div></div>', this);
+				$(this).parents('.popup-address').find('select[required]').each(function() {
+					if(validated && !$(this).val()) {
+						fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $(this).data('errmsg') + '</div></div></div>', this);
 						validated = false;
 					}
 				});
 			}
 			if(validated) {
 				var data = {};
-				$$(this).parents('.popup-address').find('.column').each(function() {
-					data[$$(this).attr('name')] = ob.getValue(this);
+				$(this).parents('.popup-address').find('.column').each(function() {
+					data[$(this).attr('name')] = ob.getValue(this);
 				});
 				ob.ajax({
 					url: ob.url('/a/execute/account/Address'),
@@ -463,7 +463,7 @@ ob.checkNetwork = function() {
 
 ob.ready = function() {
 
-	if($$(window).width() < 300) {
+	if($(window).width() < 300) {
 		fw.alert('Screen resolution is too low. Office Buddy display could possibly go out of shape.');
 	}
 
@@ -473,7 +473,7 @@ ob.ready = function() {
 	ob.barcode.init();
 
 	if(typeof cordova !== 'undefined') {
-		$$(document).on('deviceready', function() {
+		$(document).on('deviceready', function() {
 		
 			document.addEventListener("backbutton", function(e) {
 				if(ob.mainView.activePage.name === 'index') {
@@ -532,7 +532,7 @@ ob.ready = function() {
 	}
 
 	fw.swiper('div.ob-main-slide > .swiper-container');
-	$$('.view-main > .navbar').addClass('ob-f07e58');
+	$('.view-main > .navbar').addClass('ob-f07e58');
 
 	ob.loading(false);
 
@@ -549,5 +549,5 @@ fw.onPageAfterAnimation('index', function (page) {
 	ob.toolbar.init({
 		name: 'index'
 	});
-	$$('.view-main > .navbar').addClass('ob-f07e58');
+	$('.view-main > .navbar').addClass('ob-f07e58');
 });

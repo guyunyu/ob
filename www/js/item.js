@@ -3,7 +3,7 @@ ob.pages.item = {
 		this.prices = {};
 		this.sku = null;
 		this.priceRange = '-';
-		ob.pages.item.container = $$(page.container);
+		ob.pages.item.container = $(page.container);
 		if(page.query.img) {
 			ob.pages.item.container.find('.ob-item .main-img > img').attr('src', unescape(page.query.img));
 		}
@@ -39,7 +39,7 @@ ob.pages.item = {
 		if(json.status === 'success') {
 			ob.pages.item.container.find('.ob-item .loading').remove();
 			var info = JSON.parse(json.data['t.info']);
-			ob.pages.item.container.find('.ob-item .detail .title > .name').append($$('<span></span>').append(info['i.displayName'] ? info['i.displayName'] : info['t.itemName']));
+			ob.pages.item.container.find('.ob-item .detail .title > .name').append($('<span></span>').append(info['i.displayName'] ? info['i.displayName'] : info['t.itemName']));
 			var images = new Array();
 			if(info['i.pictureURL']) {
 				images.push(info['i.pictureURL']);
@@ -88,11 +88,11 @@ ob.pages.item = {
 						}
 						var focs = promo.focs;
 						if(focs.length > 0) {
-							var ul = $$('<ul></ul>');
+							var ul = $('<ul></ul>');
 							ob.pages.item.container.find('.ob-item .detail .price > .promo').append(ul);
 							ul.append('<li><div><span>FOC:</span></div></li>');
 							for(var index=0; index<focs.length; index++) {
-								var li = $$('<li><a href="#"><img></img></a><span></span></li>');
+								var li = $('<li><a href="#"><img></img></a><span></span></li>');
 								var img = li.find('img');
 								var a = li.find('a');
 								a.data('id', focs[index].itemId);
@@ -104,7 +104,7 @@ ob.pages.item = {
 								}
 								a.on('click', function() {
 									ob.mainView.router.load({
-										url: 'pages/item-foc.html?id=' + $$(this).data('id') + '&img=' + escape($$(this).data('img'))
+										url: 'pages/item-foc.html?id=' + $(this).data('id') + '&img=' + escape($(this).data('img'))
 									});
 									return false;
 								});
@@ -163,13 +163,13 @@ ob.pages.item = {
 				specList.find('.item-title').text(info.sku[0]['c.specCode']);
 				specList.find('.item-after').text('Select');
 				for(var index=0; index<info.sku.length; index++) {
-					var opt = $$('<option></option>');
+					var opt = $('<option></option>');
 					opt.attr('value', info.sku[index]['k.skuId']);
 					opt.text(info.sku[index]['c.specValue']);
 					specList.find('select').append(opt);
 				}
 				specList.find('select').on('change', function() {
-					var skuId = $$(this).val();
+					var skuId = $(this).val();
 					var v = ob.pages.item.prices[skuId];
 					if(v) {
 						ob.pages.item.sku = skuId;
@@ -177,7 +177,7 @@ ob.pages.item = {
 					}
 				});
 				/*
-				var choose = $$('<a href="#"><span></span></a>');
+				var choose = $('<a href="#"><span></span></a>');
 				choose.find('span').text('Select ' + info.sku[0]['c.specCode']);
 				ob.pages.item.container.find('.ob-item .detail .spec').append(choose);
 				var options = new Array();

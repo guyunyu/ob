@@ -1,19 +1,19 @@
 ob.pages.reg = {
 	init: function( page ) {
-		ob.pages.reg.container = $$(page.container);
+		ob.pages.reg.container = $(page.container);
 		ob.pages.reg.container.find('div.reg-cmd > a').on('click', function() {
-			if($$(this).data('working')) {
+			if($(this).data('working')) {
 				return false;
 			}
-			$$(this).data('working', true);
+			$(this).data('working', true);
 			var releaseBtn = function() {
 				ob.pages.reg.container.find('div.reg-cmd > a').data('working', false);
 			};
 			var validated = true;
 			var f = ob.pages.reg.container.find('#reg-form');
 			f.find('input').each(function() {
-				if(validated && !$$(this).val()) {
-					fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $$(this).data('errmsg') + '</div></div></div>', this);
+				if(validated && !$(this).val()) {
+					fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $(this).data('errmsg') + '</div></div></div>', this);
 					validated = false;
 				}
 			});
@@ -65,7 +65,7 @@ ob.pages.reg = {
 									var json = JSON.parse(dt);
 									if(json.login === '1') {
 										window.localStorage.setItem('session', dt);
-										if($$('div.notifications').length > 0) {
+										if($('div.notifications').length > 0) {
 											setTimeout(function() {
 												fw.closeModal();
 												window.location.reload();

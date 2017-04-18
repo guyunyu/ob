@@ -1,6 +1,6 @@
 ob.barcode = {
 	init: function() {
-		$$('.ob-icon-scan').on('click', function() {
+		$('.ob-icon-scan').on('click', function() {
 			if(typeof cordova !== 'undefined') {
 				try {
 					cordova.plugins.barcodeScanner.scan(

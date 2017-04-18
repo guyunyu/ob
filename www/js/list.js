@@ -62,7 +62,7 @@ ob.pages.list = {
 						}
 					}
 					for(var index = 0; index < itemlist.data.length; index++) {
-						var e = $$(
+						var e = $(
 							'<li>' +
 								'<div class="ob-item">' +
 									'<a href="#" class="item-link item-content">' +
@@ -97,8 +97,8 @@ ob.pages.list = {
 							e.find('a').data('id', itemlist.data[index].id);
 						}
 						e.find('a').on('click', function() {
-							var img = $$(this).data('img');
-							var url = 'pages/item.html?id=' + $$(this).data('id'); 
+							var img = $(this).data('img');
+							var url = 'pages/item.html?id=' + $(this).data('id'); 
 							if(img) {
 								url += ( '&img=' + escape(img) );
 							}
@@ -166,7 +166,7 @@ ob.pages.list = {
 };
 
 fw.onPageInit('list', function( page ) {
-	ob.pages.list.container = $$(page.container);
+	ob.pages.list.container = $(page.container);
 	ob.pages.list.reload(
 		page.query.q ? unescape(page.query.q) : '',
 		page.query.c ? page.query.c : '',
@@ -176,7 +176,7 @@ fw.onPageInit('list', function( page ) {
 fw.onPageAfterAnimation('list', function( page ) { 
 	ob.toolbar.init(page);
 	if(!page.query.q && !page.query.c && !page.query.r) {
-		var i = $$('.searchbar input.search-on-list');
+		var i = $('.searchbar input.search-on-list');
 		i.trigger('click');
 	}
 });
