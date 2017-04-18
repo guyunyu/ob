@@ -97,7 +97,7 @@ ob.toolbar = {
 						var results = [];
 						var json = JSON.parse(dt);
 						if(typeof json.count == 'number' && json.count > 0) {
-							var t1 = Template7.compile('<li class="item-content"><div class="item-inner"><a href="pages/list.html?q={{q}}&c={{c}}&r={{r}}" onclick="fw.closeModal(\'.popup-search\'); return true;"><div class="item-title">{{title}}</div></a></div></li>');
+							var t1 = Template7.compile('<li class="item-content"><div class="item-inner"><a href="pages/list.html?q={{q}}&c={{c}}&r={{r}}" onclick="fw.closeModal(\'.popup-search.modal-in\'); return true;"><div class="item-title">{{title}}</div></a></div></li>');
 							var t2 = Template7.compile('<li class="item-content"><div class="item-inner"><div class="item-title">{{title}}</div></div></li>');
 							results.push({
 								id: 0,
@@ -205,7 +205,7 @@ ob.toolbar = {
 				ob.list({
 					q: this.value
 				});
-				fw.closeModal('.popup-search');
+				fw.closeModal('.popup-search.modal-in');
 			}
 			return false;
 		};
@@ -217,13 +217,14 @@ ob.toolbar = {
 					toolbar_recentsearch($(this).find('input.search-on-popup'));
 				});
 				xpop.find('a.ob-cancel').on('click', function() {
-					fw.closeModal('.popup-search');
+					fw.closeModal('.popup-search.modal-in');
 				});
 				xpop.find('input.search-on-popup').on('search', toolbar_onmainsearch);
 				toolbar_acmainsearch(xpop.find('input.search-on-popup'));
 				xpop.data('init', true);
 			}
 			fw.popup('.popup-search');
+			return false;
 		};
 		$('.ob-search input.search-on-main').off('click', toolbar_showmainsearch);
 		$('.ob-search input.search-on-main').on('click', toolbar_showmainsearch);

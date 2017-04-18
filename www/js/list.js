@@ -16,7 +16,7 @@ ob.pages.list = {
 				ob.pages.list.find(false);
 			});
 		}
-		fw.closeModal('.popup-search');
+		fw.closeModal('.popup-search.modal-in');
 	},
 	loading: false,
 	pageOffset: 0,

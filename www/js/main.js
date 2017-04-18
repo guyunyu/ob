@@ -424,7 +424,7 @@ ob.addr = function( opt ) {
 									data['a.addressId'] = json.rflag.addressId;
 									opt.success(data);
 								}
-								fw.closeModal('.popup-address');
+								fw.closeModal('.popup-address.modal-in');
 							} else {
 								if(typeof opt.error === 'function') {
 									opt.error();
