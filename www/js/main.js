@@ -11,7 +11,7 @@ ob.mainView = fw.addView('.view-main', {
 });
 
 ob.version = '0.0.1';
-ob.debug = true;
+ob.debug = false;
 ob.online = true;
 ob.$ = 'SGD';
 ob.pages = {};

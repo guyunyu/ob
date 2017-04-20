@@ -114,6 +114,7 @@ ob.pages.checkout = {
 			ob.pages.checkout.container.find('.ob-list ul').append(e);
 		}
 		$('.toolbar .order-summary .order-total').text(ob.currency(json['m.totalAmount']));
+		fw.initImagesLazyLoad(ob.pages.checkout.container);
 	},
 	fillAddr: function( e, item ) {
 		e.find('.name').text(item['a.contactPerson']);
@@ -155,7 +156,15 @@ ob.pages.checkout = {
 		ob.pages.checkout.container.find('div.ob-address > .swiper-container > .swiper-wrapper').append(e);
 	},
 	order: function() {
-		var addressId = ob.pages.checkout.container.find('div.ob-address > .swiper-container > .swiper-wrapper > .swiper-slide-active').find('a.edit').data('id');
+		var addrs = ob.pages.checkout.container.find('div.ob-address > .swiper-container > .swiper-wrapper');
+		var addressId;
+		if(addrs.find('.swiper-slide-active').length > 0) {
+			addressId = addrs.find('.swiper-slide-active').find('a.edit').data('id');
+		} else if(addrs.find('.swiper-slide').length === 1) {
+			addressId = addrs.find('.swiper-slide').find('a.edit').data('id');
+		} else {
+			addressId = false;
+		}
 		if(!addressId) {
 			fw.alert('Please choose your delivery address.');
 			return false;

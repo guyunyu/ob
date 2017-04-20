@@ -183,6 +183,7 @@ ob.pages.orderlist = {
 				});
 				group.find('ul').append(e);
 			}
+			fw.initImagesLazyLoad(ob.pages.orderlist.container);
 		}
 		list.find('.list-group-title .ordno a').on('click', function() {
 			var id = $(this).data('id');

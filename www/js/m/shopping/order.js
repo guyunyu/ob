@@ -97,6 +97,9 @@ ob.pages.order = {
 				});
 				ob.pages.order.container.find('.ob-list ul').append(e);
 			}
+
+			fw.initImagesLazyLoad(ob.pages.orderlist.container);
+
 			var pays = ob.pages.order.container.find('.ob-order .pay');
 			var opIndex = 0;
 			var opTemplate = pays.find('.entry');
