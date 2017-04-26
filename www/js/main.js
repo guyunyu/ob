@@ -1,6 +1,8 @@
 var fw = new Framework7({
 	modalTitle: 'Office Buddy'
 });
+fw.hideToolbar = function() {};
+
 var $$ = Dom7;
 
 var ob = new Object();
