@@ -163,6 +163,12 @@ div.ob-address .head { border-bottom: 1px solid #eee; padding: 10px; }
 div.ob-address .head .add { text-align: right; }
 div.ob-address .head .title { font-weight: bold; }
 div.ob-address .ob-list { margin-bottom: 60px; }
+div.ob-address .ob-swiper ul { list-style-type: none; }
+div.ob-address .ob-swiper ul > li { padding-left: 10px; }
+div.ob-address .swiper-slide { margin-bottom: 20px; }
+div.ob-address .swiper-pagination-bullet-active { background-color: #f07e58; }
+div.ob-address .swiper-button-prev { background-image: none; color: #f07e58; }
+div.ob-address .swiper-button-next { background-image: none; color: #f07e58; }
 div.ob-orderhistory .title { padding: 15px; font-weight: bold; }
 div.navbar .back span.text { padding-left: 5px; padding-top: 3px; text-transform: capitalize; }
 div.tabbar { box-shadow: 1px 1px 5px 0px #a2958a; background-color: #fff; }
