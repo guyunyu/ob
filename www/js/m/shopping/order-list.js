@@ -24,6 +24,7 @@ ob.pages.orderlist = {
 			ob.pages.orderlist.pageOffset = 0;
 			ob.pages.orderlist.pageSize = 20;
 			fw.attachInfiniteScroll(ob.pages.orderlist.container.find('.infinite-scroll'));
+			ob.pages.orderlist.container.find('.ob-empty').hide();
 		}
 		if(ob.pages.orderlist.loading) {
 			return;
@@ -46,10 +47,10 @@ ob.pages.orderlist = {
 					if(typeof json.data === 'object') {
 						if(initial) {
 							ob.pages.orderlist.container.find('.ob-list').html('');
-							if(json.data.length > 0) {
+							if(json.data && json.data.length > 0) {
 								//
 							} else {
-								ob.pages.orderlist.container.find('.ob-list').append('<div><span>There is no order!</span></div>');
+								ob.pages.orderlist.container.find('.ob-empty').show();
 							}
 						}
 						ob.pages.orderlist.show(json);
@@ -184,17 +185,17 @@ ob.pages.orderlist = {
 				group.find('ul').append(e);
 			}
 			fw.initImagesLazyLoad(ob.pages.orderlist.container);
+			list.find('.list-group-title .ordno a').on('click', function() {
+				var id = $(this).data('id');
+				if(id) {
+					var url = 'pages/m/shopping/order.html?id=' + id; 
+					ob.mainView.router.load({
+						url: url
+					});
+					return false;
+				}
+			});
 		}
-		list.find('.list-group-title .ordno a').on('click', function() {
-			var id = $(this).data('id');
-			if(id) {
-				var url = 'pages/m/shopping/order.html?id=' + id; 
-				ob.mainView.router.load({
-					url: url
-				});
-				return false;
-			}
-		});
 	}
 };
 

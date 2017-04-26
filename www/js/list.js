@@ -30,6 +30,7 @@ ob.pages.list = {
 			ob.pages.list.pageOffset = 0;
 			ob.pages.list.pageSize = 20;
 			fw.attachInfiniteScroll(ob.pages.list.container.find('.infinite-scroll'));
+			ob.pages.list.container.find('.ob-empty').hide();
 		}
 		if(ob.pages.list.loading) {
 			return;
@@ -52,64 +53,68 @@ ob.pages.list = {
 				if(typeof itemlist.data === 'object') {
 					if(initial) {
 						ob.pages.list.container.find('.ob-list').html('');
-						if(itemlist.data.length > 0) {
+						if(itemlist.data && itemlist.data.length > 0) {
 							ob.pages.list.container.find('.ob-list').append('<ul></ul>');
 							if(ob.pages.list.q) {
 								ob.pages.list.addRecent(ob.pages.list.q);
 							}
 						} else {
-							ob.pages.list.container.find('.ob-list').append('<div><span>There is no item matching the keyword!</span></div>');
+							ob.pages.list.container.find('.ob-empty').show();
 						}
 					}
-					for(var index = 0; index < itemlist.data.length; index++) {
-						var e = $(
-							'<li>' +
-								'<div class="ob-item">' +
-									'<a href="#" class="item-link item-content">' +
-										'<div class="item-media"><img src="images/image-placeholder.png" class="lazy lazy-fadein" width="80" height="80"></img></div>' +
-										'<div class="item-inner">' +
-											'<div class="item-title-row">' +
-												'<div class="item-title"></div>' +
-												'<div class="item-after price"></div>' +
+					if(itemlist.data && itemlist.data.length > 0) {
+						for(var index = 0; index < itemlist.data.length; index++) {
+							var e = $(
+								'<li>' +
+									'<div class="ob-item">' +
+										'<a href="#" class="item-link item-content">' +
+											'<div class="item-media"><img src="images/image-placeholder.png" class="lazy lazy-fadein" width="80" height="80"></img></div>' +
+											'<div class="item-inner">' +
+												'<div class="item-title-row">' +
+													'<div class="item-title"></div>' +
+													'<div class="item-after price"></div>' +
+												'</div>' +
+												'<div class="item-subtitle">' +
+													'<div class="promo"><span class="icon"></span><span class="desc"></span></div>' +
+													'<div class="category"></div>' +
+													'<div class="brand"></div>' +
+												'</div>' +
 											'</div>' +
-											'<div class="item-subtitle">' +
-												'<div class="promo"><span class="icon"></span><span class="desc"></span></div>' +
-												'<div class="category"></div>' +
-												'<div class="brand"></div>' +
-											'</div>' +
-										'</div>' +
-									'</a>' +
-								'</div>' +
-							'</li>'
-						);
-						e.find('.item-title').text(itemlist.data[index].name);
-						e.find('.price').text(!itemlist.data[index].promo_price ? itemlist.data[index].price : itemlist.data[index].promo_price);
-						if(itemlist.data[index].promo_name) {
-							e.find('.promo > .desc').text(itemlist.data[index].promo_name);
-						} else {
-							e.find('.promo').remove();
-						}
-						if(itemlist.data[index].thumbnail) {
-							var img = ob.url('/images/' + itemlist.data[index].thumbnail + '-80x80.PNG');
-							e.find('img').attr('data-src', img).attr('data-rel', 'external');
-							e.find('a').data('id', itemlist.data[index].id).data('img', img);
-						} else {
-							e.find('a').data('id', itemlist.data[index].id);
-						}
-						e.find('a').on('click', function() {
-							var img = $(this).data('img');
-							var url = 'pages/item.html?id=' + $(this).data('id'); 
-							if(img) {
-								url += ( '&img=' + escape(img) );
+										'</a>' +
+									'</div>' +
+								'</li>'
+							);
+							e.find('.item-title').text(itemlist.data[index].name);
+							e.find('.price').text(!itemlist.data[index].promo_price ? itemlist.data[index].price : itemlist.data[index].promo_price);
+							if(itemlist.data[index].promo_name) {
+								e.find('.promo > .desc').text(itemlist.data[index].promo_name);
+							} else {
+								e.find('.promo').remove();
 							}
-							ob.mainView.router.load({
-								url: url
+							if(itemlist.data[index].thumbnail) {
+								var img = ob.url('/images/' + itemlist.data[index].thumbnail + '-80x80.PNG');
+								e.find('img').attr('data-src', img).attr('data-rel', 'external');
+								e.find('a').data('id', itemlist.data[index].id).data('img', img);
+							} else {
+								e.find('a').data('id', itemlist.data[index].id);
+							}
+							e.find('a').on('click', function() {
+								var img = $(this).data('img');
+								var url = 'pages/item.html?id=' + $(this).data('id'); 
+								if(img) {
+									url += ( '&img=' + escape(img) );
+								}
+								ob.mainView.router.load({
+									url: url
+								});
+								return false;
 							});
-							return false;
-						});
-						ob.pages.list.container.find('.ob-list ul').append(e);
-					}
-					if(itemlist.data.length < ob.pages.list.pageSize) {
+							ob.pages.list.container.find('.ob-list ul').append(e);
+						}
+						if(itemlist.data.length < ob.pages.list.pageSize) {
+							fw.detachInfiniteScroll(ob.pages.list.container.find('.infinite-scroll'));
+						}
+					} else {
 						fw.detachInfiniteScroll(ob.pages.list.container.find('.infinite-scroll'));
 					}
 				} else {

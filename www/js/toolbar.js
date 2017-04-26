@@ -226,10 +226,10 @@ ob.toolbar = {
 			fw.popup('.popup-search');
 			return false;
 		};
-		$('.ob-search input.search-on-main').off('click', toolbar_showmainsearch);
-		$('.ob-search input.search-on-main').on('click', toolbar_showmainsearch);
-		$('.ob-search input.search-on-list').off('click', toolbar_showmainsearch);
-		$('.ob-search input.search-on-list').on('click', toolbar_showmainsearch);
+		$('.ob-search input.search-on-main').off('focus', toolbar_showmainsearch);
+		$('.ob-search input.search-on-main').on('focus', toolbar_showmainsearch);
+		$('.ob-search input.search-on-list').off('focus', toolbar_showmainsearch);
+		$('.ob-search input.search-on-list').on('focus', toolbar_showmainsearch);
 		$('.view-main > .navbar').removeClass('ob-transparent');
 	}
 };

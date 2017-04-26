@@ -171,6 +171,7 @@ div.tabbar { box-shadow: 1px 1px 5px 0px #a2958a; background-color: #fff; }
 
 div.ob-cart-head { background: url(../images/cart-bg.png) 0px -40px; height: 150px; }
 div.ob-cart-empty { padding-top: 50px; text-align: center; display: none; }
+div.ob-empty { padding-top: 50px; text-align: center; display: none; }
 
 div.login-screen .list-block > ul > li > a.ob-btn-login { color: #f07e58; font-weight: bold; font-size: 110%; }
 div.login-screen .list-block > ul > li > a.ob-btn-login-cancel { color: #555; }
@@ -179,11 +180,18 @@ div.login-screen .list-block > ul > li > a.ob-btn-login-signup { color: #f07e58;
 div.ob-signed-out { padding: 20px; }
 div.ob-signed-out .signed-out-icon { text-align: center; padding: 100px 0px; }
 div.ob-signed-out .signed-out-icon i { font-size: 600%; color: #f07e58; }
+div.ob-signed-out .signed-out-icon img { width: 100px; height: 100px; }
 div.ob-signed-out .signed-out-cmd { margin-top: 20px; }
 
 div.reg-cmd { padding: 0px 20px; }
 div.notifications { background-color: #f07e58; color: #fff; }
 div.notifications .item-text { color: #fff; }
+
+.toolbar .home > i { background-image: url(../images/home.svg); width: 24px; }
+.toolbar .catalog > i { background-image: url(../images/catalog.svg); width: 24px; }
+.toolbar .cart > i { background-image: url(../images/cart.svg); width: 24px; }
+.toolbar .me > i { background-image: url(../images/me.svg); width: 24px; }
+.home-top > i { background-image: url(../images/home-white.svg); width: 30px; height: 30px; }
 
 /* === Chips === */
 .chip {
