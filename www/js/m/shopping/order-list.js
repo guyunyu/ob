@@ -40,7 +40,7 @@ ob.pages.orderlist = {
 				'oh.deliveryStatus': ob.pages.orderlist.deliveryStatus
 			},
 			success: function(dt) {
-				console.log(dt);
+				// console.log(dt);
 				ob.pages.orderlist.pageOffset += ob.pages.orderlist.pageSize;
 				try {
 					var json = JSON.parse(dt);

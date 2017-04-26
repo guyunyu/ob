@@ -17,6 +17,10 @@ ob.pages.list = {
 			});
 		}
 		fw.closeModal('.popup-search.modal-in');
+
+		if(q) {
+			$('div.ob-search input.search-on-list').val(q);
+		}
 	},
 	loading: false,
 	pageOffset: 0,

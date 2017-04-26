@@ -143,7 +143,7 @@ ob.pages.cart = {
 					skus: skus
 				},
 				success: function(dt) {
-					console.log(dt);
+					// console.log(dt);
 					try {
 						var json = JSON.parse(dt);
 						ob.pages.cart.show(json);

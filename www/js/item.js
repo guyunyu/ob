@@ -17,7 +17,7 @@ ob.pages.item = {
 				't.itemId': itemId
 			},
 			success: function(dt) {
-				console.log(dt);
+				// console.log(dt);
 				try {
 					var json = JSON.parse(dt);
 					ob.pages.item.show(json);

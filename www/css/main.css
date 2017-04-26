@@ -185,6 +185,11 @@ div.login-screen .list-block > ul > li > a.ob-btn-login { color: #f07e58; font-w
 div.login-screen .list-block > ul > li > a.ob-btn-login-cancel { color: #555; }
 div.login-screen .list-block > ul > li > a.ob-btn-login-signup { color: #f07e58; }
 
+div.ob-icon-login {}
+div.ob-icon-login > .icon { float: left; }
+div.ob-icon-login > .text { float: left; }
+div.ob-icon-login:after { clear: both; content: ''; }
+
 div.ob-signed-out { padding: 20px; }
 div.ob-signed-out .signed-out-icon { text-align: center; padding: 100px 0px; }
 div.ob-signed-out .signed-out-icon i { font-size: 600%; color: #f07e58; }

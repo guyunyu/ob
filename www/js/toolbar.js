@@ -62,7 +62,8 @@ ob.toolbar = {
 				}
 				div.find('a').on('click', function() {
 					i.val($(this).data('q'));
-					i.trigger('input change');
+					// i.trigger('input change');
+					i.trigger('search');
 				});
 				fw.accordionOpen(div.find('li.accordion-item'));
 			}
@@ -214,14 +215,14 @@ ob.toolbar = {
 			if(!$('.popup-search').data('init')) {
 				var xpop = $('.popup-search');
 				xpop.on('opened', function() {
-					$(this).find('input.search-on-popup').focus();
 					toolbar_recentsearch($(this).find('input.search-on-popup'));
+					$(this).find('input.search-on-popup').focus();
 				});
 				xpop.find('a.ob-cancel').on('click', function() {
 					fw.closeModal('.popup-search.modal-in');
 				});
 				xpop.find('input.search-on-popup').on('search', toolbar_onmainsearch);
-				toolbar_acmainsearch(xpop.find('input.search-on-popup'));
+				// toolbar_acmainsearch(xpop.find('input.search-on-popup'));
 				xpop.data('init', true);
 			}
 			fw.popup('.popup-search');

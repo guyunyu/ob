@@ -14,10 +14,10 @@ ob.pages.my = {
 		});
 
 		if(ob.session.mc) {
-			ob.pages.my.container.find('.ob-icon-login').children('i').text('person');
+			ob.pages.my.container.find('.ob-icon-login').find('.icon > i').text('person');
 			ob.pages.my.container.find('.ob-icon-login').find('a > span.name').text(ob.session.mn);
 			var signout = $('<a href="#"><span>[ Sign Out ]</span></a>');
-			ob.pages.my.container.find('.ob-icon-login').append(signout);
+			ob.pages.my.container.find('.ob-icon-login .text .signout').append(signout);
 			signout.on('click', function() {
 				window.localStorage.setItem('session', '{}');
 				ob.session = {};

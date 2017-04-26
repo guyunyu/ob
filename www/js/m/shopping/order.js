@@ -9,7 +9,7 @@ ob.pages.order = {
 				'oh.transactionId': ob.pages.order.id
 			},
 			success: function(dt) {
-				console.log(dt);
+				// console.log(dt);
 				try {
 					var json = JSON.parse(dt);
 					ob.pages.order.show(json);
