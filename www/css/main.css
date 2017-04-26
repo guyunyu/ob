@@ -79,7 +79,7 @@ div.loading:after { content: ''; clear: both; }
 .ob-item-remove > span { margin-left: 10px; }
 
 .popup-address {}
-.popup-address .title { width: 100%; text-align: center; font-weight: bold; font-size: 120%; }
+.popup-address .title { width: 100%; text-align: center; font-weight: bold; font-size: 120%; padding-top: 20px; }
 .popup-address .list-block { margin-top: 10px; }
 .popup-address .list-block .item-title { white-space: normal; }
 .popup-address .cmd { padding: 0px 10px; }
@@ -171,7 +171,9 @@ div.tabbar { box-shadow: 1px 1px 5px 0px #a2958a; background-color: #fff; }
 
 div.ob-cart-head { background: url(../images/cart-bg.png) 0px -40px; height: 150px; }
 div.ob-cart-empty { padding-top: 50px; text-align: center; display: none; }
+div.ob-cart-empty > img { width: 30%; }
 div.ob-empty { padding-top: 50px; text-align: center; display: none; }
+div.ob-empty > img { width: 30%; }
 
 div.login-screen .list-block > ul > li > a.ob-btn-login { color: #f07e58; font-weight: bold; font-size: 110%; }
 div.login-screen .list-block > ul > li > a.ob-btn-login-cancel { color: #555; }

@@ -92,7 +92,7 @@ ob.toolbar = {
 						pageOffset: 99999
 					},
 					success: function(dt) {
-						console.log(dt);
+						// console.log(dt);
 						autocomplete.hidePreloader();
 						var results = [];
 						var json = JSON.parse(dt);
@@ -186,7 +186,8 @@ ob.toolbar = {
 						q: query,
 						r: render
 					});
-					setTimeout(ajax_delay, 500);
+					//setTimeout(ajax_delay, 500);
+					ajax_delay();
 				},
 				onOpen: function( autocomplete ) {
 				},
