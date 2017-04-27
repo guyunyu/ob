@@ -65,7 +65,6 @@ ob.toolbar = {
 					// i.trigger('input change');
 					i.trigger('search');
 				});
-				fw.accordionOpen(div.find('li.accordion-item'));
 			}
 		};
 		var toolbar_acmainsearch = function( iref ) {
@@ -214,17 +213,22 @@ ob.toolbar = {
 		var toolbar_showmainsearch = function() {
 			if(!$('.popup-search').data('init')) {
 				var xpop = $('.popup-search');
-				xpop.on('opened', function() {
-					toolbar_recentsearch($(this).find('input.search-on-popup'));
+//				xpop.on('opened', function() {
+//					toolbar_recentsearch($(this).find('input.search-on-popup'));
 //					$(this).find('input.search-on-popup').focus();
-				});
+//				});
 				xpop.find('a.ob-cancel').on('click', function() {
 					fw.closeModal('.popup-search.modal-in');
 				});
-				xpop.find('input.search-on-popup').on('search', toolbar_onmainsearch);
+				xpop.find('input.search-on-popup').on('search', toolbar_onmainsearch)
+					.on('focus', function() {
+						var div = $('.popup-search .help-text .searchbar-found > div.recents');
+						fw.accordionOpen(div.find('li.accordion-item'));
+					});
 				// toolbar_acmainsearch(xpop.find('input.search-on-popup'));
 				xpop.data('init', true);
 			}
+			toolbar_recentsearch($('.popup-search input.search-on-popup'));
 			fw.popup('.popup-search');
 			return false;
 		};
