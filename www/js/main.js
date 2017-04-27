@@ -16,6 +16,7 @@ ob.debug = false;
 ob.online = true;
 ob.$ = 'SGD';
 ob.pages = {};
+ob.device = {};
 
 ob.loginfo = [];
 ob.log = function( m, s ) {
@@ -475,7 +476,11 @@ ob.ready = function() {
 
 	if(typeof cordova !== 'undefined') {
 		$(document).on('deviceready', function() {
-		
+
+			ob.device.model = device.model;
+			ob.device.platform  = device.platform;
+			ob.device.version = device.version;
+
 			document.addEventListener("backbutton", function(e) {
 				if(ob.mainView.activePage.name === 'index') {
 					fw.closeModal();
