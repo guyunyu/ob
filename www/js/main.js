@@ -477,9 +477,11 @@ ob.ready = function() {
 	if(typeof cordova !== 'undefined') {
 		$(document).on('deviceready', function() {
 
-			ob.device.model = device.model;
-			ob.device.platform  = device.platform;
-			ob.device.version = device.version;
+			if(typeof device !== 'undefined') {
+				ob.device.model = device.model;
+				ob.device.platform  = device.platform;
+				ob.device.version = device.version;
+			}
 
 			document.addEventListener("backbutton", function(e) {
 				if(ob.mainView.activePage.name === 'index') {
