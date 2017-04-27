@@ -244,6 +244,7 @@ ob.pages.cart = {
 										'<div class="item-title"><a href="#" class="item-link-real"></a></div>' + 
 									'</div>' + 
 									'<div class="item-subtitle">' + 
+										'<div class="spec"></div>' +
 										'<div class="promo"><span class="icon"></span><span class="desc"></span></div>' + 
 										'<div class="category"></div>' + 
 										'<div class="brand"></div>' + 
@@ -264,7 +265,8 @@ ob.pages.cart = {
 						'</div>' + 
 					'</li>'
 				);
-				e.find('.item-title').find('a').text(item['i.displayName'] ? item['i.displayName'] : item['t.itemName']);
+				var itemName = item['i.displayName'] ? item['i.displayName'] : item['t.itemName'];
+				e.find('.item-title').find('a').text(itemName);
 				e.find('.price').text(ob.$ + ' ' + ob.currency(item['k.price']));
 				if(item['ph.promotionId']) {
 					e.find('.promo > .desc').text(item['ph.promotionName']);
@@ -277,6 +279,12 @@ ob.pages.cart = {
 					e.find('a.item-link-real').data('id', item['t.itemId']).data('img', img);
 				} else {
 					e.find('a.item-link-real').data('id', item['t.itemId']);
+				}
+				if(item['c.specValue'] && item['c.specValue']!=='-') {
+					e.find('.spec').text(item['c.specValue']);
+				}
+				if(item['r.brandName'] && item['r.brandName']!=='NA' && item['r.brandName']!=='N/A' && itemName.indexOf(item['r.brandName']) < 0) {
+					e.find('.brand').text(item['r.brandName']);
 				}
 				e.find('input.qty')
 					.data('skuid', item['k.skuId'])

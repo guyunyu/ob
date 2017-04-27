@@ -6,6 +6,8 @@ body { padding: 0px; margin: 0px; }
 .list-block .item-content { font-size: 12px; }
 .autocomplete-page .gray { color: #666; }
 .autocomplete-page .dark { color: #111; }
+.pages .page > div.page-content { z-index: 1; }
+.pages .page > div.ob-shoppingbar { z-index: 2; }
 
 .ob-search { width: 100%; opacity: 0.8; }
 .ob-search .searchbar { background-color: transparent; }
@@ -29,6 +31,7 @@ div.loading:after { content: ''; clear: both; }
 .page div.ob-list { margin: 0px; }
 .page div.ob-list .ob-item { width: 100%; font-size: 70%; }
 .page div.ob-list .ob-item > div { width: 100%; }
+.page div.ob-list .ob-item .spec { font-size: 75%; }
 .page div.ob-list .ob-item .price { font-weight: bold; color: #f07e58; font-size: 110%; }
 .page div.ob-list .ob-item .promo { display: table; }
 .page div.ob-list .ob-item .promo > .icon { display: table-cell; vertical-align: middle; width: 16px; height: 16px; background-color: #f07e58; }
@@ -100,9 +103,21 @@ div.loading:after { content: ''; clear: both; }
 .page div.ob-order .paid { background-image: url(../images/paid_stamp.png); background-repeat: no-repeat; background-position: 260px 5px; }
 .page div.ob-order .pay > .entry {}
 
-div.ob-my-info { width: 100%; height: 150px; display: table; background: url(../images/my-bg.jpg) 0px -90px; }
-div.ob-my-info > div { width: 100%; height: 100%; padding: 50px; display: table-cell; vertical-align: middle; color: #fff; }
+div.ob-my-info { width: 100%; height: 150px; display: table; background: url(../images/me-bg.png) 0px 0px no-repeat; }
+div.ob-my-info > div { width: 100%; height: 100%; padding: 20px 30px; display: table-cell; vertical-align: top; color: #fff; }
 div.ob-my-info i.icon { margin-right: 10px; }
+
+div.ob-icon-login {}
+div.ob-icon-login > .text { float: right; }
+div.ob-icon-login > .text a { color: #fff; font-size: 120%; }
+div.ob-icon-login:after { clear: both; content: ''; }
+div.ob-icon-login .signout a { text-decoration: underline; color: #f1f1f1; font-size: 100%; }
+
+div.ob-signed-out { padding: 20px; }
+div.ob-signed-out .signed-out-icon { text-align: center; padding: 100px 0px; }
+div.ob-signed-out .signed-out-icon i { font-size: 600%; color: #f07e58; }
+div.ob-signed-out .signed-out-icon img { width: 100px; height: 100px; }
+div.ob-signed-out .signed-out-cmd { margin-top: 20px; }
 
 div.ob-iconic-row { border-top: 1px solid #eee; padding: 10px; margin-bottom: 20px; }
 div.ob-iconic-row a { display: block; width: 100%; text-align: center; color: #111; }
@@ -133,7 +148,7 @@ div.ob-subadv div.ob-decorhor { width: 100%; height: 5px; background-image: url(
 div.ob-subadv div.ob-decorver { width: 5px; height: 50px; background-image: url(../images/decorver-ed5a23.jpg); background-repeat: repeat-x; background-position: 0px 20px; }
 
 div.ob-search,
-div.ob-f07e58 { background: url(../images/navbg-f07e58.png); color:#fff; opacity: 0.95; margin: 0px; padding: 0px; }
+div.ob-f07e58 { background-color: #f07e58; color:#fff; opacity: 0.95; margin: 0px; padding: 0px; }
 div.ob-f07e58 a { color: #fff; }
 a { color: #f07e58; }
 .button { border-color: #f07e58; color: #f07e58; }
@@ -175,7 +190,7 @@ div.tabbar { box-shadow: 1px 1px 5px 0px #a2958a; background-color: #fff; }
 .bg-f07e58 { background-color: #f07e58; }
 .modal-button { color: #f07e58; }
 
-div.ob-cart-head { background: url(../images/cart-bg.png) 0px -40px; height: 150px; }
+div.ob-cart-head { background: url(../images/cart-bg.png) 0px 0px; height: 150px; }
 div.ob-cart-empty { padding-top: 50px; text-align: center; display: none; }
 div.ob-cart-empty > img { width: 30%; }
 div.ob-empty { padding-top: 50px; text-align: center; display: none; }
@@ -184,17 +199,6 @@ div.ob-empty > img { width: 30%; }
 div.login-screen .list-block > ul > li > a.ob-btn-login { color: #f07e58; font-weight: bold; font-size: 110%; }
 div.login-screen .list-block > ul > li > a.ob-btn-login-cancel { color: #555; }
 div.login-screen .list-block > ul > li > a.ob-btn-login-signup { color: #f07e58; }
-
-div.ob-icon-login {}
-div.ob-icon-login > .icon { float: left; }
-div.ob-icon-login > .text { float: left; }
-div.ob-icon-login:after { clear: both; content: ''; }
-
-div.ob-signed-out { padding: 20px; }
-div.ob-signed-out .signed-out-icon { text-align: center; padding: 100px 0px; }
-div.ob-signed-out .signed-out-icon i { font-size: 600%; color: #f07e58; }
-div.ob-signed-out .signed-out-icon img { width: 100px; height: 100px; }
-div.ob-signed-out .signed-out-cmd { margin-top: 20px; }
 
 div.reg-cmd { padding: 0px 20px; }
 div.notifications { background-color: #f07e58; color: #fff; }

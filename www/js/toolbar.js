@@ -214,10 +214,10 @@ ob.toolbar = {
 		var toolbar_showmainsearch = function() {
 			if(!$('.popup-search').data('init')) {
 				var xpop = $('.popup-search');
-//				xpop.on('opened', function() {
-//					toolbar_recentsearch($(this).find('input.search-on-popup'));
+				xpop.on('opened', function() {
+					toolbar_recentsearch($(this).find('input.search-on-popup'));
 //					$(this).find('input.search-on-popup').focus();
-//				});
+				});
 				xpop.find('a.ob-cancel').on('click', function() {
 					fw.closeModal('.popup-search.modal-in');
 				});
