@@ -115,7 +115,7 @@ ob.paypal = {
 			if(typeof opt.failure === 'function') {
 				opt.failure(rt);
 			} else {
-				ob.error(JSON.stringify(rt));
+				//ob.error(JSON.stringify(rt));
 			}
 		});
 	}
