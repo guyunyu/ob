@@ -98,7 +98,7 @@ ob.pages.order = {
 				ob.pages.order.container.find('.ob-list ul').append(e);
 			}
 
-			fw.initImagesLazyLoad(ob.pages.orderlist.container);
+			fw.initImagesLazyLoad(ob.pages.order.container);
 
 			var pays = ob.pages.order.container.find('.ob-order .pay');
 			var opIndex = 0;
@@ -143,7 +143,7 @@ ob.pages.order = {
 			} else {
 				ob.pages.order.container.find('.ob-order .head .status').text(json.data['oh.transactionStatus']);
 				ob.pages.order.container.find('.ob-shoppingbar .order-total').text(ob.currency(json.data['oh.totalAmount']));
-				ob.pages.order.container.find('.ob-shoppingbar .confirm-order').on('click', function() {
+				ob.pages.order.container.find('.ob-shoppingbar .pay-order').on('click', function() {
 					if(ob.paypal.avail) {
 						ob.paypal.pay({
 							id: ob.pages.order.data['oh.transactionId'],
@@ -171,6 +171,25 @@ fw.onPageInit('order', function (page) {
 	ob.pages.order.init(page);
 });
 
-fw.onPageAfterAnimation('order', function (page) { 
+fw.onPageAfterAnimation('order', function (page) {
+	ob.toolbar.init(page);
+});
+
+fw.onPageInit('after-checkout', function (page) {
+	ob.pages.order.init(page);
+	for(var index=0; index<ob.mainView.history.length; index++) {
+		if(ob.mainView.history[index] === 'pages/checkout.html') {
+			ob.mainView.history.splice(index, 1);
+		}
+	}
+});
+
+fw.onPageAfterAnimation('after-checkout', function (page) {
+	$('div.navbar div.left .after-checkout').on('click', function() {
+		ob.mainView.router.load({
+			url: $(this).attr('href')
+		});
+		return false;
+	});
 	ob.toolbar.init(page);
 });

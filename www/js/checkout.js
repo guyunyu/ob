@@ -213,13 +213,13 @@ ob.pages.checkout = {
 								ordno: ordno,
 								amt: amt,
 								success: function( id ) {
-									var url = 'pages/m/shopping/order.html?id=' + id; 
+									var url = 'pages/m/shopping/after-checkout.html?id=' + id + '&chkout=yes'; 
 									ob.mainView.router.load({
 										url: url
 									});
 								},
 								failure: function( rt ) {
-									var url = 'pages/m/shopping/order.html?id=' + id; 
+									var url = 'pages/m/shopping/after-checkout.html?id=' + id + '&chkout=yes'; 
 									ob.mainView.router.load({
 										url: url
 									});
@@ -227,7 +227,7 @@ ob.pages.checkout = {
 							});
 						} else {
 							if(id) {
-								var url = 'pages/m/shopping/order.html?id=' + id; 
+								var url = 'pages/m/shopping/after-checkout.html?id=' + id + '&chkout=yes'; 
 								ob.mainView.router.load({
 									url: url
 								});

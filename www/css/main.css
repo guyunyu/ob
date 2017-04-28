@@ -21,7 +21,7 @@ div.loading:after { content: ''; clear: both; }
 .page > div.ob-white { background-color: #fff; }
 
 .ob-transparent { background-color: transparent; }
-.navbar-through .ob-main-body { padding-top: 10px; padding-bottom: 38px; }
+.navbar-through .ob-main-body { padding-top: 0px; padding-bottom: 38px; }
 .ob-main-slide { width: 100%; height: 200px; }
 .ob-main-slide .swiper-slide { height: 200px; }
 .ob-main-slide img { width: 100%; height: 200px; }
@@ -78,6 +78,8 @@ div.loading:after { content: ''; clear: both; }
 .ob-shoppingbar > div.toolbar-inner > .order-summary { width: 180px; }
 .ob-shoppingbar > div.toolbar-inner > a.confirm-order { width: 100%; height: 100%; background-color: #f07e58; }
 .ob-shoppingbar > div.toolbar-inner > a.confirm-order > span { font-size: 14px; color: white; background-image: url(../images/ic_done_white_36px.svg); background-position: 3px -3px; background-repeat: no-repeat; padding-left: 45px; padding-top: 8px; padding-bottom: 8px; margin-top: 8px; }
+.ob-shoppingbar > div.toolbar-inner > a.pay-order { width: 100%; height: 100%; background-color: #f07e58; }
+.ob-shoppingbar > div.toolbar-inner > a.pay-order > span { font-size: 14px; color: white; background-image: url(../images/ic_done_white_36px.svg); background-position: 3px -3px; background-repeat: no-repeat; padding-left: 45px; padding-top: 8px; padding-bottom: 8px; margin-top: 8px; }
 
 .ob-popover { padding: 10px; }
 .ob-item-remove > span { margin-left: 10px; }
@@ -130,6 +132,7 @@ div.ob-iconic-row .title { font-size: 110%; padding: 5px; margin-bottom: 5px; co
 div.ob-catalog .list-block { margin-top: 5px; }
 div.ob-catalog .list-block .item-content { padding-left: 0px; min-height: 10px; }
 div.ob-catalog .list-block .item-content .item-inner { min-height: 10px; padding-left: 15px; padding-top: 6px; padding-bottom: 6px; }
+div.ob-catalog .list-block .item-content .item-inner .item-title { max-width: 98px; }
 div.ob-catalog div.icons > div.row { padding-bottom: 15px; }
 div.ob-catalog div.icons { padding: 15px; }
 div.ob-catalog div.icons .icon {}
@@ -146,8 +149,8 @@ div.ob-nopadding div.row > div.col-47 { width: 47%; width: -webkit-calc((100% - 
 div.ob-nopadding div.row > div.col-33 { width: 33%; width: -webkit-calc((100% - 0px*1) / 3); width: calc((100% - 0px*1) / 3); }
 div.ob-nopadding div.row > div.col-66 { width: 66%; width: -webkit-calc((100% - 0px*1) / 1.5); width: calc((100% - 0px*1) / 1.5); }
 div.ob-nopadding div.row > div.col-03 { width: 5px; }
-div.ob-subadv div.ob-decorhor { width: 100%; height: 5px; background-image: url(../images/decorhor-ed5a23.jpg); background-repeat: repeat-y; background-position: 100px 0px; }
-div.ob-subadv div.ob-decorver { width: 5px; height: 50px; background-image: url(../images/decorver-ed5a23.jpg); background-repeat: repeat-x; background-position: 0px 20px; }
+div.ob-subadv div.ob-decorhor { width: 100%; height: 5px; }
+div.ob-subadv div.ob-decorver { width: 5px; height: 50px; }
 
 div.ob-search,
 div.ob-f07e58 { background-color: #f07e58; color:#fff; opacity: 0.95; margin: 0px; padding: 0px; }
@@ -187,7 +190,6 @@ div.ob-address .swiper-pagination-bullet-active { background-color: #f07e58; }
 div.ob-address .swiper-button-prev { background-image: none; color: #f07e58; }
 div.ob-address .swiper-button-next { background-image: none; color: #f07e58; }
 div.ob-orderhistory .title { padding: 15px; font-weight: bold; }
-div.navbar .back span.text { padding-left: 5px; padding-top: 3px; text-transform: capitalize; }
 div.tabbar { box-shadow: 1px 1px 5px 0px #a2958a; background-color: #fff; }
 .bg-f07e58 { background-color: #f07e58; }
 .modal-button { color: #f07e58; }
@@ -205,6 +207,10 @@ div.login-screen .list-block > ul > li > a.ob-btn-login-signup { color: #f07e58;
 div.reg-cmd { padding: 0px 20px; }
 div.notifications { background-color: #f07e58; color: #fff; }
 div.notifications .item-text { color: #fff; }
+
+div.navbar div.left .back span.text { padding-left: 5px; padding-top: 3px; text-transform: capitalize; }
+div.navbar div.left .after-checkout {}
+div.navbar div.left .after-checkout span.text { padding-left: 5px; padding-top: 3px; text-transform: capitalize; }
 
 .toolbar .home > i { background-image: url(../images/home.svg); width: 24px; }
 .toolbar .catalog > i { background-image: url(../images/catalog.svg); width: 24px; }
