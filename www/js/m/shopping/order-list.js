@@ -11,7 +11,11 @@ ob.pages.orderlist = {
 			this.paymentStatus = '';
 			this.deliveryStatus = '';
 		}
+		fw.detachInfiniteScroll(ob.pages.orderlist.container.find('.infinite-scroll'));
 		this.find(true);
+		ob.pages.orderlist.container.find('.infinite-scroll').on('infinite', function () {
+			ob.pages.orderlist.find(false);
+		});
 	},
 	loading: false,
 	pageOffset: 0,
@@ -60,6 +64,7 @@ ob.pages.orderlist = {
 				} catch(e) {
 					ob.error(e);
 				}
+				ob.pages.orderlist.loading = false;
 			},
 			error: function(xhr, code) {
 				if(code === 403) {
@@ -71,7 +76,7 @@ ob.pages.orderlist = {
 		});
 	},
 	show: function( json ) {
-		if(typeof json.count === 'number' && typeof json.data === 'object' && json.count > 0) {
+		if(typeof json.count === 'number' && json.data && json.count > 0) {
 			var list = ob.pages.orderlist.container.find('.ob-list');
 			var group = false;
 			for(var index = 0; index < json.data.length; index++) {
@@ -126,7 +131,10 @@ ob.pages.orderlist = {
 							}).text('Pay ' + ob.$ + ' ' + ob.currency(item['oh.totalAmount']));
 						}
 					} else {
-						group.find('a.pay').text(item['oh.paymentStatus'] + ', ' + item['oh.transactionStatus']);
+						if(item['oh.transactionStatus'] === 'Cancelled') {
+							group.addClass('cancelled');
+						}
+						group.find('a.pay').text(item['oh.transactionStatus']);
 						ob.paypal.remove(item['oh.transactionId']);
 					}
 					list.append(group);

@@ -117,8 +117,8 @@ ob.pages.my = {
 			ob.pages.my.container.find('div.ob-address > .ob-list').append(ul);
 		}
 		var e = $(
-			'<li>' + 
-				'<div class="ob-item">' + 
+			'<li class="swipeout">' + 
+				'<div class="ob-item swipeout-content">' + 
 					'<div class="item-content">' + 
 						'<div class="item-inner">' + 
 							'<div class="item-title-row">' + 
@@ -127,6 +127,9 @@ ob.pages.my = {
 							'</div>' + 
 						'</div>' + 
 					'</div>' + 
+				'</div>' +
+				'<div class="swipeout-actions-right">' +
+					'<a href="#" class="action1 bg-red ob-item-remove"><i class="icon f7-icons">delete_round</i><span>Remove</span></a>' + 
 				'</div>' + 
 			'</li>'
 		);
@@ -150,6 +153,40 @@ ob.pages.my = {
 					ob.error(e);
 				}
 			});
+		});
+		e.find('a.ob-item-remove').on('click', function() {
+			var swipeout = $(this).parents('li.swipeout');
+			var addressId = swipeout.data('id');
+			if(addressId) {
+				ob.ajax({
+					url: ob.url('/a/execute/account/DeleteAddress'),
+					method: 'POST',
+					data: {
+						'a.addressId': addressId
+					},
+					success: function(dt) {
+						try {
+							var json = JSON.parse(dt);
+							if(json.status === 'success') {
+								fw.swipeoutDelete(swipeout[0], function() {
+									
+								});
+							} else {
+								ob.error('Oops! It fails to remove the address.');
+							}
+						} catch(e) {
+							ob.error(e);
+						}
+					},
+					error: function(e) {
+						ob.error(e);
+					}
+				});
+			}
+			return false;
+		});
+		e.on('taphold', function() {
+			fw.swipeoutOpen(this, 'right');
 		});
 		ul.append(e);
 	}

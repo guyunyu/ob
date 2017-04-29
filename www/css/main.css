@@ -40,6 +40,9 @@ div.loading:after { content: ''; clear: both; }
 .page div.ob-list .ob-item input.qty { width: 40px; height: 27px; padding: 0px 5px; border: 1px solid #eee; text-align: center; font-size: 90%; }
 .page div.ob-list .ob-item a.plus,a.minus { color: #666; border: 1px solid #eee; padding: 0px 3px; }
 .page div.ob-list .ob-item a.plus[disabled],a.minus[disabled] { color: #eee; }
+.page div.ob-list > div.cancelled { color: #bbb; }
+.page div.ob-list > div.cancelled a { color: #bbb; }
+.page div.ob-list > div.cancelled img { opacity: 0.5; }
 
 .page div.ob-item { margin: 0px; padding: 0px; }
 .page div.ob-item .main-img { width: 100%; }

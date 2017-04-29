@@ -161,6 +161,7 @@ ob.pages.order = {
 				});
 			}
 		} else {
+			ob.pages.order.container.find('.ob-order .head .status').text(json.data['oh.transactionStatus']);
 			ob.pages.order.container.find('.ob-shoppingbar').remove();
 			ob.paypal.remove(json.data['oh.transactionId']);
 		}
