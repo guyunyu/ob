@@ -131,6 +131,10 @@ ob.pages.order = {
 			ob.pages.order.container.find('.ob-order').html('').append('<div><span>fail to get order info</span></div>');
 		}
 		ob.pages.order.container.find('.ob-order .total .subtotal-amt').text(ob.currency(json.data['oh.subtotalAmount']));
+		ob.pages.order.container.find('.ob-order .total .dc-amt').text(ob.currency(json.data['oh.deliveryCharge']));
+		if(json.data['oh.waiveDeliveryCharge'] === 'Y') {
+			ob.pages.order.container.find('.ob-order .total .dc-amt').addClass('line-through');
+		}
 		ob.pages.order.container.find('.ob-order .total .discount-amt').text(ob.currency(json.data['oh.discountAmount']));
 		ob.pages.order.container.find('.ob-order .total .total-amt').text(ob.currency(json.data['oh.totalAmount']));
 		if(parseFloat(json.data['oh.taxAmount']) > 0) {

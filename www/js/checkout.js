@@ -75,6 +75,13 @@ ob.pages.checkout = {
 			ob.pages.checkout.container.find('div.ob-address .swiper-button-next').hide();
 			ob.pages.checkout.container.find('div.ob-address .swiper-button-prev').hide();
 		}
+		var dcwaiveMin = ob.pages.checkout.data['m.dcwaiveMin'];
+		var dcnormal = ob.pages.checkout.data['m.dcnormal'];
+		if(parseFloat(dcnormal, 10) > 0) {
+			var dctip = 'Enjoy free delivery worth $<i>' + dcnormal + '</i> for orders with minimum amount $<i>' + dcwaiveMin + '</i>.';
+			ob.pages.checkout.container.find('div.ob-checkout-dctip').html(dctip);
+		}
+		
 		ob.pages.checkout.container.find('.ob-list').append('<ul></ul>');
 		for(var index=0; index<json.cart.length; index++) {
 			var item = json.cart[index];
@@ -126,6 +133,7 @@ ob.pages.checkout = {
 		}
 		$('.toolbar .order-summary .order-total').text(ob.currency(json['m.totalAmount']));
 		fw.initImagesLazyLoad(ob.pages.checkout.container);
+		$('.coupon-popover input.coupon-value').val('');
 	},
 	fillAddr: function( e, item ) {
 		e.find('.name').text(item['a.contactPerson']);
@@ -193,6 +201,7 @@ ob.pages.checkout = {
 		var data = {
 			addressId: addressId,
 			paymentOption: 'Online',
+			coupon: $('.coupon-popover input.coupon-value').val(),
 			skus: JSON.stringify(skus)
 		};
 		ob.ajax({
@@ -236,7 +245,15 @@ ob.pages.checkout = {
 							}
 						}
 					} else {
-						ob.error('It fails to connect Office Buddy.')
+						if(json.msgs && json.msgs.length > 0) {
+							var txt = '';
+							for(var index=0; index<json.msgs.length; index++) {
+								txt += ( json.msgs[index].text + '\n');
+							}
+							ob.error(txt, true);
+						} else {
+							ob.error('Oops! Something goes wrong.');
+						}
 					}
 				} catch(e) {
 					ob.error(e);
