@@ -134,6 +134,11 @@ ob.pages.checkout = {
 		$('.toolbar .order-summary .order-total').text(ob.currency(json['m.totalAmount']));
 		fw.initImagesLazyLoad(ob.pages.checkout.container);
 		$('.coupon-popover input.coupon-value').val('');
+		if(ob.device.platform === 'Android') {
+			$('.coupon-popover').on('opened', function() {
+				$(this).find('input.coupon-value').focus();
+			});
+		}
 	},
 	fillAddr: function( e, item ) {
 		e.find('.name').text(item['a.contactPerson']);
@@ -276,4 +281,8 @@ fw.onPageInit('checkout', function (page) {
 
 fw.onPageAfterAnimation('checkout', function (page) { 
 	ob.toolbar.init(page);
+});
+
+fw.onPageBack('checkout', function (page) { 
+	fw.closeModal('.coupon-popover.modal-in');
 });
