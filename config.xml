@@ -93,5 +93,10 @@
 		<supports-screens android:xlargeScreens="true" android:largeScreens="true" android:smallScreens="true"/>
 		<application android:theme="@android:style/Theme.Light.NoTitleBar"/>
 	</gap:config-file>
-
+	<gap:config-file platform="ios" parent="NSPhotoLibraryUsageDescription" overwrite="true">
+		<string>We are using the Camera to scan Office Buddy barcode / QR code.</string>
+	</gap:config-file>
+	<gap:config-file platform="ios" parent="NSCameraUsageDescription" overwrite="true">
+		<string>We are using the Camera to scan Office Buddy barcode / QR code.</string>
+	</gap:config-file>
 </widget>
