@@ -4,6 +4,7 @@ ob.pages.my = {
 		ob.pages.my.container = $(page.container);
 		ob.pages.my.container.find('.ob-address .head .add > a').on('click', function() {
 			ob.addr({
+				selector: $(this).parents('.ob-address').hasClass('billing') ? '.popup-address-billing' : '.popup-address',
 				success: function( a ) {
 					ob.pages.my.merge(a);
 				},
@@ -33,6 +34,14 @@ ob.pages.my = {
 						var json = JSON.parse(dt);
 						if(json.status === 'success') {
 							ob.pages.my.data = json.data;
+							for(var index=0; index<ob.pages.my.data.billings.length; index++) {
+								var entry = ob.pages.my.data.billings[index];
+								var replacing = {};
+								for(var key in entry) {
+									replacing[key.replace('b.', 'a.')] = entry[key];
+								}
+								ob.pages.my.data.billings[index] = replacing;
+							}
 							ob.pages.my.show();
 						} else {
 							ob.error('It fails to connect Office Buddy.')
@@ -65,20 +74,16 @@ ob.pages.my = {
 			ob.pages.my.container.find('.ob-signed-out').show();
 			ob.pages.my.container.find('.ob-signed-in').hide();
 		}
-		var h = (ob.pages.my.container.find('.toolbar').offset().top - ob.pages.my.container.find('.ob-address .ob-list').offset().top - 25);
-		ob.pages.my.container.find('.ob-address .ob-list').css({
-			height: ( h < 141 ? 141 : h ) + 'px',
-			overflow: 'scroll',
-			'margin-bottom': '0px'
-		});
 	},
 	merge: function( i ) {
 		var isnew = true;
-		for(var j=0; j<ob.pages.my.data.addresses.length; j++) {
-			var a = ob.pages.my.data.addresses[j];
+		var selector = i['a.isBilling'] === 'Y' ? 'div.ob-address.billing > .ob-list > ul' : 'div.ob-address.delivery > .ob-list > ul';
+		var addrlist = i['a.isBilling'] === 'Y' ? ob.pages.my.data.billings : ob.pages.my.data.addresses;
+		for(var j=0; j<addrlist.length; j++) {
+			var a = addrlist[j];
 			if(i['a.addressId'] === a['a.addressId']) {
-				ob.pages.my.data.addresses[j] = i;
-				ob.pages.my.container.find('div.ob-address > .ob-list > ul > li').each(function() {
+				addrlist[j] = i;
+				ob.pages.my.container.find(selector).children().each(function() {
 					if($(this).data('id') === i['a.addressId']) {
 						ob.pages.my.fillAddr($(this), i);
 					}
@@ -88,10 +93,10 @@ ob.pages.my = {
 			}
 		}
 		if(isnew) {
-			ob.pages.my.data.addresses.push(i);
-			ob.pages.my.container.find('div.ob-address > .ob-list > ul').children().remove();
-			for(var index=0; index<ob.pages.my.data.addresses.length; index++) {
-				var item = ob.pages.my.data.addresses[index];
+			addrlist.push(i);
+			ob.pages.my.container.find(selector).children().remove();
+			for(var index=0; index<addrlist.length; index++) {
+				var item = addrlist[index];
 				ob.pages.my.insertAddr(item);
 			}
 		}
@@ -111,10 +116,14 @@ ob.pages.my = {
 		e.find('.addr2').text(item['a.address1'] + ( item['a.address2'] ? ' ' + item['a.address2'] : ''));
 	},
 	insertAddr: function( item ) {
-		var ul = ob.pages.my.container.find('div.ob-address > .ob-list > ul');
+		if(!item['a.addressId']) {
+			return false;
+		}
+		var selector = item['a.isBilling'] === 'Y' ? 'div.ob-address.billing > .ob-list' : 'div.ob-address.delivery > .ob-list';
+		var ul = ob.pages.my.container.find(selector).children('ul');
 		if(ul.length === 0) {
 			ul = $('<ul></ul>');
-			ob.pages.my.container.find('div.ob-address > .ob-list').append(ul);
+			ob.pages.my.container.find(selector).append(ul);
 		}
 		var e = $(
 			'<li class="swipeout">' + 
@@ -144,7 +153,17 @@ ob.pages.my = {
 					break;
 				}
 			}
+			if(!data['a.addressId']) {
+				for(var i=0; i<ob.pages.my.data.billings.length; i++) {
+					var a = ob.pages.my.data.billings[i];
+					if(addressId === a['a.addressId']) {
+						data = a;
+						break;
+					}
+				}
+			}
 			ob.addr({
+				selector: data['a.isBilling'] === 'Y' ? '.popup-address-billing' : '.popup-address',
 				data: data,
 				success: function( i ) {
 					ob.pages.my.merge(i);

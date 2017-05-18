@@ -12,33 +12,85 @@
 <div class="pages">
   <div data-page="checkout" class="page navbar-fixed">
     <div class="ob-white page-content">
-      <div class="content-block">
-        <div class="ob-address">
-          <div class="head row">
-            <div class="col-66 title">Delivery Address</div>
-            <div class="col-33 add">
-              <a href="#"><i class="icon f7-icons">add</i></a>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-content">
-              <div class="ob-swiper">
-                <div class="swiper-container">
-                  <div class="swiper-pagination"></div>
-                  <div class="swiper-wrapper"></div>
-                </div>
-                <div class="swiper-button-prev"><i class="f7-icons">chevron_left</i></div>
-                <div class="swiper-button-next"><i class="f7-icons">chevron_right</i></div>
+      <div class="ob-checkout-tabbar toolbar tabbar">
+        <div class="toolbar-inner">
+          <a href="#tab-delivery" class="tab-link active">Delivery</a>
+          <a href="#tab-billing" class="tab-link">Billing</a>
+          <a href="#tab-payment" class="tab-link">Payment</a>
+        </div>
+      </div>
+      <div class="ob-checkout-tabs tabs-animated-wrap">
+        <div class="tabs">
+          <div id="tab-delivery" class="tab active">
+            <div class="content-block">
+              <div class="list-block">
+                <ul>
+                  <li>
+                    <a href="#" class="item-link smart-select" data-back-on-select="true" data-open-in="picker">
+                      <select name="delop">
+                        <option value="Doorstep Delivery" selected="selected">Doorstep Delivery</option>
+                        <option value="Self-Collecting">Self-Collecting</option>
+                      </select>
+                      <span class="item-content">
+                        <span class="item-inner">
+                          <span class="item-title">Delivery Option</span>
+                          <span class="item-after">Doorstep Delivery</span>
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="ob-address-css ob-address">
+                    <div class="item-content addrtitle">
+                      <div class="item-inner">
+                        <span class="item-title">Delivery Address</span>
+                        <span class="item-after"><a href="#" class="add"><i class="icon f7-icons">add</i></a></span>
+                      </div>
+                    </div>
+                    <div class="card addrlist">
+                      <div class="card-content">
+                        <div class="ob-swiper">
+                          <div class="swiper-container">
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-wrapper"></div>
+                          </div>
+                          <div class="swiper-button-prev"><i class="f7-icons">chevron_left</i></div>
+                          <div class="swiper-button-next"><i class="f7-icons">chevron_right</i></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card self-collect">
+                      <div class="card-content">
+                        <div class="card-content-inner">
+                          <div>You will get informed when goods are ready for collection at the follow address:</div>
+                          <div>&nbsp;</div>
+                          <div>15 Tai Seng Drive, #02-02</div>
+                          <div>Singapore 535220</div>
+                          <div>Operating Hours: 09:00 - 18:00, Monday - Friday ( Except Public Holidays )</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card remarks">
+                      <div class="card-content">
+                        <div class="card-content-inner">
+                          <div>Office Buddy provides delivery service for Singapore address only.</div>
+                          <div class="ob-checkout-dctip"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-          <div class="card">
-            <div class="card-content">
-              <div class="card-content-inner">
-                <div>Office Buddy provides delivery service for Singapore address only.</div>
-                <div class="ob-checkout-dctip"></div>
-              </div>
-            </div>
+          <div id="tab-billing" class="tab">
+            <p>tab-tab-billing</p>
+            <p>tab-tab-billing</p>
+            <p>tab-tab-billing</p>
+          </div>
+          <div id="tab-payment" class="tab">
+            <p>tab-tab-payment</p>
+            <p>tab-tab-payment</p>
+            <p>tab-tab-payment</p>
           </div>
         </div>
       </div>

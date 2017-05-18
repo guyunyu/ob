@@ -383,26 +383,28 @@ ob.ajax = function( opt ) {
 };
 
 ob.addr = function( opt ) {
-	var popup = $('.popup-address');
+	var popup = $(opt.selector || '.popup-address');
 	popup.find('.column').each(function() {
-		if(opt.data && opt.data[this.name]) {
-			ob.setValue(this, opt.data[this.name]);
-		} else {
-			ob.setValue(this, '');
+		if(!$(this).hasClass('fixed')) {
+			if(opt.data && opt.data[this.name]) {
+				ob.setValue(this, opt.data[this.name]);
+			} else {
+				ob.setValue(this, '');
+			}
 		}
 	});
 	if(!popup.data('init')) {
 		popup.data('init', true);
 		popup.find('a.update').on('click', function() {
 			var validated = true;
-			$(this).parents('.popup-address').find('input[required]').each(function() {
+			$(this).parents(opt.selector || '.popup-address').find('input[required]').each(function() {
 				if(validated && !$(this).val()) {
 					fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $(this).data('errmsg') + '</div></div></div>', this);
 					validated = false;
 				}
 			});
 			if(validated) {
-				$(this).parents('.popup-address').find('select[required]').each(function() {
+				$(this).parents(opt.selector || '.popup-address').find('select[required]').each(function() {
 					if(validated && !$(this).val()) {
 						fw.popover('<div class="popover"><div class="popover-inner"><div class="ob-popover">' + $(this).data('errmsg') + '</div></div></div>', this);
 						validated = false;
@@ -411,7 +413,7 @@ ob.addr = function( opt ) {
 			}
 			if(validated) {
 				var data = {};
-				$(this).parents('.popup-address').find('.column').each(function() {
+				$(this).parents(opt.selector || '.popup-address').find('.column').each(function() {
 					data[$(this).attr('name')] = ob.getValue(this);
 				});
 				ob.ajax({
@@ -426,7 +428,7 @@ ob.addr = function( opt ) {
 									data['a.addressId'] = json.rflag.addressId;
 									opt.success(data);
 								}
-								fw.closeModal('.popup-address.modal-in');
+								fw.closeModal((opt.selector || '.popup-address') + '.modal-in');
 							} else {
 								if(typeof opt.error === 'function') {
 									opt.error();
@@ -449,7 +451,7 @@ ob.addr = function( opt ) {
 			}
 		});
 	}
-	fw.popup('.popup-address');
+	fw.popup(opt.selector || '.popup-address');
 };
 
 ob.checkNetwork = function() {

@@ -70,10 +70,16 @@
                         <a href="pages/list.html?c=D27BA2168546,D27BAB5E8546&amp;r=1B7575F4-7DB"><img src="content/images/adv-main02.png"></img></a>
                       </div>
                       <div class="swiper-slide">
-                        <a href="#"><img src="content/images/adv-main00.png"></img></a>
+                        <a href="pages/list.html?r=1B74C000-7DB"><img src="content/images/adv-main03.jpg"></img></a>
                       </div>
                       <div class="swiper-slide">
-                        <a href="pages/list.html?c=D27BA2168546,D27BAB5E8546&amp;r=1B7575F4-7DB"><img src="content/images/adv-main02.png"></img></a>
+                        <a href="pages/list.html?q=nescafe"><img src="content/images/adv-main05.jpg"></img></a>
+                      </div>
+                      <div class="swiper-slide">
+                        <a href="pages/list.html?r=1B76122A-7DB"><img src="content/images/adv-main06.jpg"></img></a>
+                      </div>
+                      <div class="swiper-slide">
+                        <a href="pages/list.html?q=coke"><img src="content/images/adv-main04.jpg"></img></a>
                       </div>
                     </div>
                   </div>
@@ -320,14 +326,25 @@
         </div>
       </div>
     </div>
-    <div class="popup popup-address">
+    <div class="popup popup-address-css popup-address">
       <div class="content-block">
-        <div class="title">Address</div>
+        <div class="title">Delivery Address</div>
         <form class="list-block">
           <div>
             <input type="hidden" name="a.addressId" class="column"></input>
+            <input type="hidden" name="a.isBilling" class="column fixed" value="N"></input>
           </div>
           <ul>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Company</div>
+                  <div class="item-input">
+                    <input type="text" name="a.companyName" class="column" placeholder="Company Name"></input>
+                  </div>
+                </div>
+              </div>
+            </li>
             <li>
               <div class="item-content">
                 <div class="item-inner">
@@ -416,6 +433,95 @@
                       <input type="checkbox" name="a.avoidLunchTime" class="column" value="Y" data-yes="Y" data-no="N">
                       <div class="checkbox"></div>
                     </label>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </form>
+        <div class="row cmd">
+          <div class="col-50">
+            <a href="#" class="button button-big button-red close-popup">Cancel</a>
+          </div>
+          <div class="col-50">
+            <a href="#" class="button button-big button-green update">Save</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <div class="card-content-inner">Office Buddy provides delivery service for Singapore address only.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup popup-address-css popup-address-billing">
+      <div class="content-block">
+        <div class="title">Billing Address</div>
+        <form class="list-block">
+          <div>
+            <input type="hidden" name="a.addressId" class="column"></input>
+            <input type="hidden" name="a.isBilling" class="column fixed" value="Y"></input>
+            <input type="hidden" name="a.avoidLunchTime" class="column fixed" value="N"></input>
+            <input type="hidden" name="a.addressType" class="column fixed" value="N/A"></input>
+            <input type="hidden" name="a.preferredDeliveryTime" class="column fixed" value="N/A"></input>
+          </div>
+          <ul>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Company</div>
+                  <div class="item-input">
+                    <input type="text" name="a.companyName" class="column" placeholder="Company Name"></input>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Name</div>
+                  <div class="item-input">
+                    <input type="text" name="a.contactPerson" class="column" placeholder="Contact Person Name" required="required" data-errmsg="Please fill in contact person name for this address."></input>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Phone</div>
+                  <div class="item-input">
+                    <input type="text" name="a.phone" class="column" placeholder="Mobile / Office Phone" required="required" data-errmsg="Please fill in telephone number."></input>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Address</div>
+                  <div class="item-input">
+                    <input type="text" name="a.address1" class="column" placeholder="Unit, Block Number" required="required" data-errmsg="Please fill in address details."></input>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">&nbsp;</div>
+                  <div class="item-input">
+                    <input type="text" name="a.address2" class="column" placeholder="Street, Building"></input>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Postal Code</div>
+                  <div class="item-input">
+                    <input type="text" name="a.postalCode" class="column" placeholder="Postal Code" required="required" data-errmsg="Please fill in postal code for this address."></input>
                   </div>
                 </div>
               </div>
