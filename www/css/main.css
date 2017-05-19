@@ -116,6 +116,7 @@ div.loading:after { content: ''; clear: both; }
 .page div.ob-order .pay {}
 .page div.ob-order .paid { background-image: url(../images/paid_stamp.png); background-repeat: no-repeat; background-position: 260px 5px; }
 .page div.ob-order .pay > .entry {}
+.page div.ob-order .self-collect { display: none; }
 
 div.ob-my-info { width: 100%; height: 150px; display: table; background: url(../images/me-bg.png) 0px 0px no-repeat; }
 div.ob-my-info > div { width: 100%; height: 100%; padding-top: 20px; display: table-cell; vertical-align: top; color: #fff; }
@@ -204,6 +205,8 @@ div.ob-footsep { background-color: #fafafa; padding: 15px 0px 25px 0px; text-ali
 .ob-address-css .swiper-button-prev { background-image: none; color: #f07e58; }
 .ob-address-css .swiper-button-next { background-image: none; color: #f07e58; }
 .ob-address-css .self-collect { display: none; }
+.ob-address-css .self-collect .addrdet { margin-top: 10px; padding-left: 32px; background: url(../images/location.png) no-repeat; }
+.remarks .text { padding-left: 32px; background: url(../images/info.png) no-repeat; }
 #tab-billing .ob-address-css .addrlist { display: none; }
 #tab-billing .ob-address-css .addrtitle { display: none; }
 

@@ -30,9 +30,14 @@ ob.pages.order = {
 		if(json.status === 'success') {
 			ob.pages.order.data = json.data;
 			ob.pages.order.container.find('.ob-order .head .ordno').text(json.data['oh.transactionNo']);
-			ob.pages.order.container.find('.ob-order .addr .name').text(json.data['oa.contactPerson']);
-			ob.pages.order.container.find('.ob-order .addr .phone').text(json.data['oa.phone']);
-			ob.pages.order.container.find('.ob-order .addr .detail').text(json.data['oa.address1'] + ( json.data['oa.address2'] ? ' ' + json.data['oa.address2'] : ''));
+			if(json.data['oi.deliveryOption'] === 'Self-Collecting') {
+				ob.pages.order.container.find('.ob-order .addr').hide();
+				ob.pages.order.container.find('.ob-order .self-collect').show();
+			} else {
+				ob.pages.order.container.find('.ob-order .addr .name').text(json.data['oa.contactPerson'] ? json.data['oa.contactPerson'] : '');
+				ob.pages.order.container.find('.ob-order .addr .phone').text(json.data['oa.phone'] ? json.data['oa.phone'] : '');
+				ob.pages.order.container.find('.ob-order .addr .detail').text(json.data['oa.address1'] + ( json.data['oa.address2'] ? ' ' + json.data['oa.address2'] : ''));
+			}
 
 			ob.pages.order.container.find('.ob-list').append('<ul></ul>');
 			for(var index=0; index<json.data.detail.length; index++) {
