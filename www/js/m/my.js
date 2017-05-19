@@ -110,6 +110,13 @@ ob.pages.my = {
 			}
 			this.insertAddr(item);
 		}
+		for(var index=0; index<json.billings.length; index++) {
+			var item = json.billings[index];
+			if(!item['billings.checked']) {
+				continue;
+			}
+			this.insertAddr(item);
+		}
 	},
 	fillAddr: function( e, item ) {
 		e.find('.addr1').text(item['a.contactPerson'] + ' ' + ( item['a.phone'] ? item['a.phone'] : ''));

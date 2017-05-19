@@ -89,6 +89,7 @@ div.loading:after { content: ''; clear: both; }
 .ob-checkout-tabbar { box-shadow: none; border-bottom: 2px solid #eee; }
 .ob-checkout-tabbar a.active { border-bottom: 2px solid #f07e58; }
 .ob-checkout-tabs { height: auto; }
+.ob-checkout-tabs .content-block { margin-bottom: 0px; }
 .ob-checkout-tabs .list-block { margin: 0px; }
 .ob-checkout-tabs .list-block .item-content { font-weight: bold; font-size: inherit; }
 .ob-checkout-tabs .list-block .item-content .item-after { font-weight: normal; }
@@ -203,6 +204,8 @@ div.ob-footsep { background-color: #fafafa; padding: 15px 0px 25px 0px; text-ali
 .ob-address-css .swiper-button-prev { background-image: none; color: #f07e58; }
 .ob-address-css .swiper-button-next { background-image: none; color: #f07e58; }
 .ob-address-css .self-collect { display: none; }
+#tab-billing .ob-address-css .addrlist { display: none; }
+#tab-billing .ob-address-css .addrtitle { display: none; }
 
 div.ob-orderhistory .title { padding: 15px; font-weight: bold; }
 div.tabbar { box-shadow: 1px 1px 5px 0px #a2958a; background-color: #fff; }
