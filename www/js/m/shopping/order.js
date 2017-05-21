@@ -169,6 +169,10 @@ ob.pages.order = {
 					}
 				});
 			}
+		} else if(json.data['oh.dataStatus'] === 'Final' && json.data['oh.transactionStatus'] !== 'Completed' && json.data['oh.paymentStatus'] !== 'Paid' && json.data['oi.paymentOption'] === 'COD') {
+			ob.pages.order.container.find('.ob-order .head .status').html('<div>' + json.data['oh.transactionStatus'] + '</div><div>Pending Payment, COD</div>');
+			ob.pages.order.container.find('.ob-shoppingbar').remove();
+			ob.paypal.remove(json.data['oh.transactionId']);
 		} else {
 			ob.pages.order.container.find('.ob-order .head .status').text(json.data['oh.transactionStatus']);
 			ob.pages.order.container.find('.ob-shoppingbar').remove();
