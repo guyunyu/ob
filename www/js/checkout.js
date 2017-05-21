@@ -315,8 +315,9 @@ ob.pages.checkout = {
 						var id = json.rflag.transactionId;
 						var ordno = json.rflag.transactionNo;
 						var amt = json.rflag.totalAmount;
+						var popt = json.rflag.paymentOption;
 						ob.cart.cleanup(skus);
-						if(id && ordno && amt && ob.paypal.avail) {
+						if(id && ordno && amt && (popt === 'Online' || popt === 'PayPal') && ob.paypal.avail) {
 							ob.paypal.pay({
 								id: id,
 								ordno: ordno,
