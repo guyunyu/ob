@@ -27,7 +27,7 @@ ob.barcode = {
 			var itemURLpre = ob.url('/i/catalog/item/');
 			if(c.text.indexOf(itemURLpre) === 0) {
 				var component = c.text.substr(itemURLpre.length);
-				if(/^[A-Z0-9a-z]{12}\.html$/.test(component)) {
+				if(/^[A-Z0-9a-z_-]{12}\.html$/.test(component)) {
 					var tokens = component.split('.');
 					var url = 'pages/item.html?id=' + tokens[0];
 					ob.mainView.router.load({
