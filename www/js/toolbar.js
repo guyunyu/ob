@@ -213,11 +213,9 @@ ob.toolbar = {
 		var toolbar_showmainsearch = function() {
 			if(!$('.popup-search').data('init')) {
 				var xpop = $('.popup-search');
-				if(ob.device.platform === 'Android') {
-					xpop.on('opened', function() {
-						$(this).find('input.search-on-popup').focus();
-					});
-				}
+				xpop.on('opened', function() {
+					$(this).find('input.search-on-popup').focus();
+				});
 				xpop.find('a.ob-cancel').on('click', function() {
 					fw.closeModal('.popup-search.modal-in');
 				});
