@@ -239,3 +239,6 @@ div.navbar div.left .after-checkout span.text { padding-left: 5px; padding-top: 
 .toolbar .me > i { background-image: url(../images/me.svg); width: 24px; }
 .home-top > i { background-image: url(../images/home-white.svg); width: 30px; height: 30px; }
 
+.coupon-popover .item-title { font-size: 120%; }
+.coupon-popover .coupon-close { width: 100%; text-align: center; }
+.coupon-popover .coupon-close a { padding: 5px 50px; }

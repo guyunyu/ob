@@ -47,7 +47,7 @@ ob.pages.checkout = {
 			}
 		});
 		$('.toolbar .confirm-order').on('click', function() {
-			ob.pages.checkout.order();
+			ob.pages.checkout.order($(this));
 			return false;
 		});
 		this.show();
@@ -191,11 +191,13 @@ ob.pages.checkout = {
 		$('.toolbar .order-summary .order-total').text(ob.currency(json['m.totalAmount']));
 		fw.initImagesLazyLoad(ob.pages.checkout.container);
 		$('.coupon-popover input.coupon-value').val('');
-		if(ob.device.platform === 'Android') {
-			$('.coupon-popover').on('opened', function() {
-				$(this).find('input.coupon-value').focus();
-			});
-		}
+		$('.coupon-popover').on('opened', function() {
+			$(this).find('input.coupon-value').focus();
+		});
+		$('.coupon-popover .coupon-close').on('click', function() {
+			fw.closeModal('.coupon-popover.modal-in');
+			return false;
+		});
 	},
 	fillAddr: function( e, item ) {
 		e.find('.name').text(item['a.contactPerson']);
@@ -239,11 +241,19 @@ ob.pages.checkout = {
 			ob.pages.checkout.container.find('#tab-delivery .ob-address .swiper-container > .swiper-wrapper').append(e);
 		}
 	},
-	order: function() {
+	order: function( btn ) {
+		if(btn.data('working')) {
+			return false;
+		}
+		btn.data('working', true).attr('disabled', 'disabled');
+		var release = function( btn ) {
+			btn.data('working', false).removeAttr('disabled');
+		};
 		var data = {};
 		var deliveryOption = ob.pages.checkout.container.find('#tab-delivery select[name="delop"]').val();
 		if(!deliveryOption) {
 			fw.alert('Please choose delivery option.');
+			release(btn);
 			return false;
 		}
 		data['deliveryOption'] = deliveryOption;
@@ -262,6 +272,7 @@ ob.pages.checkout = {
 			}
 			if(!addressId) {
 				fw.alert('Please choose your delivery address.');
+				release(btn);
 				return false;
 			}
 			data['a.addressId'] = addressId;
@@ -271,6 +282,7 @@ ob.pages.checkout = {
 		} else {
 			if(billingOption === 'A') {
 				fw.alert('Self-Collecting is selected, please open Billing Options and choose another billing address or choose to leave it blank and submit order again.');
+				release(btn);
 				return false;
 			}
 		}
@@ -286,6 +298,7 @@ ob.pages.checkout = {
 			}
 			if(!addressId) {
 				fw.alert('Please choose your billing address.');
+				release(btn);
 				return false;
 			}
 			data['b.addressId'] = addressId;
@@ -355,6 +368,7 @@ ob.pages.checkout = {
 						} else {
 							ob.error('Oops! Something goes wrong.');
 						}
+						release(btn);
 					}
 				} catch(e) {
 					ob.error(e);
@@ -363,8 +377,10 @@ ob.pages.checkout = {
 			error: function(xhr, code) {
 				if(code === 403) {
 					fw.loginScreen();
+					release(btn);
 				} else {
 					ob.error(code);
+					release(btn);
 				}
 			}
 		});
