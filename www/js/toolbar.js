@@ -210,20 +210,23 @@ ob.toolbar = {
 			}
 			return false;
 		};
+		var counter = 0;
 		var toolbar_showmainsearch = function() {
 			if(!$('.popup-search').data('init')) {
 				var xpop = $('.popup-search');
 				xpop.on('opened', function() {
+					$('.popup-search .help-text').append('<div style="color: red;"> on opened: ' + ++counter + '</div>');
 					$(this).find('input.search-on-popup').focus();
 				});
 				xpop.find('a.ob-cancel').on('click', function() {
 					fw.closeModal('.popup-search.modal-in');
 				});
 				xpop.find('input.search-on-popup').on('search', toolbar_onmainsearch)
-					.on('focus', function() {
-						var div = $('.popup-search .help-text .searchbar-found > div.recents');
-						fw.accordionOpen(div.find('li.accordion-item'));
-					});
+				;
+//					.on('focus', function() {
+//						var div = $('.popup-search .help-text .searchbar-found > div.recents');
+//						fw.accordionOpen(div.find('li.accordion-item'));
+//					});
 				// toolbar_acmainsearch(xpop.find('input.search-on-popup'));
 				xpop.data('init', true);
 			}
